@@ -119,6 +119,39 @@ function NetworkHarness() {
   </svg>;
 }
 
+const matrixStreams = [
+  '0101011010011100101101',
+  'M 0 1 1 0 0 1 0 1 1 0',
+  '1100100101110011010110',
+  'SYS 01 10 DEV 11 OPS',
+  '0011011100100110101011',
+  '0 1 0 0 1 1 0 1 0 1 1',
+  '1101010010111010011010',
+  'NODE / LINK / BUILD',
+  '0100110101100101110011',
+  '1011011001001101010110',
+  'RU 01 10 LOCAL 11',
+  '0010110111010010011011',
+  '1010100100111011010010',
+  'M  E  M  A  S  E  V  I  C  H',
+  '0110101100101011011010',
+  '1001011010110010110101',
+];
+
+function SignalMatrix({ ru }: { ru: boolean }) {
+  return <aside className="signal-matrix" aria-label={ru ? 'Абстрактная цифровая матрица' : 'Abstract digital matrix'}>
+    <div className="matrix-topline"><span>VOID / 01</span><b>MEMASEVICH</b><small>ICE SIGNAL</small></div>
+    <div className="matrix-field" aria-hidden="true">
+      <div className="matrix-gridlines" />
+      {matrixStreams.map((stream, index) => <i className={`matrix-stream matrix-stream-${index + 1}`} key={stream}>{stream}</i>)}
+      <b className="matrix-mark">M</b>
+      <span className="matrix-cross matrix-cross-a" />
+      <span className="matrix-cross matrix-cross-b" />
+    </div>
+    <div className="matrix-meta"><span>STATIC PROFILE</span><b>{ru ? 'СИСТЕМА / ЛИЧНОЕ' : 'SYSTEM / PERSONAL'}</b><i aria-hidden="true" /></div>
+  </aside>;
+}
+
 function WorkCard({ item, index, locale }: { item: WorkItem; index: number; locale: 'ru' | 'en' }) {
   const ru = locale === 'ru';
 
@@ -185,25 +218,7 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
               <a className="hero-secondary" href="https://t.me/memasev1ch" target="_blank" rel="noopener noreferrer">{content.secondaryCta}<ExternalLink size={14} aria-hidden="true" /></a>
             </div>
           </div>
-          <aside className="crt-monitor" aria-label={ru ? 'Анимированный системный терминал' : 'Animated system terminal'}>
-            <div className="crt-case">
-              <div className="crt-brand"><span>MEMASEVICH</span><b>CRT_NODE_01</b></div>
-              <div className="crt-screen">
-                <div className="crt-glow">
-                  <p className="boot-line boot-line-1"><span>[BOOT]</span> MEMASEVICH SYSTEMS</p>
-                  <p className="boot-line boot-line-2"><span>[ OK ]</span> SYSADMIN / DEVOPS / SOFTWARE</p>
-                  <p className="boot-line boot-line-3"><span>[LINK]</span> GITHUB / BOOSTY / TELEGRAM</p>
-                  <p className="boot-line boot-line-4"><span>[NET ]</span> UTP / CAT6 / T568B BUS</p>
-                  <div className="crt-divider" aria-hidden="true">{Array.from({ length: 18 }, (_, index) => <i key={index} />)}</div>
-                  <p className="crt-prompt">root@memasevich:~$ <i>whoami</i><b aria-hidden="true">▋</b></p>
-                  <p className="crt-answer">MEMASEVICH // {ru ? 'СИСТЕМЫ В РАБОТЕ' : 'SYSTEMS ONLINE'}</p>
-                </div>
-              </div>
-              <div className="crt-controls"><span className="crt-led" /><small>POWER</small><i /><i /><b>LAN</b></div>
-            </div>
-            <div className="crt-neck" aria-hidden="true" />
-            <div className="crt-base" aria-hidden="true" />
-          </aside>
+          <SignalMatrix ru={ru} />
         </div>
       </section>
 
