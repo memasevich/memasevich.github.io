@@ -152,6 +152,22 @@ function SignalMatrix({ ru }: { ru: boolean }) {
   </aside>;
 }
 
+function OperationsPanel({ ru }: { ru: boolean }) {
+  const stages = ru ? ['КОД', 'СБОРКА', 'ПРОВЕРКА', 'ДЕПЛОЙ', 'ПОДДЕРЖКА'] : ['CODE', 'BUILD', 'CHECK', 'DEPLOY', 'SUPPORT'];
+
+  return <section className="container operations" aria-label={ru ? 'Визуальная схема рабочего процесса' : 'Visual workflow diagram'}>
+    <div className="pipeline-card">
+      <div className="panel-heading"><span>PIPELINE / 01</span><b>{ru ? 'РАБОЧИЙ ПОТОК' : 'WORKFLOW'}</b><small>STATIC FLOW</small></div>
+      <div className="pipeline-track">{stages.map((stage, index) => <div className="pipeline-stage" key={stage}><i>{String(index + 1).padStart(2, '0')}</i><b>{stage}</b>{index < stages.length - 1 ? <span className="pipeline-link" aria-hidden="true" /> : <span className="pipeline-end">✓</span>}</div>)}</div>
+      <p>{ru ? 'Собираю понятные процессы: от задачи и кода до результата, который можно поддерживать.' : 'Clear processes from task and code to a result that can be maintained.'}</p>
+    </div>
+    <div className="shell-card">
+      <div className="panel-heading"><span>SHELL / 02</span><b>root@memasevich:~$ help</b><small>LOCAL PROFILE</small></div>
+      <div className="shell-lines"><a href="#about"><span>about</span><b>{ru ? 'моя история' : 'my story'}</b><i>↗</i></a><a href="#works"><span>work</span><b>{ru ? 'проекты и локализации' : 'projects and localizations'}</b><i>↗</i></a><a href="#contact"><span>contact</span><b>{ru ? 'написать мне' : 'write to me'}</b><i>↗</i></a></div>
+    </div>
+  </section>;
+}
+
 function WorkCard({ item, index, locale }: { item: WorkItem; index: number; locale: 'ru' | 'en' }) {
   const ru = locale === 'ru';
 
@@ -230,6 +246,8 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
         </a>)}
       </section>
 
+      <OperationsPanel ru={ru} />
+
       <section className="container works" id="works">
         <SectionHead index="01A" command="ls /work/applied" title={content.toolsTitle} intro={content.toolsIntro} icon={<Code2 aria-hidden="true" />} />
         <div className="work-grid">{content.tools.map((item, index) => <WorkCard item={item} index={index} locale={locale} key={item.title} />)}</div>
@@ -255,6 +273,11 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
         <div className="about-label"><div className="eyebrow section-command"><span>02</span>{content.nav.about}</div><figure className="portrait-card"><img src="/portrait/memasevich-workspace.jpg" alt={ru ? 'Memasevich за рабочим местом' : 'Memasevich at the workspace'} width="640" height="640" loading="lazy" decoding="async" /><figcaption><span>MEMASEVICH</span><small>WORKSPACE / 2025</small></figcaption></figure></div>
         <div className="about-copy"><h2>{content.aboutTitle}</h2><div className="about-story">{content.aboutText.map((paragraph, index) => <p key={paragraph}><span className="story-index">0{index + 1} / {storyLabels[index]}</span><span>{paragraph}</span></p>)}</div><span className="about-sign">MEMASEVICH / INDEPENDENT / SYSTEMS</span></div>
         <dl className="about-spec"><div><dt>PUBLIC_ROLE</dt><dd>SYSADMIN / DEVOPS / SOFTWARE ENGINEER</dd></div><div><dt>WORK_MODE</dt><dd>INDEPENDENT</dd></div><div><dt>PRIMARY_LANG</dt><dd>RU</dd></div><div><dt>VALUES</dt><dd>RELIABILITY / CLARITY / SUPPORT</dd></div></dl>
+      </section>
+
+      <section className="container career-path" aria-label={ru ? 'Путь в профессии' : 'Career path'}>
+        <div className="career-heading"><span className="eyebrow">PATH / 03</span><h2>{ru ? 'ОТ ЖЕЛЕЗА К СИСТЕМАМ' : 'FROM HARDWARE TO SYSTEMS'}</h2><small>{ru ? 'личная траектория' : 'personal trajectory'}</small></div>
+        <div className="career-line">{(ru ? ['ПЕРВЫЙ ПК', 'ИГРОВЫЕ СЕРВЕРЫ', 'СИСАДМИН', 'РОСТ ИНФРАСТРУКТУРЫ', 'DEVOPS'] : ['FIRST PC', 'GAME SERVERS', 'SYSADMIN', 'INFRASTRUCTURE GROWTH', 'DEVOPS']).map((item, index) => <div className="career-node" key={item}><i>{String(index + 1).padStart(2, '0')}</i><span>{item}</span></div>)}</div>
       </section>
 
       <section className="contact" id="contact"><div className="container">
