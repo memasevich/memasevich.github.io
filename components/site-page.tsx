@@ -6,7 +6,6 @@ import {
   Languages,
   Network,
   Send,
-  Server,
   Zap,
 } from 'lucide-react';
 
@@ -118,67 +117,6 @@ function NetworkHarness() {
       <rect x="1242" y="5146" width="22" height="28" />
     </g>
   </svg>;
-}
-
-function ServerRack({ locale }: { locale: 'ru' | 'en' }) {
-  const ru = locale === 'ru';
-  const units = [
-    ['U03', 'BUILD / CI-CD', 'RUNNER NODE'],
-    ['U04', 'AUTOMATION', 'PY / PS'],
-    ['U05', 'LOCALIZATION', 'C# / XNA'],
-  ];
-
-  return <section className="container rack-interlude" aria-label={ru ? 'Визуальная серверная стойка' : 'Visual server rack'}>
-    <div className="rack-caption">
-      <span><Server size={14} aria-hidden="true" />RACK_NODE_01</span>
-      <b>{ru ? 'ИНФРАСТРУКТУРНЫЙ УЗЕЛ' : 'INFRASTRUCTURE NODE'}</b>
-      <small>{ru ? 'ВИЗУАЛЬНАЯ СХЕМА / НЕ LIVE-ДАННЫЕ' : 'VISUAL SCHEME / NOT LIVE DATA'}</small>
-    </div>
-    <div className="rack-stage">
-      <div className="rack-cabinet">
-        <span className="rack-u-numbers" aria-hidden="true">01<br />02<br />03<br />04<br />05<br />06</span>
-        <span className="rack-rail rack-rail-left" aria-hidden="true">{Array.from({ length: 12 }, (_, index) => <i key={index} />)}</span>
-        <span className="rack-rail rack-rail-right" aria-hidden="true">{Array.from({ length: 12 }, (_, index) => <i key={index} />)}</span>
-        <div className="rack-stack">
-          <div className="rack-unit rack-patch-panel">
-            <div className="rack-unit-label"><span>U01</span><b>PATCH PANEL</b><small>CAT6 / T568B</small></div>
-            <div className="rack-ports" aria-hidden="true">{Array.from({ length: 16 }, (_, index) => <i className={`rack-port rack-port-${(index % 4) + 1}`} key={index}><b /></i>)}</div>
-          </div>
-          <div className="rack-unit rack-switch">
-            <span className="rack-handle" aria-hidden="true" />
-            <div className="rack-unit-label"><span>U02</span><b>MANAGED SWITCH</b><small>16 PORTS / VLAN</small></div>
-            <div className="rack-switch-ports" aria-hidden="true">{Array.from({ length: 16 }, (_, index) => <i key={index}><b /></i>)}</div>
-            <div className="rack-leds" aria-hidden="true"><i /><i /><i /></div>
-            <span className="rack-handle rack-handle-right" aria-hidden="true" />
-          </div>
-          {units.map(([index, title, detail], unitIndex) => <div className="rack-unit rack-server" key={index}>
-            <span className="rack-handle" aria-hidden="true" />
-            <div className="rack-unit-label"><span>{index}</span><b>{title}</b><small>{detail}</small></div>
-            <div className="rack-drive-bays" aria-hidden="true">{Array.from({ length: 6 }, (_, bay) => <i key={bay}><b /></i>)}</div>
-            <div className="rack-leds" aria-hidden="true"><i /><i /><i className={unitIndex === 2 ? 'rack-led-warm' : ''} /></div>
-            <span className="rack-handle rack-handle-right" aria-hidden="true" />
-          </div>)}
-          <div className="rack-unit rack-power-unit"><span>U06 / PDU</span><div aria-hidden="true">{Array.from({ length: 8 }, (_, index) => <i key={index} />)}</div><b>DUAL POWER</b></div>
-        </div>
-        <svg className="rack-patch-cables" viewBox="0 0 760 128" preserveAspectRatio="none" aria-hidden="true">
-          <path className="rack-cable-orange" d="M 308 27 C 278 43 278 75 324 92" />
-          <path className="rack-cable-blue" d="M 345 27 C 321 47 322 76 356 92" />
-          <path className="rack-cable-green" d="M 382 27 C 364 47 364 76 388 92" />
-          <path className="rack-cable-brown" d="M 419 27 C 436 48 436 76 420 92" />
-          <path className="rack-cable-orange" d="M 456 27 C 480 46 480 75 452 92" />
-          <path className="rack-cable-blue" d="M 493 27 C 522 44 522 73 484 92" />
-          <path className="rack-cable-green" d="M 530 27 C 558 44 558 72 516 92" />
-          <path className="rack-cable-brown" d="M 567 27 C 588 43 588 70 548 92" />
-        </svg>
-      </div>
-      <div className="rack-sidecar">
-        <div><span>LINK</span><b>RJ45 / UTP</b><small>{ru ? 'патч-панель и кабельные трассы' : 'patch panel and cable routes'}</small></div>
-        <div><span>STACK</span><b>INFRA / AUTOMATION</b><small>{ru ? 'направления работы, не телеметрия' : 'work areas, not telemetry'}</small></div>
-        <div><span>STATE</span><b>DOCUMENTED</b><small>{ru ? 'понятная сборка и поддержка' : 'clear build and maintenance'}</small></div>
-        <p>&gt; {ru ? 'стойка — часть визуального языка сайта' : 'the rack is part of the site visual language'}<i aria-hidden="true">▋</i></p>
-      </div>
-    </div>
-  </section>;
 }
 
 function WorkCard({ item, index, locale }: { item: WorkItem; index: number; locale: 'ru' | 'en' }) {
@@ -296,8 +234,6 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
         </article>)}</div>
 
       </section>
-
-      <ServerRack locale={locale} />
 
       <section className="container about" id="about">
         <div className="about-label"><div className="eyebrow section-command"><span>02</span>{content.nav.about}</div><figure className="portrait-card"><img src="/portrait/memasevich-workspace.jpg" alt={ru ? 'Memasevich за рабочим местом' : 'Memasevich at the workspace'} width="640" height="640" loading="lazy" decoding="async" /><figcaption><span>MEMASEVICH</span><small>WORKSPACE / 2025</small></figcaption></figure></div>
