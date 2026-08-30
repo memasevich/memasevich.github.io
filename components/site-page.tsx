@@ -48,7 +48,7 @@ export type SiteContent = {
   localizationIntro: string;
   localizations: Localization[];
   aboutTitle: string;
-  aboutText: string;
+  aboutText: string[];
   contactEyebrow: string;
   contactTitle: string;
   contactText: string;
@@ -186,6 +186,7 @@ function SectionHead({ index, command, title, intro, icon }: { index: string; co
 export default function SitePage({ content, locale }: { content: SiteContent; locale: 'ru' | 'en' }) {
   const ru = locale === 'ru';
   const [heroName, ...heroRole] = content.heroTitle.split('\n');
+  const storyLabels = ru ? ['СТАРТ', 'ПЕРВЫЕ СЕРВЕРЫ', 'ПУТЬ', 'DEVOPS', 'СЕЙЧАС'] : ['START', 'FIRST SERVERS', 'THE PATH', 'DEVOPS', 'NOW'];
   const socialNodes = [
     { key: 'github', name: 'GITHUB', handle: '@memasevich', label: ru ? 'Код и публичные репозитории' : 'Code and public repositories', href: 'https://github.com/memasevich', icon: <GithubMark /> },
     { key: 'telegram', name: 'TELEGRAM', handle: '@memasev1ch', label: ru ? 'Связь и сообщения об ошибках' : 'Contact and bug reports', href: 'https://t.me/memasev1ch', icon: <Send aria-hidden="true" /> },
@@ -252,7 +253,7 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
 
       <section className="container about" id="about">
         <div className="about-label"><div className="eyebrow section-command"><span>02</span>{content.nav.about}</div><figure className="portrait-card"><img src="/portrait/memasevich-workspace.jpg" alt={ru ? 'Memasevich за рабочим местом' : 'Memasevich at the workspace'} width="640" height="640" loading="lazy" decoding="async" /><figcaption><span>MEMASEVICH</span><small>WORKSPACE / 2025</small></figcaption></figure></div>
-        <div className="about-copy"><h2>{content.aboutTitle}</h2><p>{content.aboutText}</p><span className="about-sign">MEMASEVICH / INDEPENDENT / SYSTEMS</span></div>
+        <div className="about-copy"><h2>{content.aboutTitle}</h2><div className="about-story">{content.aboutText.map((paragraph, index) => <p key={paragraph}><span className="story-index">0{index + 1} / {storyLabels[index]}</span><span>{paragraph}</span></p>)}</div><span className="about-sign">MEMASEVICH / INDEPENDENT / SYSTEMS</span></div>
         <dl className="about-spec"><div><dt>PUBLIC_ROLE</dt><dd>SYSADMIN / DEVOPS / SOFTWARE ENGINEER</dd></div><div><dt>WORK_MODE</dt><dd>INDEPENDENT</dd></div><div><dt>PRIMARY_LANG</dt><dd>RU</dd></div><div><dt>VALUES</dt><dd>RELIABILITY / CLARITY / SUPPORT</dd></div></dl>
       </section>
 
