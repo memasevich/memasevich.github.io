@@ -1,25 +1,345 @@
+/* oxlint-disable next/no-img-element -- Local static project artwork is already sized and optimized for export. */
 import Link from 'next/link';
+import {
+  Activity,
+  Code2,
+  ExternalLink,
+  Languages,
+  Network,
+  Send,
+  Server,
+  Terminal,
+  Zap,
+} from 'lucide-react';
 
-type Project = { title: string; description: string; tags: string[]; art: 'grid' | 'orb' | 'signal' };
-export type SiteContent = {
-  locale: 'ru' | 'en'; nav: { projects: string; approach: string; contact: string }; eyebrow: string; title: string; lede: string; note: string; projectsTitle: string; projects: Project[]; approachTitle: string; principles: { title: string; text: string }[]; contactEyebrow: string; contactTitle: string; contactCta: string; footer: string;
+type Accent = 'lime' | 'coral' | 'violet';
+
+type WorkItem = {
+  title: string;
+  type: string;
+  role: string;
+  task: string;
+  done: string;
+  status: string;
+  href?: string;
+  accent: Accent;
 };
 
-function ProjectArt({ type }: { type: Project['art'] }) {
-  if (type === 'grid') return <svg viewBox="0 0 800 510" aria-label="Абстрактная сетка интерфейса" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="510" fill="#d8ff45"/><path d="M0 120h800M0 240h800M0 360h800M160 0v510M320 0v510M480 0v510M640 0v510" stroke="#131315" strokeOpacity=".25"/><rect x="58" y="62" width="280" height="148" rx="12" fill="#131315"/><circle cx="88" cy="91" r="8" fill="#ff755f"/><rect x="84" y="268" width="490" height="118" rx="12" fill="#f4f2ed"/><path d="M110 330h260M110 350h190" stroke="#131315" strokeWidth="8" strokeLinecap="round"/><path d="m575 95 104 104-104 104-104-104z" fill="#a694ff" stroke="#131315" strokeWidth="5"/></svg>;
-  if (type === 'orb') return <svg viewBox="0 0 800 510" aria-label="Абстрактный визуальный модуль" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="510" fill="#131315"/><circle cx="420" cy="250" r="164" fill="#a694ff"/><circle cx="420" cy="250" r="104" fill="#ff755f"/><circle cx="420" cy="250" r="47" fill="#d8ff45"/><path d="M0 416c135-45 209 28 326-30 126-62 210 62 474-33" fill="none" stroke="#f4f2ed" strokeWidth="2"/><path d="M0 94c152 49 205-31 347 31 130 57 242-69 453 20" fill="none" stroke="#f4f2ed" strokeOpacity=".45" strokeWidth="2"/></svg>;
-  return <svg viewBox="0 0 800 510" aria-label="Сигнальная диаграмма" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="510" fill="#ff755f"/><path d="M0 380 100 295l100 31 100-164 100 92 100-176 100 68 100-91 100 34" fill="none" stroke="#131315" strokeWidth="12"/><path d="M0 420h800M0 62h800" stroke="#131315" strokeOpacity=".25" strokeWidth="2"/><circle cx="500" cy="254" r="19" fill="#d8ff45" stroke="#131315" strokeWidth="6"/><rect x="54" y="70" width="175" height="46" rx="23" fill="#131315"/><text x="82" y="99" fill="#f4f2ed" fontFamily="Arial" fontSize="16" fontWeight="700">LIVE / 03</text></svg>;
+type Localization = {
+  title: string;
+  area: string;
+  description: string;
+  status: string;
+  note: string;
+  image: string;
+  imageAlt: string;
+  href?: string;
+};
+
+type CurrentItem = { label: string; value: string; detail: string };
+
+export type SiteContent = {
+  locale: 'ru' | 'en';
+  nav: { works: string; approach: string; about: string; contact: string };
+  identity: string;
+  heroTitle: string;
+  heroLead: string;
+  primaryCta: string;
+  secondaryCta: string;
+  currentTitle: string;
+  currentItems: CurrentItem[];
+  systemsTitle: string;
+  systemsIntro: string;
+  systems: WorkItem[];
+  toolsTitle: string;
+  toolsIntro: string;
+  tools: WorkItem[];
+  localizationTitle: string;
+  localizationIntro: string;
+  localizations: Localization[];
+  approachTitle: string;
+  steps: { title: string; text: string }[];
+  aboutTitle: string;
+  aboutText: string;
+  contactEyebrow: string;
+  contactTitle: string;
+  contactText: string;
+  contactActions: { label: string; href: string }[];
+  footer: string;
+};
+
+function StatusMark({ accent = 'lime' }: { accent?: Accent }) {
+  return <span className={`status-mark status-${accent}`} aria-hidden="true" />;
+}
+
+function PacketTrace() {
+  return <span className="packet-trace" aria-hidden="true">{Array.from({ length: 12 }, (_, index) => <i key={index} />)}</span>;
+}
+
+function GithubMark() {
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .7a11.3 11.3 0 0 0-3.6 22c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.4 3.6 1.1.1-.8.4-1.4.8-1.7-2.6-.3-5.4-1.3-5.4-5.6 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.5.1-3 0 0 1-.3 3.1 1.2a10.6 10.6 0 0 1 5.6 0C17.7 5 18.8 5.3 18.8 5.3c.6 1.5.2 2.7.1 3 .8.8 1.2 1.8 1.2 3 0 4.3-2.8 5.3-5.4 5.6.4.4.8 1.1.8 2.2v3.1c0 .3.2.7.8.6A11.3 11.3 0 0 0 12 .7Z" /></svg>;
+}
+
+function UtpBackbone({ side }: { side: 'left' | 'right' }) {
+  return <div className={`utp-backbone utp-${side}`} aria-hidden="true">
+    <span className="utp-label">CAT6 / T568B</span>
+    <span className="rj45-plug rj45-top">{Array.from({ length: 8 }, (_, index) => <b key={index} />)}</span>
+    <span className="utp-jacket" />
+    <i className="utp-pair pair-orange" />
+    <i className="utp-pair pair-blue" />
+    <i className="utp-pair pair-green" />
+    <i className="utp-pair pair-brown" />
+    <span className="utp-data-packet" />
+    <span className="utp-port utp-port-a">ETH0</span>
+    <span className="utp-port utp-port-b">LAN</span>
+    <span className="utp-port utp-port-c">WAN</span>
+    <span className="rj45-plug rj45-bottom">{Array.from({ length: 8 }, (_, index) => <b key={index} />)}</span>
+  </div>;
+}
+
+function NetworkHarness() {
+  const leftRun = 'M 52 0 C 50 420 205 520 112 970 S 42 1700 170 2130 S 52 2920 142 3490 S 48 4380 112 5200 S 72 5900 84 6200';
+  const rightRun = 'M 1548 0 C 1550 540 1400 690 1492 1180 S 1558 1880 1430 2360 S 1550 3180 1460 3710 S 1554 4550 1488 5220 S 1520 5850 1510 6200';
+
+  return <svg className="network-harness" viewBox="0 0 1600 6200" preserveAspectRatio="none" aria-hidden="true">
+    <g className="network-cable network-cable-left">
+      <path className="network-sheath" d={leftRun} />
+      <path className="network-core network-core-orange" d={leftRun} />
+      <path className="network-core network-core-blue" d={leftRun} />
+      <path className="network-core network-core-green" d={leftRun} />
+      <path className="network-core network-core-brown" d={leftRun} />
+      <path className="network-packet" d={leftRun} pathLength="100" />
+    </g>
+    <g className="network-cable network-cable-right">
+      <path className="network-sheath" d={rightRun} />
+      <path className="network-core network-core-orange" d={rightRun} />
+      <path className="network-core network-core-blue" d={rightRun} />
+      <path className="network-core network-core-green" d={rightRun} />
+      <path className="network-core network-core-brown" d={rightRun} />
+      <path className="network-packet network-packet-delayed" d={rightRun} pathLength="100" />
+    </g>
+    <g className="network-drops">
+      <path d="M 114 970 C 235 970 272 930 372 930" />
+      <path d="M 1431 2360 C 1340 2360 1306 2410 1208 2410" />
+      <path d="M 143 3490 C 248 3490 284 3440 388 3440" />
+      <path d="M 1488 5220 C 1390 5220 1350 5160 1264 5160" />
+      <rect x="366" y="916" width="22" height="28" />
+      <rect x="1186" y="2396" width="22" height="28" />
+      <rect x="382" y="3426" width="22" height="28" />
+      <rect x="1242" y="5146" width="22" height="28" />
+    </g>
+  </svg>;
+}
+
+function ServerRack({ locale }: { locale: 'ru' | 'en' }) {
+  const ru = locale === 'ru';
+  const units = [
+    ['U02', 'INFRA / CI-CD', 'BUILD NODE'],
+    ['U03', 'AUTOMATION', 'PY / PS'],
+    ['U04', 'LOCALIZATION', 'C# / XNA'],
+    ['U05', 'ARCHIVE / DOCS', 'STORAGE'],
+  ];
+
+  return <section className="container rack-interlude" aria-label={ru ? 'Визуальная серверная стойка' : 'Visual server rack'}>
+    <div className="rack-caption">
+      <span><Server size={14} aria-hidden="true" />RACK_NODE_01</span>
+      <b>{ru ? 'ИНФРАСТРУКТУРНЫЙ УЗЕЛ' : 'INFRASTRUCTURE NODE'}</b>
+      <small>{ru ? 'ВИЗУАЛЬНАЯ СХЕМА / НЕ LIVE-ДАННЫЕ' : 'VISUAL SCHEME / NOT LIVE DATA'}</small>
+    </div>
+    <div className="rack-stage">
+      <div className="rack-cabinet">
+        <span className="rack-u-numbers" aria-hidden="true">01<br />02<br />03<br />04<br />05<br />06</span>
+        <span className="rack-rail rack-rail-left" aria-hidden="true">{Array.from({ length: 12 }, (_, index) => <i key={index} />)}</span>
+        <span className="rack-rail rack-rail-right" aria-hidden="true">{Array.from({ length: 12 }, (_, index) => <i key={index} />)}</span>
+        <div className="rack-stack">
+          <div className="rack-unit rack-patch-panel">
+            <div className="rack-unit-label"><span>U01</span><b>PATCH PANEL</b><small>CAT6 / T568B</small></div>
+            <div className="rack-ports" aria-hidden="true">{Array.from({ length: 16 }, (_, index) => <i className={`rack-port rack-port-${(index % 4) + 1}`} key={index}><b /></i>)}</div>
+          </div>
+          {units.map(([index, title, detail], unitIndex) => <div className="rack-unit rack-server" key={index}>
+            <span className="rack-handle" aria-hidden="true" />
+            <div className="rack-unit-label"><span>{index}</span><b>{title}</b><small>{detail}</small></div>
+            <div className="rack-drive-bays" aria-hidden="true">{Array.from({ length: 6 }, (_, bay) => <i key={bay}><b /></i>)}</div>
+            <div className="rack-leds" aria-hidden="true"><i /><i /><i className={unitIndex === 2 ? 'rack-led-warm' : ''} /></div>
+            <span className="rack-handle rack-handle-right" aria-hidden="true" />
+          </div>)}
+          <div className="rack-unit rack-power-unit"><span>U06 / PDU</span><div aria-hidden="true">{Array.from({ length: 8 }, (_, index) => <i key={index} />)}</div><b>DUAL POWER</b></div>
+        </div>
+        <svg className="rack-patch-cables" viewBox="0 0 760 440" preserveAspectRatio="none" aria-hidden="true">
+          <path className="rack-cable-orange" d="M 188 61 C 105 98 132 176 235 184" />
+          <path className="rack-cable-blue" d="M 246 61 C 132 122 170 245 312 266" />
+          <path className="rack-cable-green" d="M 304 61 C 210 142 252 315 405 343" />
+          <path className="rack-cable-brown" d="M 362 61 C 310 151 342 365 514 407" />
+        </svg>
+      </div>
+      <div className="rack-sidecar">
+        <div><span>LINK</span><b>RJ45 / UTP</b><small>{ru ? 'патч-панель и кабельные трассы' : 'patch panel and cable routes'}</small></div>
+        <div><span>STACK</span><b>INFRA / AUTOMATION</b><small>{ru ? 'направления работы, не телеметрия' : 'work areas, not telemetry'}</small></div>
+        <div><span>STATE</span><b>DOCUMENTED</b><small>{ru ? 'понятная сборка и поддержка' : 'clear build and maintenance'}</small></div>
+        <p>&gt; {ru ? 'стойка — часть визуального языка сайта' : 'the rack is part of the site visual language'}<i aria-hidden="true">▋</i></p>
+      </div>
+    </div>
+  </section>;
+}
+
+function WorkCard({ item, index, locale }: { item: WorkItem; index: number; locale: 'ru' | 'en' }) {
+  const ru = locale === 'ru';
+
+  return <article className={`work-card work-${item.accent}`}>
+    <span className="rack-screw rack-screw-a" aria-hidden="true" />
+    <span className="rack-screw rack-screw-b" aria-hidden="true" />
+    <header className="work-card-head"><span>MODULE_0{index + 1}</span><span>{item.type}</span></header>
+    <div className="work-card-title"><StatusMark accent={item.accent} /><h3>{item.title}</h3></div>
+    <PacketTrace />
+    <dl className="work-facts">
+      <div><dt>{ru ? 'РОЛЬ' : 'ROLE'}</dt><dd>{item.role}</dd></div>
+      <div><dt>{ru ? 'ЗАДАЧА' : 'TASK'}</dt><dd>{item.task}</dd></div>
+      <div><dt>{ru ? 'СДЕЛАНО' : 'DONE'}</dt><dd>{item.done}</dd></div>
+      <div><dt>{ru ? 'СТАТУС' : 'STATUS'}</dt><dd className="work-status">{item.status}</dd></div>
+    </dl>
+    {item.href
+      ? <a className="work-link" href={item.href} target="_blank" rel="noopener noreferrer">{item.type.includes('INTERNAL') ? (ru ? 'Описание в GitHub-профиле' : 'Description in GitHub profile') : (ru ? 'Открыть узел' : 'Open node')} <ExternalLink size={14} aria-hidden="true" /></a>
+      : <span className="work-todo">{ru ? 'Ссылка не опубликована' : 'Link is not public'}</span>}
+  </article>;
+}
+
+function SectionHead({ index, command, title, intro, icon }: { index: string; command: string; title: string; intro: string; icon: React.ReactNode }) {
+  return <div className="section-head">
+    <div>
+      <div className="eyebrow section-command"><span>{index}</span>{command}</div>
+      <h2>{icon}{title}</h2>
+    </div>
+    <p>{intro}</p>
+  </div>;
 }
 
 export default function SitePage({ content, locale }: { content: SiteContent; locale: 'ru' | 'en' }) {
-  const isRussian = locale === 'ru';
-  return <div className="site-shell">
-    <header className="container topbar"><Link className="wordmark" href={isRussian ? '/' : '/en/'} aria-label="MEMASEVICH">MEMASEVICH</Link><nav aria-label={isRussian ? 'Основная навигация' : 'Main navigation'}><a className="nav-link" href="#projects">{content.nav.projects}</a><a className="nav-link" href="#approach">{content.nav.approach}</a><a className="nav-link" href="#contact">{content.nav.contact}</a><span className="locale-switch" aria-label={isRussian ? 'Язык сайта' : 'Site language'}><Link className={isRussian ? 'active' : ''} href="/">RU</Link><Link className={!isRussian ? 'active' : ''} href="/en/">EN</Link></span></nav></header>
+  const ru = locale === 'ru';
+  const [heroName, ...heroRole] = content.heroTitle.split('\n');
+  const socialNodes = [
+    { key: 'github', name: 'GITHUB', handle: '@memasevich', label: ru ? 'Код и публичные репозитории' : 'Code and public repositories', href: 'https://github.com/memasevich', icon: <GithubMark /> },
+    { key: 'telegram', name: 'TELEGRAM', handle: '@memasev1ch', label: ru ? 'Связь и сообщения об ошибках' : 'Contact and bug reports', href: 'https://t.me/memasev1ch', icon: <Send aria-hidden="true" /> },
+    { key: 'boosty', name: 'BOOSTY', handle: '/memasevich', label: ru ? 'Релизы, заметки и поддержка' : 'Releases, notes, and support', href: 'https://boosty.to/memasevich', icon: <Zap aria-hidden="true" /> },
+  ];
+  const publicLog = [
+    ['MOUNT', 'github.com/memasevich', 'PUBLIC'],
+    ['LINK', 'CoQ / R.E.P.O. / Gnomoria', 'VERIFIED'],
+    ['CHANNEL', 'boosty.to/memasevich', 'PUBLIC'],
+    ['CONTACT', 't.me/memasev1ch', 'READY'],
+  ];
+
+  return <div className="site-shell" lang={locale}>
+    <NetworkHarness />
+    <UtpBackbone side="left" />
+    <UtpBackbone side="right" />
+    <header className="container topbar">
+      <Link className="wordmark" href={ru ? '/' : '/en'} aria-label="MEMASEVICH"><span>root@</span>memasevich:<b>~$</b></Link>
+      <span className="network-badge"><Network size={13} aria-hidden="true" />UTP / CAT6 / T568B</span>
+      <nav aria-label={ru ? 'Основная навигация' : 'Main navigation'}>
+        <a className="nav-link" href="#works"><span>01/</span>{content.nav.works}</a>
+        <a className="nav-link" href="#approach"><span>02/</span>{content.nav.approach}</a>
+        <a className="nav-link" href="#about"><span>03/</span>{content.nav.about}</a>
+        <a className="nav-link" href="#contact"><span>04/</span>{content.nav.contact}</a>
+        <span className="locale-switch" aria-label={ru ? 'Язык сайта' : 'Site language'}><Link className={ru ? 'active' : ''} href="/">RU</Link><Link className={!ru ? 'active' : ''} href="/en">EN</Link></span>
+      </nav>
+    </header>
+
     <main>
-      <section className="container hero"><div className="hero-grid"><div><div className="eyebrow">{content.eyebrow}</div><h1><span className="hero-title-word">MEMASEVICH</span><span className="hero-mark">·</span></h1><p className="hero-lede">{content.lede}</p></div><div className="hero-note"><div className="eyebrow">01 — 03</div><p>{content.note}</p></div></div><div className="scroll-cue">{isRussian ? 'Смотреть проекты' : 'View projects'}</div></section>
-      <section className="container band" id="projects"><div className="section-head"><h2>{content.projectsTitle}</h2><span className="section-index">{isRussian ? 'Избранное / 2026' : 'Selected / 2026'}</span></div><div className="projects">{content.projects.map(project => <article className="project-card" key={project.title}><div className="project-art"><ProjectArt type={project.art} /></div><div className="project-info"><h3>{project.title}</h3><p>{project.description}</p><div className="project-meta">{project.tags.map(tag => <span className="tag" key={tag}>{tag}</span>)}</div></div></article>)}</div></section>
-      <section className="container principles" id="approach"><div><div className="eyebrow">02 — {isRussian ? 'Подход' : 'Approach'}</div><h2>{content.approachTitle}</h2></div><div className="principle-list">{content.principles.map((principle, index) => <div className="principle" key={principle.title}><span className="principle-number">0{index + 1}</span><div><h3>{principle.title}</h3><p>{principle.text}</p></div></div>)}</div></section>
-      <section className="contact" id="contact"><div className="container"><div className="contact-grid"><div><div className="eyebrow">03 — {content.contactEyebrow}</div><h2>{content.contactTitle}</h2></div><a className="contact-action" href="mailto:hello@memasevich.ru">{content.contactCta}<span aria-hidden="true">↗</span></a></div><div className="contact-links"><a href="https://github.com/memasevich" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://t.me/memasevich" target="_blank" rel="noopener noreferrer">Telegram ↗</a><a href="https://boosty.to/memasevich" target="_blank" rel="noopener noreferrer">Boosty ↗</a></div></div></section>
-    </main><footer className="container footer"><span>© 2026 MEMASEVICH</span><span>{content.footer}</span></footer>
+      <section className="container hero">
+        <div className="hero-grid">
+          <div className="hero-copy">
+            <div className="eyebrow command-line">{content.identity}</div>
+            <h1><span>{heroName}</span>{heroRole.join('\n')}</h1>
+            <p className="hero-lede">{content.heroLead}</p>
+            <div className="hero-actions">
+              <a className="hero-primary" href="#works">{content.primaryCta}<span aria-hidden="true">↓</span></a>
+              <a className="hero-secondary" href="https://t.me/memasev1ch" target="_blank" rel="noopener noreferrer">{content.secondaryCta}<ExternalLink size={14} aria-hidden="true" /></a>
+            </div>
+          </div>
+          <aside className="crt-monitor" aria-label={ru ? 'Анимированный системный терминал' : 'Animated system terminal'}>
+            <div className="crt-case">
+              <div className="crt-brand"><span>MEMASEVICH</span><b>CRT_NODE_01</b></div>
+              <div className="crt-screen">
+                <div className="crt-glow">
+                  <p className="boot-line boot-line-1"><span>[BOOT]</span> MEMASEVICH SYSTEMS</p>
+                  <p className="boot-line boot-line-2"><span>[ OK ]</span> SYSADMIN / DEVOPS / SOFTWARE</p>
+                  <p className="boot-line boot-line-3"><span>[LINK]</span> GITHUB / BOOSTY / TELEGRAM</p>
+                  <p className="boot-line boot-line-4"><span>[NET ]</span> UTP / CAT6 / T568B BUS</p>
+                  <div className="crt-divider" aria-hidden="true">{Array.from({ length: 18 }, (_, index) => <i key={index} />)}</div>
+                  <p className="crt-prompt">root@memasevich:~$ <i>whoami</i><b aria-hidden="true">▋</b></p>
+                  <p className="crt-answer">MEMASEVICH // {ru ? 'СИСТЕМЫ В РАБОТЕ' : 'SYSTEMS ONLINE'}</p>
+                </div>
+              </div>
+              <div className="crt-controls"><span className="crt-led" /><small>POWER</small><i /><i /><b>LAN</b></div>
+            </div>
+            <div className="crt-neck" aria-hidden="true" />
+            <div className="crt-base" aria-hidden="true" />
+          </aside>
+        </div>
+      </section>
+
+      <section className="container social-nodes" aria-label={ru ? 'Публичные каналы' : 'Public channels'}>
+        {socialNodes.map((node, index) => <a className={`social-node node-${node.key}`} href={node.href} target="_blank" rel="noopener noreferrer" key={node.key}>
+          <div className="social-icon">{node.icon}</div><span className="node-index">NODE_0{index + 1}</span><strong>{node.name}</strong><small>{node.handle}</small><p>{node.label}</p>
+          <div className="node-footer"><PacketTrace /><ExternalLink size={14} aria-hidden="true" /></div>
+        </a>)}
+      </section>
+
+      <section className="container works" id="works">
+        <SectionHead index="01A" command="ls /work/applied" title={content.toolsTitle} intro={content.toolsIntro} icon={<Code2 aria-hidden="true" />} />
+        <div className="work-grid">{content.tools.map((item, index) => <WorkCard item={item} index={index} locale={locale} key={item.title} />)}</div>
+
+        <div className="subsection"><SectionHead index="01B" command="ls /work/localization" title={content.localizationTitle} intro={content.localizationIntro} icon={<Languages aria-hidden="true" />} /></div>
+        <div className="localization-grid">{content.localizations.map((game, index) => <article className="localization-card" key={game.title}>
+          <span className="localization-index">LOC_NODE_0{index + 1}</span>
+          <figure className="localization-media">
+            <img src={game.image} alt={game.imageAlt} width="640" height="480" loading="lazy" decoding="async" />
+            <figcaption>PUBLIC PROJECT IMAGE // SOURCE</figcaption>
+            <span aria-hidden="true" />
+          </figure>
+          <div className="localization-title"><Languages size={18} aria-hidden="true" /><span className="game-code">GAME / RU</span><h3>{game.title}</h3></div>
+          <PacketTrace />
+          <dl><div><dt>{ru ? 'ОБЛАСТЬ' : 'AREA'}</dt><dd>{game.area}</dd></div><div><dt>{ru ? 'СТАТУС' : 'STATUS'}</dt><dd>{game.status}</dd></div></dl>
+          <p>{game.description}</p><small>{game.note}</small>
+          {game.href ? <a className="localization-link" href={game.href} target="_blank" rel="noopener noreferrer">{ru ? 'Открыть репозиторий' : 'Open repository'} <ExternalLink size={13} aria-hidden="true" /></a> : null}
+        </article>)}</div>
+
+        <div className="subsection"><SectionHead index="01C" command="ls /work/infra" title={content.systemsTitle} intro={content.systemsIntro} icon={<Server aria-hidden="true" />} /></div>
+        <div className="work-grid">{content.systems.map((item, index) => <WorkCard item={item} index={index} locale={locale} key={item.title} />)}</div>
+      </section>
+
+      <ServerRack locale={locale} />
+
+      <section className="container control-room">
+        <div className="console-caption"><span><Activity size={14} aria-hidden="true" />CONTROL_ROOM</span><b>{content.currentTitle}</b><small>MANUAL / FACTUAL DATA</small></div>
+        <div className="control-grid">
+          <dl className="current-grid">{content.currentItems.map(item => <div key={item.label}><dt><StatusMark />{item.label}<small>MANUAL RECORD</small></dt><dd>{item.value}</dd><p>{item.detail}</p></div>)}</dl>
+          <div className="public-log" aria-label={ru ? 'Индекс публичных ссылок' : 'Public link index'}>
+            <div className="log-title"><Terminal size={14} aria-hidden="true" /><span>PUBLIC_INDEX.LOG</span><small>READ ONLY</small></div>
+            <ol>{publicLog.map(([event, target, result]) => <li key={target}><span>[{event}]</span><b>{target}</b><em>{result}</em></li>)}</ol>
+            <p>&gt; {ru ? 'метрики не симулируются; показаны только проверенные узлы' : 'no simulated metrics; verified nodes only'}<i aria-hidden="true">▋</i></p>
+          </div>
+        </div>
+      </section>
+
+      <section className="container approach" id="approach">
+        <div className="approach-title"><div className="eyebrow section-command"><span>02</span>cat /etc/method.conf</div><h2>{content.approachTitle}</h2><Network aria-hidden="true" /></div>
+        <ol className="steps">{content.steps.map((step, index) => <li key={step.title}><span>0{index + 1}</span><div><h3>{step.title}</h3><p>{step.text}</p></div><i aria-hidden="true" /></li>)}</ol>
+      </section>
+
+      <section className="container about" id="about">
+        <div className="about-label"><div className="eyebrow section-command"><span>03</span>whoami --verbose</div><Terminal aria-hidden="true" /></div>
+        <div className="about-copy"><h2>{content.aboutTitle}</h2><p>{content.aboutText}</p><span className="about-sign">MEMASEVICH / INDEPENDENT / SYSTEMS</span></div>
+        <dl className="about-spec"><div><dt>PUBLIC_ROLE</dt><dd>SYSADMIN / DEVOPS / SOFTWARE ENGINEER</dd></div><div><dt>WORK_MODE</dt><dd>INDEPENDENT</dd></div><div><dt>PRIMARY_LANG</dt><dd>RU</dd></div><div><dt>VALUES</dt><dd>RELIABILITY / CLARITY / SUPPORT</dd></div></dl>
+      </section>
+
+      <section className="contact" id="contact"><div className="container">
+        <div className="contact-terminal"><div className="contact-prompt"><span>root@memasevich:~$</span> connect --human</div><div className="contact-cursor" aria-hidden="true" /></div>
+        <div className="contact-top"><div><div className="eyebrow">04 — {content.contactEyebrow}</div><h2>{content.contactTitle}</h2><p>{content.contactText}</p></div><div className="contact-actions">{content.contactActions.map((action, index) => <a key={action.label} href={action.href} target={action.href.startsWith('http') ? '_blank' : undefined} rel={action.href.startsWith('http') ? 'noopener noreferrer' : undefined}><span>0{index + 1} / {action.label}</span><ExternalLink size={15} aria-hidden="true" /></a>)}</div></div>
+        <div className="contact-links">{socialNodes.map(node => <a href={node.href} target="_blank" rel="noopener noreferrer" key={node.key}>{node.icon}<span>{node.name}</span><small>{node.handle}</small></a>)}</div>
+      </div></section>
+    </main>
+
+    <footer className="container footer"><span>© 2026 MEMASEVICH</span><span>{content.footer}</span><span className="footer-status"><StatusMark />END_OF_TRANSMISSION</span></footer>
   </div>;
 }
