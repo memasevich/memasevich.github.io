@@ -1,14 +1,12 @@
 /* oxlint-disable next/no-img-element -- Local static project artwork is already sized and optimized for export. */
 import Link from 'next/link';
 import {
-  Activity,
   Code2,
   ExternalLink,
   Languages,
   Network,
   Send,
   Server,
-  Terminal,
   Zap,
 } from 'lucide-react';
 
@@ -36,29 +34,20 @@ type Localization = {
   href?: string;
 };
 
-type CurrentItem = { label: string; value: string; detail: string };
-
 export type SiteContent = {
   locale: 'ru' | 'en';
-  nav: { works: string; approach: string; about: string; contact: string };
+  nav: { works: string; about: string; contact: string };
   identity: string;
   heroTitle: string;
   heroLead: string;
   primaryCta: string;
   secondaryCta: string;
-  currentTitle: string;
-  currentItems: CurrentItem[];
-  systemsTitle: string;
-  systemsIntro: string;
-  systems: WorkItem[];
   toolsTitle: string;
   toolsIntro: string;
   tools: WorkItem[];
   localizationTitle: string;
   localizationIntro: string;
   localizations: Localization[];
-  approachTitle: string;
-  steps: { title: string; text: string }[];
   aboutTitle: string;
   aboutText: string;
   contactEyebrow: string;
@@ -134,10 +123,9 @@ function NetworkHarness() {
 function ServerRack({ locale }: { locale: 'ru' | 'en' }) {
   const ru = locale === 'ru';
   const units = [
-    ['U02', 'INFRA / CI-CD', 'BUILD NODE'],
-    ['U03', 'AUTOMATION', 'PY / PS'],
-    ['U04', 'LOCALIZATION', 'C# / XNA'],
-    ['U05', 'ARCHIVE / DOCS', 'STORAGE'],
+    ['U03', 'BUILD / CI-CD', 'RUNNER NODE'],
+    ['U04', 'AUTOMATION', 'PY / PS'],
+    ['U05', 'LOCALIZATION', 'C# / XNA'],
   ];
 
   return <section className="container rack-interlude" aria-label={ru ? 'Визуальная серверная стойка' : 'Visual server rack'}>
@@ -156,6 +144,13 @@ function ServerRack({ locale }: { locale: 'ru' | 'en' }) {
             <div className="rack-unit-label"><span>U01</span><b>PATCH PANEL</b><small>CAT6 / T568B</small></div>
             <div className="rack-ports" aria-hidden="true">{Array.from({ length: 16 }, (_, index) => <i className={`rack-port rack-port-${(index % 4) + 1}`} key={index}><b /></i>)}</div>
           </div>
+          <div className="rack-unit rack-switch">
+            <span className="rack-handle" aria-hidden="true" />
+            <div className="rack-unit-label"><span>U02</span><b>MANAGED SWITCH</b><small>16 PORTS / VLAN</small></div>
+            <div className="rack-switch-ports" aria-hidden="true">{Array.from({ length: 16 }, (_, index) => <i key={index}><b /></i>)}</div>
+            <div className="rack-leds" aria-hidden="true"><i /><i /><i /></div>
+            <span className="rack-handle rack-handle-right" aria-hidden="true" />
+          </div>
           {units.map(([index, title, detail], unitIndex) => <div className="rack-unit rack-server" key={index}>
             <span className="rack-handle" aria-hidden="true" />
             <div className="rack-unit-label"><span>{index}</span><b>{title}</b><small>{detail}</small></div>
@@ -165,11 +160,15 @@ function ServerRack({ locale }: { locale: 'ru' | 'en' }) {
           </div>)}
           <div className="rack-unit rack-power-unit"><span>U06 / PDU</span><div aria-hidden="true">{Array.from({ length: 8 }, (_, index) => <i key={index} />)}</div><b>DUAL POWER</b></div>
         </div>
-        <svg className="rack-patch-cables" viewBox="0 0 760 440" preserveAspectRatio="none" aria-hidden="true">
-          <path className="rack-cable-orange" d="M 188 61 C 105 98 132 176 235 184" />
-          <path className="rack-cable-blue" d="M 246 61 C 132 122 170 245 312 266" />
-          <path className="rack-cable-green" d="M 304 61 C 210 142 252 315 405 343" />
-          <path className="rack-cable-brown" d="M 362 61 C 310 151 342 365 514 407" />
+        <svg className="rack-patch-cables" viewBox="0 0 760 128" preserveAspectRatio="none" aria-hidden="true">
+          <path className="rack-cable-orange" d="M 308 27 C 278 43 278 75 324 92" />
+          <path className="rack-cable-blue" d="M 345 27 C 321 47 322 76 356 92" />
+          <path className="rack-cable-green" d="M 382 27 C 364 47 364 76 388 92" />
+          <path className="rack-cable-brown" d="M 419 27 C 436 48 436 76 420 92" />
+          <path className="rack-cable-orange" d="M 456 27 C 480 46 480 75 452 92" />
+          <path className="rack-cable-blue" d="M 493 27 C 522 44 522 73 484 92" />
+          <path className="rack-cable-green" d="M 530 27 C 558 44 558 72 516 92" />
+          <path className="rack-cable-brown" d="M 567 27 C 588 43 588 70 548 92" />
         </svg>
       </div>
       <div className="rack-sidecar">
@@ -221,13 +220,6 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
     { key: 'telegram', name: 'TELEGRAM', handle: '@memasev1ch', label: ru ? 'Связь и сообщения об ошибках' : 'Contact and bug reports', href: 'https://t.me/memasev1ch', icon: <Send aria-hidden="true" /> },
     { key: 'boosty', name: 'BOOSTY', handle: '/memasevich', label: ru ? 'Релизы, заметки и поддержка' : 'Releases, notes, and support', href: 'https://boosty.to/memasevich', icon: <Zap aria-hidden="true" /> },
   ];
-  const publicLog = [
-    ['MOUNT', 'github.com/memasevich', 'PUBLIC'],
-    ['LINK', 'CoQ / R.E.P.O. / Gnomoria', 'VERIFIED'],
-    ['CHANNEL', 'boosty.to/memasevich', 'PUBLIC'],
-    ['CONTACT', 't.me/memasev1ch', 'READY'],
-  ];
-
   return <div className="site-shell" lang={locale}>
     <NetworkHarness />
     <UtpBackbone side="left" />
@@ -237,9 +229,8 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
       <span className="network-badge"><Network size={13} aria-hidden="true" />UTP / CAT6 / T568B</span>
       <nav aria-label={ru ? 'Основная навигация' : 'Main navigation'}>
         <a className="nav-link" href="#works"><span>01/</span>{content.nav.works}</a>
-        <a className="nav-link" href="#approach"><span>02/</span>{content.nav.approach}</a>
-        <a className="nav-link" href="#about"><span>03/</span>{content.nav.about}</a>
-        <a className="nav-link" href="#contact"><span>04/</span>{content.nav.contact}</a>
+        <a className="nav-link" href="#about"><span>02/</span>{content.nav.about}</a>
+        <a className="nav-link" href="#contact"><span>03/</span>{content.nav.contact}</a>
         <span className="locale-switch" aria-label={ru ? 'Язык сайта' : 'Site language'}><Link className={ru ? 'active' : ''} href="/">RU</Link><Link className={!ru ? 'active' : ''} href="/en">EN</Link></span>
       </nav>
     </header>
@@ -304,38 +295,19 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
           {game.href ? <a className="localization-link" href={game.href} target="_blank" rel="noopener noreferrer">{ru ? 'Открыть репозиторий' : 'Open repository'} <ExternalLink size={13} aria-hidden="true" /></a> : null}
         </article>)}</div>
 
-        <div className="subsection"><SectionHead index="01C" command="ls /work/infra" title={content.systemsTitle} intro={content.systemsIntro} icon={<Server aria-hidden="true" />} /></div>
-        <div className="work-grid">{content.systems.map((item, index) => <WorkCard item={item} index={index} locale={locale} key={item.title} />)}</div>
       </section>
 
       <ServerRack locale={locale} />
 
-      <section className="container control-room">
-        <div className="console-caption"><span><Activity size={14} aria-hidden="true" />CONTROL_ROOM</span><b>{content.currentTitle}</b><small>MANUAL / FACTUAL DATA</small></div>
-        <div className="control-grid">
-          <dl className="current-grid">{content.currentItems.map(item => <div key={item.label}><dt><StatusMark />{item.label}<small>MANUAL RECORD</small></dt><dd>{item.value}</dd><p>{item.detail}</p></div>)}</dl>
-          <div className="public-log" aria-label={ru ? 'Индекс публичных ссылок' : 'Public link index'}>
-            <div className="log-title"><Terminal size={14} aria-hidden="true" /><span>PUBLIC_INDEX.LOG</span><small>READ ONLY</small></div>
-            <ol>{publicLog.map(([event, target, result]) => <li key={target}><span>[{event}]</span><b>{target}</b><em>{result}</em></li>)}</ol>
-            <p>&gt; {ru ? 'метрики не симулируются; показаны только проверенные узлы' : 'no simulated metrics; verified nodes only'}<i aria-hidden="true">▋</i></p>
-          </div>
-        </div>
-      </section>
-
-      <section className="container approach" id="approach">
-        <div className="approach-title"><div className="eyebrow section-command"><span>02</span>cat /etc/method.conf</div><h2>{content.approachTitle}</h2><Network aria-hidden="true" /></div>
-        <ol className="steps">{content.steps.map((step, index) => <li key={step.title}><span>0{index + 1}</span><div><h3>{step.title}</h3><p>{step.text}</p></div><i aria-hidden="true" /></li>)}</ol>
-      </section>
-
       <section className="container about" id="about">
-        <div className="about-label"><div className="eyebrow section-command"><span>03</span>whoami --verbose</div><Terminal aria-hidden="true" /></div>
+        <div className="about-label"><div className="eyebrow section-command"><span>02</span>{content.nav.about}</div><figure className="portrait-card"><img src="/portrait/memasevich-workspace.jpg" alt={ru ? 'Memasevich за рабочим местом' : 'Memasevich at the workspace'} width="640" height="640" loading="lazy" decoding="async" /><figcaption><span>MEMASEVICH</span><small>WORKSPACE / 2025</small></figcaption></figure></div>
         <div className="about-copy"><h2>{content.aboutTitle}</h2><p>{content.aboutText}</p><span className="about-sign">MEMASEVICH / INDEPENDENT / SYSTEMS</span></div>
         <dl className="about-spec"><div><dt>PUBLIC_ROLE</dt><dd>SYSADMIN / DEVOPS / SOFTWARE ENGINEER</dd></div><div><dt>WORK_MODE</dt><dd>INDEPENDENT</dd></div><div><dt>PRIMARY_LANG</dt><dd>RU</dd></div><div><dt>VALUES</dt><dd>RELIABILITY / CLARITY / SUPPORT</dd></div></dl>
       </section>
 
       <section className="contact" id="contact"><div className="container">
         <div className="contact-terminal"><div className="contact-prompt"><span>root@memasevich:~$</span> connect --human</div><div className="contact-cursor" aria-hidden="true" /></div>
-        <div className="contact-top"><div><div className="eyebrow">04 — {content.contactEyebrow}</div><h2>{content.contactTitle}</h2><p>{content.contactText}</p></div><div className="contact-actions">{content.contactActions.map((action, index) => <a key={action.label} href={action.href} target={action.href.startsWith('http') ? '_blank' : undefined} rel={action.href.startsWith('http') ? 'noopener noreferrer' : undefined}><span>0{index + 1} / {action.label}</span><ExternalLink size={15} aria-hidden="true" /></a>)}</div></div>
+        <div className="contact-top"><div><div className="eyebrow">03 — {content.contactEyebrow}</div><h2>{content.contactTitle}</h2><p>{content.contactText}</p></div><div className="contact-actions">{content.contactActions.map((action, index) => <a key={action.label} href={action.href} target={action.href.startsWith('http') ? '_blank' : undefined} rel={action.href.startsWith('http') ? 'noopener noreferrer' : undefined}><span>0{index + 1} / {action.label}</span><ExternalLink size={15} aria-hidden="true" /></a>)}</div></div>
         <div className="contact-links">{socialNodes.map(node => <a href={node.href} target="_blank" rel="noopener noreferrer" key={node.key}>{node.icon}<span>{node.name}</span><small>{node.handle}</small></a>)}</div>
       </div></section>
     </main>
