@@ -51,6 +51,9 @@ export type SiteContent = {
   localizations: Localization[];
   aboutTitle: string;
   aboutText: string[];
+  favoriteGamesTitle: string;
+  favoriteGamesIntro: string;
+  favoriteGames: { title: string; desc: string; img: string }[];
   techStackTitle: string;
   techStack: { category: string; items: string[] }[];
   experienceTitle: string;
@@ -240,10 +243,8 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
             <p className="hero-lede">{content.heroLead}</p>
             <div className="hero-actions">
               <a className="hero-primary" href="#works">{content.primaryCta}<span aria-hidden="true">↓</span></a>
-              <a className="hero-secondary" href="/resume.pdf" target="_blank" rel="noopener noreferrer">{content.secondaryCta}<Download size={14} aria-hidden="true" /></a>
             </div>
           </div>
-          <SignalMatrix ru={ru} />
         </div>
       </section>
 
@@ -253,8 +254,6 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
           <div className="node-footer"><PacketTrace /><ExternalLink size={14} aria-hidden="true" /></div>
         </a>)}
       </section>
-
-      <OperationsPanel ru={ru} />
 
       <section className="container works" id="works">
         <SectionHead index="01A" command="ls /work/applied" title={content.toolsTitle} intro={content.toolsIntro} icon={<Code2 aria-hidden="true" />} />
@@ -313,6 +312,24 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
             </div>
           </aside>
 
+        </div>
+      </section>
+
+      <section className="container games-section" id="games" aria-label={ru ? 'Инженерные игры' : 'Engineering Games'}>
+        <div className="section-head"><div className="eyebrow section-command"><span>04A</span>ls /games/engineering</div><h2>{content.favoriteGamesTitle}</h2><p>{content.favoriteGamesIntro}</p></div>
+        <div className="games-grid">
+          {content.favoriteGames.map((game, index) => (
+            <article className="game-card" key={game.title}>
+              <span className="game-index">GAME_0{index + 1}</span>
+              <figure className="game-media">
+                <img src={game.img} alt={game.title} loading="lazy" decoding="async" />
+              </figure>
+              <div className="game-info">
+                <h3>{game.title}</h3>
+                <p>{game.desc}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 

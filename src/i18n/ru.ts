@@ -21,7 +21,15 @@ export const ru: SiteContent = {
     { title: 'R.E.P.O.', area: 'TSV / интерфейс / контент', description: 'Русификатор через встроенную систему локализации игры и три TSV-файла: Game, HUD и Menu. Переведены предметы, противники, обучение и интерфейс.', status: 'репозиторий / ~100%', href: 'https://github.com/memasevich/repo-russianlocalization', note: 'SOURCE: STEAM GUIDE / PUBLIC COVER', image: '/projects/repo-localization.jpg', imageAlt: 'Обложка публичного руководства по русской локализации R.E.P.O.' },
     { title: 'Gnomoria', area: 'C# / XNA / перехват рендера', description: 'Dynamic Engine v0.6.0 перехватывает рендеринг XNA и выводит кириллицу без правки font texture/XNB. В словаре релиза — 12 253 записи.', status: 'репозиторий / v0.6.0', href: 'https://github.com/memasevich/Gnomoria-Russian-Translation', note: 'SOURCE: GITHUB / images/in_game_menu.png', image: '/projects/gnomoria-localization.png', imageAlt: 'Русское меню Gnomoria — скриншот из репозитория проекта' }
   ],
-  aboutTitle: 'Обо мне',
+  favoriteGamesTitle: 'ИНЖЕНЕРНЫЕ ИГРЫ',
+  favoriteGamesIntro: 'С детства фанатею от инженерных игр. Хотя времени на них не так много, эти проекты идеально отражают мой системный подход и любовь к автоматизации.',
+  favoriteGames: [
+    { title: 'RimWorld', desc: 'Управление колонией, логистика и выживание', img: 'https://cdn.akamai.steamstatic.com/steam/apps/294100/capsule_616x353.jpg' },
+    { title: 'Satisfactory', desc: 'Масштабная автоматизация и фабрики', img: 'https://cdn.akamai.steamstatic.com/steam/apps/526870/capsule_616x353.jpg' },
+    { title: 'Gnomoria', desc: 'Глубокий менеджмент и микроконтроль', img: 'https://cdn.akamai.steamstatic.com/steam/apps/224500/capsule_616x353.jpg' },
+    { title: 'Melvor Idle', desc: 'Оптимизация процессов и idle-экономика', img: 'https://cdn.akamai.steamstatic.com/steam/apps/1267910/capsule_616x353.jpg' },
+  ],
+  aboutTitle: 'ОПЕРАТОР СИСТЕМЫ',
   aboutText: [
     'Технический бэкграунд с раннего возраста. Изучение аппаратного обеспечения, сборка и диагностика ПК, глубокое погружение в принципы работы ОС. Переход от пользователя к исследователю архитектуры систем.',
     'Развертывание первых серверов и веб-проектов. Практические эксперименты с хостингами, сетями и базами данных. Параллельное освоение реверс-инжиниринга и модификации клиентских файлов.',

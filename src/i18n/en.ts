@@ -21,7 +21,15 @@ export const en: SiteContent = {
     { title: 'R.E.P.O.', area: 'TSV / interface / content', description: 'Russian localization using the game’s built-in localization system and three TSV files: Game, HUD, and Menu. It covers items, enemies, tutorial, and interface.', status: 'repository / ~100%', href: 'https://github.com/memasevich/repo-russianlocalization', note: 'SOURCE: STEAM GUIDE / PUBLIC COVER', image: '/projects/repo-localization.jpg', imageAlt: 'Cover of the public R.E.P.O. Russian localization guide' },
     { title: 'Gnomoria', area: 'C# / XNA / render interception', description: 'Dynamic Engine v0.6.0 intercepts XNA rendering and displays Cyrillic without editing font textures or XNB files. The release dictionary contains 12,253 entries.', status: 'repository / v0.6.0', href: 'https://github.com/memasevich/Gnomoria-Russian-Translation', note: 'SOURCE: GITHUB / images/in_game_menu.png', image: '/projects/gnomoria-localization.png', imageAlt: 'Russian Gnomoria menu screenshot from the project repository' }
   ],
-  aboutTitle: 'About',
+  favoriteGamesTitle: 'ENGINEERING GAMES',
+  favoriteGamesIntro: 'I have been a fan of engineering games since childhood. Although I don\'t have much time for them, these projects perfectly reflect my systemic approach and love for automation.',
+  favoriteGames: [
+    { title: 'RimWorld', desc: 'Colony management, logistics and survival', img: 'https://cdn.akamai.steamstatic.com/steam/apps/294100/capsule_616x353.jpg' },
+    { title: 'Satisfactory', desc: 'Massive automation and factories', img: 'https://cdn.akamai.steamstatic.com/steam/apps/526870/capsule_616x353.jpg' },
+    { title: 'Gnomoria', desc: 'Deep management and microcontrol', img: 'https://cdn.akamai.steamstatic.com/steam/apps/224500/capsule_616x353.jpg' },
+    { title: 'Melvor Idle', desc: 'Process optimization and idle economy', img: 'https://cdn.akamai.steamstatic.com/steam/apps/1267910/capsule_616x353.jpg' },
+  ],
+  aboutTitle: 'SYSTEM OPERATOR',
   aboutText: [
     'Technical background from an early age. Exploring hardware, assembling and diagnosing PCs, deeply diving into OS principles. Transitioning from a user to a systems architecture researcher.',
     'Deploying early servers and web projects. Practical experiments with hosting, networking, and databases. Parallel development in reverse-engineering and modifying client files.',
