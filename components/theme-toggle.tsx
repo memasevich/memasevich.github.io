@@ -1,28 +1,37 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
+
+function subscribe(callback: () => void) {
+  const observer = new MutationObserver(callback);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+  return () => observer.disconnect();
+}
+
+function getSnapshot() {
+  return document.documentElement.classList.contains("theme-light")
+    ? "light"
+    : "dark";
+}
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState("dark");
+  const theme = useSyncExternalStore(subscribe, getSnapshot, () => "dark");
 
   useEffect(() => {
-    if (document.documentElement.classList.contains("theme-light")) {
-      setTheme("light");
-    } else if (matchMedia("(prefers-color-scheme: light)").matches) {
+    if (
+      !document.documentElement.classList.contains("theme-light") &&
+      matchMedia("(prefers-color-scheme: light)").matches
+    ) {
       document.documentElement.classList.add("theme-light");
-      setTheme("light");
     }
   }, []);
 
   const toggle = () => {
-    if (theme === "light") {
-      document.documentElement.classList.remove("theme-light");
-      setTheme("dark");
-    } else {
-      document.documentElement.classList.add("theme-light");
-      setTheme("light");
-    }
+    document.documentElement.classList.toggle("theme-light");
   };
 
   return (

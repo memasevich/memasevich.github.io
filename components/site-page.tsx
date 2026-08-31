@@ -7,9 +7,9 @@ import {
   Network,
   Send,
   Zap,
-  Download,
 } from 'lucide-react';
 import { ThemeToggle } from './theme-toggle';
+import { MobileNav } from './mobile-nav';
 
 type Accent = 'lime' | 'coral' | 'violet';
 
@@ -94,89 +94,6 @@ function UtpBackbone({ side }: { side: 'left' | 'right' }) {
   </div>;
 }
 
-function NetworkHarness() {
-  const leftRun = 'M 52 0 C 50 420 205 520 112 970 S 42 1700 170 2130 S 52 2920 142 3490 S 48 4380 112 5200 S 72 5900 84 6200';
-  const rightRun = 'M 1548 0 C 1550 540 1400 690 1492 1180 S 1558 1880 1430 2360 S 1550 3180 1460 3710 S 1554 4550 1488 5220 S 1520 5850 1510 6200';
-
-  return <svg className="network-harness" viewBox="0 0 1600 6200" preserveAspectRatio="none" aria-hidden="true">
-    <g className="network-cable network-cable-left">
-      <path className="network-sheath" d={leftRun} />
-      <path className="network-core network-core-orange" d={leftRun} />
-      <path className="network-core network-core-blue" d={leftRun} />
-      <path className="network-core network-core-green" d={leftRun} />
-      <path className="network-core network-core-brown" d={leftRun} />
-      <path className="network-packet" d={leftRun} pathLength="100" />
-    </g>
-    <g className="network-cable network-cable-right">
-      <path className="network-sheath" d={rightRun} />
-      <path className="network-core network-core-orange" d={rightRun} />
-      <path className="network-core network-core-blue" d={rightRun} />
-      <path className="network-core network-core-green" d={rightRun} />
-      <path className="network-core network-core-brown" d={rightRun} />
-      <path className="network-packet network-packet-delayed" d={rightRun} pathLength="100" />
-    </g>
-    <g className="network-drops">
-      <path d="M 114 970 C 235 970 272 930 372 930" />
-      <path d="M 1431 2360 C 1340 2360 1306 2410 1208 2410" />
-      <path d="M 143 3490 C 248 3490 284 3440 388 3440" />
-      <path d="M 1488 5220 C 1390 5220 1350 5160 1264 5160" />
-      <rect x="366" y="916" width="22" height="28" />
-      <rect x="1186" y="2396" width="22" height="28" />
-      <rect x="382" y="3426" width="22" height="28" />
-      <rect x="1242" y="5146" width="22" height="28" />
-    </g>
-  </svg>;
-}
-
-const matrixStreams = [
-  '0101011010011100101101',
-  'M 0 1 1 0 0 1 0 1 1 0',
-  '1100100101110011010110',
-  'SYS 01 10 DEV 11 OPS',
-  '0011011100100110101011',
-  '0 1 0 0 1 1 0 1 0 1 1',
-  '1101010010111010011010',
-  'NODE / LINK / BUILD',
-  '0100110101100101110011',
-  '1011011001001101010110',
-  'RU 01 10 LOCAL 11',
-  '0010110111010010011011',
-  '1010100100111011010010',
-  'M  E  M  A  S  E  V  I  C  H',
-  '0110101100101011011010',
-  '1001011010110010110101',
-];
-
-function SignalMatrix({ ru }: { ru: boolean }) {
-  return <aside className="signal-matrix" aria-label={ru ? 'Абстрактная цифровая матрица' : 'Abstract digital matrix'}>
-    <div className="matrix-topline"><span>VOID / 01</span><b>MEMASEVICH</b><small>ICE SIGNAL</small></div>
-    <div className="matrix-field" aria-hidden="true">
-      <div className="matrix-gridlines" />
-      {matrixStreams.map((stream, index) => <i className={`matrix-stream matrix-stream-${index + 1}`} key={stream}>{stream}</i>)}
-      <b className="matrix-mark">M</b>
-      <span className="matrix-cross matrix-cross-a" />
-      <span className="matrix-cross matrix-cross-b" />
-    </div>
-    <div className="matrix-meta"><span>STATIC PROFILE</span><b>{ru ? 'СИСТЕМА / ЛИЧНОЕ' : 'SYSTEM / PERSONAL'}</b><i aria-hidden="true" /></div>
-  </aside>;
-}
-
-function OperationsPanel({ ru }: { ru: boolean }) {
-  const stages = ru ? ['КОД', 'СБОРКА', 'ПРОВЕРКА', 'ДЕПЛОЙ', 'ПОДДЕРЖКА'] : ['CODE', 'BUILD', 'CHECK', 'DEPLOY', 'SUPPORT'];
-
-  return <section className="container operations" aria-label={ru ? 'Визуальная схема рабочего процесса' : 'Visual workflow diagram'}>
-    <div className="pipeline-card">
-      <div className="panel-heading"><span>PIPELINE / 01</span><b>{ru ? 'РАБОЧИЙ ПОТОК' : 'WORKFLOW'}</b><small>STATIC FLOW</small></div>
-      <div className="pipeline-track">{stages.map((stage, index) => <div className="pipeline-stage" key={stage}><i>{String(index + 1).padStart(2, '0')}</i><b>{stage}</b>{index < stages.length - 1 ? <span className="pipeline-link" aria-hidden="true" /> : <span className="pipeline-end">✓</span>}</div>)}</div>
-      <p>{ru ? 'Собираю понятные процессы: от задачи и кода до результата, который можно поддерживать.' : 'Clear processes from task and code to a result that can be maintained.'}</p>
-    </div>
-    <div className="shell-card">
-      <div className="panel-heading"><span>SHELL / 02</span><b>root@memasevich:~$ help</b><small>LOCAL PROFILE</small></div>
-      <div className="shell-lines"><a href="#about"><span>about</span><b>{ru ? 'моя история' : 'my story'}</b><i>↗</i></a><a href="#works"><span>work</span><b>{ru ? 'проекты и локализации' : 'projects and localizations'}</b><i>↗</i></a><a href="#contact"><span>contact</span><b>{ru ? 'написать мне' : 'write to me'}</b><i>↗</i></a></div>
-    </div>
-  </section>;
-}
-
 function WorkCard({ item, index, locale }: { item: WorkItem; index: number; locale: 'ru' | 'en' }) {
   const ru = locale === 'ru';
 
@@ -218,7 +135,6 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
     { key: 'boosty', name: 'BOOSTY', handle: '/memasevich', label: ru ? 'Релизы, заметки и поддержка' : 'Releases, notes, and support', href: 'https://boosty.to/memasevich', icon: <Zap aria-hidden="true" /> },
   ];
   return <div className="site-shell" lang={locale}>
-    <NetworkHarness />
     <UtpBackbone side="left" />
     <UtpBackbone side="right" />
     <header className="container topbar">
@@ -232,6 +148,15 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
         <span className="locale-switch" aria-label={ru ? 'Язык сайта' : 'Site language'}><Link className={ru ? 'active' : ''} href="/">RU</Link><Link className={!ru ? 'active' : ''} href="/en">EN</Link></span>
         <ThemeToggle />
       </nav>
+      <MobileNav
+        langLabel={ru ? 'Мобильная навигация' : 'Mobile navigation'}
+        items={[
+          { href: '#works', index: '01/', label: content.nav.works },
+          { href: '#about', index: '02/', label: content.nav.about },
+          { href: '#resume', index: '03/', label: content.nav.resume },
+          { href: '#contact', index: '04/', label: content.nav.contact },
+        ]}
+      />
     </header>
 
     <main>
