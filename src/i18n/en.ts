@@ -1,14 +1,55 @@
 import type { SiteContent } from '../../components/site-page';
 
 export const en: SiteContent = {
-  locale: 'en', nav: { works: 'Work', about: 'About', contact: 'Contact' }, identity: 'root@memasevich:~$ whoami', heroTitle: 'I AM MEMASEVICH.\nSYSADMIN / DEVOPS\nDEVELOPER.', heroLead: 'I run and maintain infrastructure, automate routine work, build my own tools, and create Russian localizations for complex games.', primaryCta: 'View work', secondaryCta: 'Write on Telegram',
-  toolsTitle: 'Applied development', toolsIntro: 'Real internal solutions described in the public GitHub profile. The code is private, so only confirmed problems and outcomes are shown here.', tools: [{ title: 'HANDHELD TERMINAL GUARD', type: 'ANDROID / INTERNAL', role: 'application development', task: 'Detect whether a warehouse handheld terminal remains in its protective case.', done: 'The app triggers an alarm when the device is removed from the case or left unattended.', status: 'internal project / private code', href: 'https://github.com/memasevich/memasevich', accent: 'violet' }, { title: 'WMS SCANNING MODULE', type: 'WMS / INTERNAL', role: 'module replacement and development', task: 'Replace the outdated third-party GS Code solution.', done: 'The WMS scanning module was rewritten as an in-house solution.', status: 'internal project / private code', href: 'https://github.com/memasevich/memasevich', accent: 'coral' }],
-  localizationTitle: 'Game localizations', localizationIntro: 'Three public GitHub projects with real images, versions, and technical details taken from their README files.', localizations: [{ title: 'Caves of Qud', area: 'C# / morphology / logs', description: 'Localization for version 2.0.211.x with more than 165,000 lines, dictionaries and patterns, morphology support, translated UI, and untranslated-text collection.', status: 'repository / v1.0.5', href: 'https://github.com/memasevich/CoQ-ru-translate-public', note: 'SOURCE: GITHUB / RussianLocalization/preview.png', image: '/projects/coq-localization.png', imageAlt: 'Caves of Qud Russian localization image from the project repository' }, { title: 'R.E.P.O.', area: 'TSV / interface / content', description: 'Russian localization using the game’s built-in localization system and three TSV files: Game, HUD, and Menu. It covers items, enemies, tutorial, and interface.', status: 'repository / ~100%', href: 'https://github.com/memasevich/repo-russianlocalization', note: 'SOURCE: STEAM GUIDE / PUBLIC COVER', image: '/projects/repo-localization.jpg', imageAlt: 'Cover of the public R.E.P.O. Russian localization guide' }, { title: 'Gnomoria', area: 'C# / XNA / render interception', description: 'Dynamic Engine v0.6.0 intercepts XNA rendering and displays Cyrillic without editing font textures or XNB files. The release dictionary contains 12,253 entries.', status: 'repository / v0.6.0', href: 'https://github.com/memasevich/Gnomoria-Russian-Translation', note: 'SOURCE: GITHUB / images/in_game_menu.png', image: '/projects/gnomoria-localization.png', imageAlt: 'Russian Gnomoria menu screenshot from the project repository' }],
-  aboutTitle: 'About', aboutText: [
-    'I have been taking computers apart almost from the very beginning. When I was about one year old, my father already had a computer, and I was introduced to Pac-Man and other games. When I got my first proper computer of my own, I took it apart almost immediately and got in trouble with my mother. Then I put it back together. From that point on, the direction became clear. My mother kept buying me technical books about software, hardware, and how things worked underneath.',
-    'While other kids were playing, a friend and I were trying to run our own Minecraft servers. I also built SAMP servers and made different websites, first on uCoz and other simple platforms. As a kid, I made mods for different games too. They were never well known because I created them for myself and did not publish them anywhere. The same was true of my early localizations: they began as personal experiments rather than public projects. Later I abandoned development for a while: I was a teenager, lazy, playing games, and spending time outside. I only began taking programming seriously much later.',
-    'I did not enter development in one dramatic leap. I collected knowledge piece by piece over many years: programming languages, Unity, game engines, Stack Overflow, and small projects of my own. I did not finish everything, and sometimes lacked the drive to push through, but the interest never disappeared. My strong hardware background led me into systems administration: I worked as a sysadmin during college, then grew through the profession, worked at Rostelecom, moved to DNS as a salesperson for a change of pace, and later returned to infrastructure at Gloria Jeans.',
-    'Later I moved into DevOps. I do not call myself a great DevOps engineer — it is more important to me to be honest about what I still need to learn. In my spare time I keep studying the languages and tools that help me write software, automate routine work, and support systems. Some of that work is now accelerated by my own AI systems running on my server: some help with analytics, some with development, and others with processing large volumes of code and text for localizations. To me, AI is not a replacement for experience, but another tool for moving forward.',
-    'The path has been long and uneven, but it brought me to what I do now: systems, infrastructure, code, and projects worth finishing. Keep moving forward — even small pieces can take you a long way.',
-  ], contactEyebrow: 'Contact', contactTitle: 'STAY IN\nTOUCH.', contactText: 'Write about localizations, projects, collaboration, or simply to say hello.', contactActions: [{ label: 'Write on Telegram', href: 'https://t.me/memasev1ch' }, { label: 'Write by email', href: 'mailto:eganddn@gmail.com' }, { label: 'Open GitHub', href: 'https://github.com/memasevich' }, { label: 'Support on Boosty', href: 'https://boosty.to/memasevich' }], footer: 'Russian is the primary version',
+  locale: 'en',
+  nav: { works: 'Work', about: 'About', contact: 'Contact', resume: 'Resume' },
+  identity: 'root@memasevich:~$ whoami',
+  heroTitle: 'MEMASEVICH\nSYSADMIN / DEVOPS\nSOFTWARE ENGINEER',
+  heroLead: 'Designing and maintaining infrastructure, automating processes, and creating tools for reverse-engineering and complex game localizations.',
+  primaryCta: 'View work',
+  secondaryCta: 'Download CV (PDF)',
+  toolsTitle: 'Applied development',
+  toolsIntro: 'Real internal solutions described in the public GitHub profile. The code is private, so only confirmed problems and outcomes are shown here.',
+  tools: [
+    { title: 'HANDHELD TERMINAL GUARD', type: 'ANDROID / INTERNAL', role: 'application development', task: 'Detect whether a warehouse handheld terminal remains in its protective case.', done: 'The app triggers an alarm when the device is removed from the case or left unattended.', status: 'internal project / private code', href: 'https://github.com/memasevich/memasevich', accent: 'violet' },
+    { title: 'WMS SCANNING MODULE', type: 'WMS / INTERNAL', role: 'module replacement and development', task: 'Replace the outdated third-party GS Code solution.', done: 'The WMS scanning module was rewritten as an in-house solution.', status: 'internal project / private code', href: 'https://github.com/memasevich/memasevich', accent: 'coral' }
+  ],
+  localizationTitle: 'Game localizations',
+  localizationIntro: 'Three public GitHub projects with real images, versions, and technical details taken from their README files.',
+  localizations: [
+    { title: 'Caves of Qud', area: 'C# / morphology / logs', description: 'Localization for version 2.0.211.x with more than 165,000 lines, dictionaries and patterns, morphology support, translated UI, and untranslated-text collection.', status: 'repository / v1.0.5', href: 'https://github.com/memasevich/CoQ-ru-translate-public', note: 'SOURCE: GITHUB / RussianLocalization/preview.png', image: '/projects/coq-localization.png', imageAlt: 'Caves of Qud Russian localization image from the project repository' },
+    { title: 'R.E.P.O.', area: 'TSV / interface / content', description: 'Russian localization using the game’s built-in localization system and three TSV files: Game, HUD, and Menu. It covers items, enemies, tutorial, and interface.', status: 'repository / ~100%', href: 'https://github.com/memasevich/repo-russianlocalization', note: 'SOURCE: STEAM GUIDE / PUBLIC COVER', image: '/projects/repo-localization.jpg', imageAlt: 'Cover of the public R.E.P.O. Russian localization guide' },
+    { title: 'Gnomoria', area: 'C# / XNA / render interception', description: 'Dynamic Engine v0.6.0 intercepts XNA rendering and displays Cyrillic without editing font textures or XNB files. The release dictionary contains 12,253 entries.', status: 'repository / v0.6.0', href: 'https://github.com/memasevich/Gnomoria-Russian-Translation', note: 'SOURCE: GITHUB / images/in_game_menu.png', image: '/projects/gnomoria-localization.png', imageAlt: 'Russian Gnomoria menu screenshot from the project repository' }
+  ],
+  aboutTitle: 'About',
+  aboutText: [
+    'Technical background from an early age. Exploring hardware, assembling and diagnosing PCs, deeply diving into OS principles. Transitioning from a user to a systems architecture researcher.',
+    'Deploying early servers and web projects. Practical experiments with hosting, networking, and databases. Parallel development in reverse-engineering and modifying client files.',
+    'Systematizing engineering experience. Studying scripting, programming languages, and software architecture. Transitioning into professional system administration: managing infrastructure for ISPs and large-scale retail.',
+    'Evolution into DevOps. Focusing on routine automation, CI/CD deployment, containerization, and maintaining fault-tolerant systems. Optimizing development and integration workflows.',
+    'Expanding personal infrastructure. Utilizing local AI models on proprietary hardware for analytics, code parsing, and complex translation automation. Continuous focus on system reliability and open-source tooling.'
+  ],
+  techStackTitle: 'TECH STACK',
+  techStack: [
+    { category: 'INFRASTRUCTURE & OS', items: ['Proxmox', 'ESXi', 'Docker', 'Windows Server / AD', 'Linux (CentOS, Debian)', 'Zabbix'] },
+    { category: 'NETWORKING', items: ['Juniper', 'HPE FlexFabric', 'Cisco / Aruba', 'MikroTik', 'VLAN / LACP / QoS', 'TCP/IP'] },
+    { category: 'DEV & AUTOMATION', items: ['PowerShell', 'Bash', 'Python', 'C#', 'GitLab CI', 'PHP / SQL'] },
+    { category: 'HARDWARE & SYSTEMS', items: ['IBM System / Flash', 'Lenovo SR Series', 'Zebra / Honeywell TSD', 'TGW Logistics', 'PERCo', 'APC / PDU'] }
+  ],
+  experienceTitle: 'SERVICE LOG / EXPERIENCE',
+  experience: [
+    { period: '2022 — PRESENT', company: 'GLORIA JEANS', role: 'SYSTEM ADMINISTRATOR / DEVOPS', desc: 'Troubleshooted automated conveyors (TGW), administered servers (IBM, Lenovo) and networks (Juniper, HPE). Implemented monitoring systems (Zabbix) and created scripts (PowerShell/Bash/Python) for automation.' },
+    { period: '2019 — 2022', company: 'GLORIA JEANS', role: 'TECHNICAL SUPPORT ENGINEER', desc: 'IT infrastructure maintenance for the logistics center (scanners, Zebra/Kyocera printers, network equipment). Supported CCTV systems and ERP (1C).' },
+    { period: '2017 — 2018', company: 'ROSTELECOM', role: 'NETWORK ENGINEER', desc: 'Configured and maintained network equipment for corporate clients (Juniper, MikroTik). Deployed fiber optic and twisted-pair connections.' }
+  ],
+  contactEyebrow: 'Contact',
+  contactTitle: 'STAY IN\nTOUCH.',
+  contactText: 'Open to discussing infrastructure tasks, reverse-engineering projects, complex localizations, and technical collaboration.',
+  contactActions: [
+    { label: 'Write on Telegram', href: 'https://t.me/memasev1ch' },
+    { label: 'Write by email', href: 'mailto:eganddn@gmail.com' },
+    { label: 'Open GitHub', href: 'https://github.com/memasevich' },
+    { label: 'Support on Boosty', href: 'https://boosty.to/memasevich' }
+  ],
+  footer: 'Russian is the primary version',
 };

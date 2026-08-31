@@ -7,6 +7,7 @@ import {
   Network,
   Send,
   Zap,
+  Download,
 } from 'lucide-react';
 
 type Accent = 'lime' | 'coral' | 'violet';
@@ -35,7 +36,7 @@ type Localization = {
 
 export type SiteContent = {
   locale: 'ru' | 'en';
-  nav: { works: string; about: string; contact: string };
+  nav: { works: string; about: string; contact: string; resume: string };
   identity: string;
   heroTitle: string;
   heroLead: string;
@@ -49,6 +50,10 @@ export type SiteContent = {
   localizations: Localization[];
   aboutTitle: string;
   aboutText: string[];
+  techStackTitle: string;
+  techStack: { category: string; items: string[] }[];
+  experienceTitle: string;
+  experience: { period: string; company: string; role: string; desc: string }[];
   contactEyebrow: string;
   contactTitle: string;
   contactText: string;
@@ -218,7 +223,8 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
       <nav aria-label={ru ? 'Основная навигация' : 'Main navigation'}>
         <a className="nav-link" href="#works"><span>01/</span>{content.nav.works}</a>
         <a className="nav-link" href="#about"><span>02/</span>{content.nav.about}</a>
-        <a className="nav-link" href="#contact"><span>03/</span>{content.nav.contact}</a>
+        <a className="nav-link" href="#resume"><span>03/</span>{content.nav.resume}</a>
+        <a className="nav-link" href="#contact"><span>04/</span>{content.nav.contact}</a>
         <span className="locale-switch" aria-label={ru ? 'Язык сайта' : 'Site language'}><Link className={ru ? 'active' : ''} href="/">RU</Link><Link className={!ru ? 'active' : ''} href="/en">EN</Link></span>
       </nav>
     </header>
@@ -232,7 +238,7 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
             <p className="hero-lede">{content.heroLead}</p>
             <div className="hero-actions">
               <a className="hero-primary" href="#works">{content.primaryCta}<span aria-hidden="true">↓</span></a>
-              <a className="hero-secondary" href="https://t.me/memasev1ch" target="_blank" rel="noopener noreferrer">{content.secondaryCta}<ExternalLink size={14} aria-hidden="true" /></a>
+              <a className="hero-secondary" href="/resume.pdf" target="_blank" rel="noopener noreferrer">{content.secondaryCta}<Download size={14} aria-hidden="true" /></a>
             </div>
           </div>
           <SignalMatrix ru={ru} />
@@ -272,12 +278,40 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
       <section className="container about" id="about">
         <div className="about-label"><div className="eyebrow section-command"><span>02</span>{content.nav.about}</div><figure className="portrait-card"><img src="/portrait/memasevich-workspace.jpg" alt={ru ? 'Memasevich за рабочим местом' : 'Memasevich at the workspace'} width="640" height="640" loading="lazy" decoding="async" /><figcaption><span>MEMASEVICH</span><small>WORKSPACE / 2025</small></figcaption></figure></div>
         <div className="about-copy"><h2>{content.aboutTitle}</h2><div className="about-story">{content.aboutText.map((paragraph, index) => <p key={paragraph}><span className="story-index">0{index + 1} / {storyLabels[index]}</span><span>{paragraph}</span></p>)}</div><span className="about-sign">MEMASEVICH / INDEPENDENT / SYSTEMS</span></div>
-        <dl className="about-spec"><div><dt>PUBLIC_ROLE</dt><dd>SYSADMIN / DEVOPS / SOFTWARE ENGINEER</dd></div><div><dt>WORK_MODE</dt><dd>INDEPENDENT</dd></div><div><dt>PRIMARY_LANG</dt><dd>RU</dd></div><div><dt>VALUES</dt><dd>RELIABILITY / CLARITY / SUPPORT</dd></div></dl>
+        <dl className="about-spec"><div><dt>PUBLIC_ROLE</dt><dd>SYSADMIN / DEVOPS / SOFTWARE ENGINEER</dd></div><div><dt>WORK_MODE</dt><dd>INDEPENDENT</dd></div><div><dt>FAV_GAMES</dt><dd>RIMWORLD / SATISFACTORY / GNOMORIA / MELVOR IDLE</dd></div><div><dt>VALUES</dt><dd>RELIABILITY / CLARITY / SUPPORT</dd></div></dl>
       </section>
 
-      <section className="container career-path" aria-label={ru ? 'Путь в профессии' : 'Career path'}>
-        <div className="career-heading"><span className="eyebrow">PATH / 03</span><h2>{ru ? 'ОТ ЖЕЛЕЗА К СИСТЕМАМ' : 'FROM HARDWARE TO SYSTEMS'}</h2><small>{ru ? 'личная траектория' : 'personal trajectory'}</small></div>
-        <div className="career-line">{(ru ? ['ПЕРВЫЙ ПК', 'ИГРОВЫЕ СЕРВЕРЫ', 'СИСАДМИН', 'РОСТ ИНФРАСТРУКТУРЫ', 'DEVOPS'] : ['FIRST PC', 'GAME SERVERS', 'SYSADMIN', 'INFRASTRUCTURE GROWTH', 'DEVOPS']).map((item, index) => <div className="career-node" key={item}><i>{String(index + 1).padStart(2, '0')}</i><span>{item}</span></div>)}</div>
+      <section className="container cv-section" id="resume" aria-label={ru ? 'Резюме и опыт' : 'Resume and experience'}>
+        <div className="cv-grid">
+          
+          <div className="experience-log">
+            <div className="cv-heading"><span className="eyebrow">RESUME / 03A</span><h2>{content.experienceTitle}</h2></div>
+            <div className="exp-timeline">
+              {content.experience.map((job, idx) => (
+                <div className="exp-node" key={idx}>
+                  <div className="exp-meta"><span>{job.period}</span><b>{job.company}</b></div>
+                  <div className="exp-content">
+                    <h3>{job.role}</h3>
+                    <p>{job.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <aside className="tech-stack">
+            <div className="cv-heading"><span className="eyebrow">RESUME / 03B</span><h2>{content.techStackTitle}</h2></div>
+            <div className="stack-grid">
+              {content.techStack.map((stack) => (
+                <div className="stack-group" key={stack.category}>
+                  <h4>{stack.category}</h4>
+                  <ul>{stack.items.map(item => <li key={item}>{item}</li>)}</ul>
+                </div>
+              ))}
+            </div>
+          </aside>
+
+        </div>
       </section>
 
       <section className="contact" id="contact"><div className="container">
