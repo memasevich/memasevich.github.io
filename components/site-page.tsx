@@ -9,6 +9,7 @@ import {
   Zap,
   Download,
 } from 'lucide-react';
+import { ThemeToggle } from './theme-toggle';
 
 type Accent = 'lime' | 'coral' | 'violet';
 
@@ -226,6 +227,7 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
         <a className="nav-link" href="#resume"><span>03/</span>{content.nav.resume}</a>
         <a className="nav-link" href="#contact"><span>04/</span>{content.nav.contact}</a>
         <span className="locale-switch" aria-label={ru ? 'Язык сайта' : 'Site language'}><Link className={ru ? 'active' : ''} href="/">RU</Link><Link className={!ru ? 'active' : ''} href="/en">EN</Link></span>
+        <ThemeToggle />
       </nav>
     </header>
 
