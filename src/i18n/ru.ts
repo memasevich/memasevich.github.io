@@ -24,10 +24,10 @@ export const ru: SiteContent = {
   favoriteGamesTitle: 'ИНЖЕНЕРНЫЕ ИГРЫ',
   favoriteGamesIntro: 'С детства фанатею от инженерных игр. Хотя времени на них не так много, эти проекты идеально отражают мой системный подход и любовь к автоматизации.',
   favoriteGames: [
-    { title: 'RimWorld', desc: 'Управление колонией, логистика и выживание', img: 'https://cdn.akamai.steamstatic.com/steam/apps/294100/capsule_616x353.jpg' },
-    { title: 'Satisfactory', desc: 'Масштабная автоматизация и фабрики', img: 'https://cdn.akamai.steamstatic.com/steam/apps/526870/capsule_616x353.jpg' },
-    { title: 'Gnomoria', desc: 'Глубокий менеджмент и микроконтроль', img: 'https://cdn.akamai.steamstatic.com/steam/apps/224500/capsule_616x353.jpg' },
-    { title: 'Melvor Idle', desc: 'Оптимизация процессов и idle-экономика', img: 'https://cdn.akamai.steamstatic.com/steam/apps/1267910/capsule_616x353.jpg' },
+    { title: 'RimWorld', desc: 'Управление колонией, логистика и выживание', img: 'https://cdn.akamai.steamstatic.com/steam/apps/294100/capsule_616x353.jpg', playtime: '3000 ч.' },
+    { title: 'Satisfactory', desc: 'Масштабная автоматизация и фабрики', img: 'https://cdn.akamai.steamstatic.com/steam/apps/526870/capsule_616x353.jpg', playtime: '2500 ч.' },
+    { title: 'Gnomoria', desc: 'Глубокий менеджмент и микроконтроль', img: 'https://cdn.akamai.steamstatic.com/steam/apps/224500/capsule_616x353.jpg', playtime: '1000 ч.' },
+    { title: 'Melvor Idle', desc: 'Оптимизация процессов и idle-экономика', img: 'https://cdn.akamai.steamstatic.com/steam/apps/1267910/capsule_616x353.jpg', playtime: '1000 ч.' },
   ],
   aboutTitle: 'ОПЕРАТОР СИСТЕМЫ',
   aboutText: [

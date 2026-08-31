@@ -24,10 +24,10 @@ export const en: SiteContent = {
   favoriteGamesTitle: 'ENGINEERING GAMES',
   favoriteGamesIntro: 'I have been a fan of engineering games since childhood. Although I don\'t have much time for them, these projects perfectly reflect my systemic approach and love for automation.',
   favoriteGames: [
-    { title: 'RimWorld', desc: 'Colony management, logistics and survival', img: 'https://cdn.akamai.steamstatic.com/steam/apps/294100/capsule_616x353.jpg' },
-    { title: 'Satisfactory', desc: 'Massive automation and factories', img: 'https://cdn.akamai.steamstatic.com/steam/apps/526870/capsule_616x353.jpg' },
-    { title: 'Gnomoria', desc: 'Deep management and microcontrol', img: 'https://cdn.akamai.steamstatic.com/steam/apps/224500/capsule_616x353.jpg' },
-    { title: 'Melvor Idle', desc: 'Process optimization and idle economy', img: 'https://cdn.akamai.steamstatic.com/steam/apps/1267910/capsule_616x353.jpg' },
+    { title: 'RimWorld', desc: 'Colony management, logistics and survival', img: 'https://cdn.akamai.steamstatic.com/steam/apps/294100/capsule_616x353.jpg', playtime: '3000 hrs' },
+    { title: 'Satisfactory', desc: 'Massive automation and factories', img: 'https://cdn.akamai.steamstatic.com/steam/apps/526870/capsule_616x353.jpg', playtime: '2500 hrs' },
+    { title: 'Gnomoria', desc: 'Deep management and microcontrol', img: 'https://cdn.akamai.steamstatic.com/steam/apps/224500/capsule_616x353.jpg', playtime: '1000 hrs' },
+    { title: 'Melvor Idle', desc: 'Process optimization and idle economy', img: 'https://cdn.akamai.steamstatic.com/steam/apps/1267910/capsule_616x353.jpg', playtime: '1000 hrs' },
   ],
   aboutTitle: 'SYSTEM OPERATOR',
   aboutText: [

@@ -962,9 +962,7 @@ html.theme-light {
   background: #0b0d10;
 }
 html.theme-light img,
-html.theme-light video,
-html.theme-light .portrait-card,
-html.theme-light .localization-media {
+html.theme-light video {
   filter: invert(1) hue-rotate(180deg);
 }
 
@@ -978,6 +976,9 @@ html.theme-light .localization-media {
 .game-media img { height: 100%; object-fit: cover; transition: transform .3s ease; width: 100%; }
 .game-card:hover .game-media img { transform: scale(1.05); }
 .game-info { padding: 18px; }
-.game-info h3 { color: var(--ink); font-size: 13px; font-weight: 600; letter-spacing: .03em; margin: 0 0 6px; text-transform: uppercase; }
+.game-info h3 { align-items: center; color: var(--ink); display: flex; font-size: 13px; font-weight: 600; justify-content: space-between; letter-spacing: .03em; margin: 0 0 6px; text-transform: uppercase; }
 .game-info p { color: #a5b1b8; font-family: Arial, sans-serif; font-size: 11px; line-height: 1.4; margin: 0; }
+
+
+.game-playtime { color: var(--signal); font-size: 9px; letter-spacing: .08em; margin-left: 6px; font-weight: 500; }
 

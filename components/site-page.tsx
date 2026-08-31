@@ -53,7 +53,7 @@ export type SiteContent = {
   aboutText: string[];
   favoriteGamesTitle: string;
   favoriteGamesIntro: string;
-  favoriteGames: { title: string; desc: string; img: string }[];
+  favoriteGames: { title: string; desc: string; img: string; playtime: string }[];
   techStackTitle: string;
   techStack: { category: string; items: string[] }[];
   experienceTitle: string;
@@ -325,7 +325,7 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
                 <img src={game.img} alt={game.title} loading="lazy" decoding="async" />
               </figure>
               <div className="game-info">
-                <h3>{game.title}</h3>
+                <h3>{game.title} <span className="game-playtime">{game.playtime}</span></h3>
                 <p>{game.desc}</p>
               </div>
             </article>
