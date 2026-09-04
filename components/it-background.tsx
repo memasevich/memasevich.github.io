@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef } from "react";
 
@@ -108,6 +108,10 @@ export function ItBackground() {
       const maxDist = 135;
       const maxDistSq = maxDist * maxDist;
 
+      const isLight = typeof document !== 'undefined' && document.documentElement.classList.contains("theme-light");
+      const lineBase = isLight ? "2, 132, 199" : "109, 163, 199";
+      const mouseBase = isLight ? "22, 163, 74" : "74, 222, 128";
+
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
         n.x += n.vx;
@@ -130,13 +134,13 @@ export function ItBackground() {
         }
 
         // Draw node
-        ctx.fillStyle = n.color;
+        ctx.fillStyle = isLight ? (n.isServer ? "#0369a1" : "#0284c7") : n.color;
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
         ctx.fill();
 
         if (n.isServer) {
-          ctx.strokeStyle = "rgba(74, 222, 128, 0.25)";
+          ctx.strokeStyle = isLight ? "rgba(3, 105, 161, 0.4)" : "rgba(74, 222, 128, 0.25)";
           ctx.lineWidth = 1;
           ctx.strokeRect(n.x - 5, n.y - 5, 10, 10);
         }
@@ -149,8 +153,8 @@ export function ItBackground() {
           const distSq = dx * dx + dy * dy;
 
           if (distSq < maxDistSq) {
-            const alpha = (1 - Math.sqrt(distSq) / maxDist) * 0.18;
-            ctx.strokeStyle = `rgba(109, 163, 199, ${alpha})`;
+            const alpha = (1 - Math.sqrt(distSq) / maxDist) * (isLight ? 0.22 : 0.18);
+            ctx.strokeStyle = `rgba(${lineBase}, ${alpha})`;
             ctx.lineWidth = 0.8;
             ctx.beginPath();
             ctx.moveTo(n.x, n.y);
@@ -176,7 +180,7 @@ export function ItBackground() {
           const mDistSq = mdx * mdx + mdy * mdy;
           if (mDistSq < 16000) {
             const mAlpha = (1 - Math.sqrt(mDistSq) / 126) * 0.22;
-            ctx.strokeStyle = `rgba(74, 222, 128, ${mAlpha})`;
+            ctx.strokeStyle = `rgba(${mouseBase}, ${mAlpha})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(n.x, n.y);
@@ -206,8 +210,8 @@ export function ItBackground() {
         const px = n1.x + (n2.x - n1.x) * pkt.progress;
         const py = n1.y + (n2.y - n1.y) * pkt.progress;
 
-        ctx.fillStyle = "#e1eaf0";
-        ctx.shadowColor = "#4ade80";
+        ctx.fillStyle = isLight ? "#0369a1" : "#e1eaf0";
+        ctx.shadowColor = isLight ? "#0284c7" : "#4ade80";
         ctx.shadowBlur = 6;
         ctx.beginPath();
         ctx.arc(px, py, 2, 0, Math.PI * 2);

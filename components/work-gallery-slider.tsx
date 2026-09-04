@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, useCallback, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
@@ -243,19 +243,52 @@ export function WorkGallerySlider({
         </div>
       </div>
 
-      {/* Fullscreen Lightbox Modal */}
+      {/* Fullscreen Centered Lightbox Modal */}
       {mounted && lightboxOpen &&
         createPortal(
-          <div className="slider-lightbox-backdrop">
+          <div
+            className="slider-lightbox-backdrop"
+            role="presentation"
+            onKeyDown={(e) => {
+              if (e.key === "Escape") setLightboxOpen(false);
+            }}
+          >
+            {/* Scrim click-away button */}
             <button
               type="button"
               className="slider-lightbox-scrim"
               onClick={() => setLightboxOpen(false)}
               aria-label={ru ? 'Закрыть полноэкранный режим' : 'Close fullscreen mode'}
             />
-            <dialog
+
+            {/* Backdrop Navigation Arrows */}
+            <button
+              type="button"
+              className="slider-lb-nav slider-lb-prev"
+              onClick={(e) => {
+                e.stopPropagation();
+                goPrev();
+              }}
+              aria-label={ru ? 'Предыдущий скриншот' : 'Previous screenshot'}
+            >
+              <ChevronLeft size={26} aria-hidden="true" />
+            </button>
+
+            <button
+              type="button"
+              className="slider-lb-nav slider-lb-next"
+              onClick={(e) => {
+                e.stopPropagation();
+                goNext();
+              }}
+              aria-label={ru ? 'Следующий скриншот' : 'Next screenshot'}
+            >
+              <ChevronRight size={26} aria-hidden="true" />
+            </button>
+
+            {/* Strictly Centered Lightbox Dialog */}
+            <div
               className="slider-lightbox-dialog"
-              open
               aria-label={activeSlide.alt}
             >
               <header className="slider-lightbox-head">
@@ -269,21 +302,12 @@ export function WorkGallerySlider({
                   onClick={() => setLightboxOpen(false)}
                   aria-label={ru ? 'Закрыть' : 'Close'}
                 >
-                  <X size={18} aria-hidden="true" />
+                  <X size={16} aria-hidden="true" />
                   <span>[ESC]</span>
                 </button>
               </header>
 
               <div className="slider-lightbox-body">
-                <button
-                  type="button"
-                  className="slider-lb-nav slider-lb-prev"
-                  onClick={goPrev}
-                  aria-label={ru ? 'Предыдущий' : 'Previous'}
-                >
-                  <ChevronLeft size={28} aria-hidden="true" />
-                </button>
-
                 <div className="slider-lightbox-img-wrap">
                   {/* oxlint-disable-next-line next/no-img-element */}
                   <img
@@ -292,15 +316,6 @@ export function WorkGallerySlider({
                     className="slider-lightbox-img"
                   />
                 </div>
-
-                <button
-                  type="button"
-                  className="slider-lb-nav slider-lb-next"
-                  onClick={goNext}
-                  aria-label={ru ? 'Следующий' : 'Next'}
-                >
-                  <ChevronRight size={28} aria-hidden="true" />
-                </button>
               </div>
 
               {activeSlide.desc && (
@@ -308,7 +323,7 @@ export function WorkGallerySlider({
                   <p>{activeSlide.desc}</p>
                 </footer>
               )}
-            </dialog>
+            </div>
           </div>,
           document.body
         )}
