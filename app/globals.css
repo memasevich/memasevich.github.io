@@ -836,14 +836,14 @@ a:focus-visible { outline: 2px solid var(--signal-bright); outline-offset: 5px; 
   width: 6px;
 }
 .gh-bubble-badge {
-  background: rgba(247, 129, 102, .15);
-  border: 1px solid rgba(247, 129, 102, .3);
+  background: rgba(255, 199, 0, .14);
+  border: 1px solid rgba(255, 199, 0, .38);
   border-radius: 2px;
-  color: #f78166;
+  color: #ffc700;
   font-size: 8px;
   font-weight: 800;
   letter-spacing: .08em;
-  padding: 1px 5px;
+  padding: 1px 6px;
 }
 .gh-bubble-text {
   color: #e6edf3;
@@ -2339,6 +2339,11 @@ html.theme-light .gh-bubble-header {
 }
 html.theme-light .gh-bubble-user {
   color: #1a7f37;
+}
+html.theme-light .gh-bubble-badge {
+  background: rgba(183, 129, 3, .1);
+  border-color: rgba(183, 129, 3, .3);
+  color: #8c5d00;
 }
 html.theme-light .gh-bubble-text {
   color: #24292f;

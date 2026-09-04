@@ -28,17 +28,17 @@ function getContributionLevel(week: number, day: number): number {
 }
 
 const QUOTES_RU = [
-  'Эй, коммиты не трогай! Ты ломаешь мой зелёный стрик! 🐙',
-  "git commit -m 'поймал тебя с поличным' 🐾",
-  'Щупальца прочь от продакшена! Мой график плачет! 🛑',
-  'Кто удалил мои контрибьюции?! Срочно восстанавливай! ⚡',
+  'Война... Война никогда не меняется. А вот коммиты кто-то потёр! ☢️',
+  'Внимание: уровень радиации в кодовой базе зашкаливает! [RADS +45] ⚠️',
+  'Осторожно, путник! Без контрибьюций в Столичной Пустоши не выжить. ⚡',
+  'Pip-Boy 3000 зафиксировал потерю данных в секторе Vault 101! 💾',
 ];
 
 const QUOTES_EN = [
-  "Hey, don't touch my commits! You're breaking my streak! 🐙",
-  "git commit -m 'caught you red-handed' 🐾",
-  'Tentacles off production! My graph is crying! 🛑',
-  'Who wiped my contributions?! Restore them right now! ⚡',
+  'War... War never changes. But someone wiped the commits! ☢️',
+  'Warning: radiation levels in the codebase are critical! [RADS +45] ⚠️',
+  "Careful, wanderer! You won't survive the Capital Wasteland without contributions. ⚡",
+  'Pip-Boy 3000 detected data corruption in Vault 101 sector! 💾',
 ];
 
 export function GithubActivity({ locale }: GithubActivityProps) {
@@ -81,7 +81,11 @@ export function GithubActivity({ locale }: GithubActivityProps) {
 
   const handleRestore = useCallback(() => {
     setIsRestoring(true);
-    setRestoreNotice(ru ? '✨ git reset --hard HEAD... Все контрибьюции на месте!' : '✨ git reset --hard HEAD... All contributions restored!');
+    setRestoreNotice(
+      ru
+        ? '✨ [RADS 0] Pip-Boy откатил изменения! Все контрибьюции в норме.'
+        : '✨ [RADS 0] Pip-Boy rolled back changes! All contributions restored.'
+    );
 
     window.setTimeout(() => {
       setErasedCells({});
@@ -226,7 +230,7 @@ export function GithubActivity({ locale }: GithubActivityProps) {
         </div>
       </div>
 
-      {/* GitHub Octocat Easter Egg Mascot Overlay */}
+      {/* Vault Boy (Fallout 3) Mascot Overlay */}
       <div
         className={`gh-mascot-wrapper${isMascotVisible || restoreNotice ? ' is-visible' : ''}`}
         aria-live="polite"
@@ -236,9 +240,9 @@ export function GithubActivity({ locale }: GithubActivityProps) {
           <div className="gh-bubble-header">
             <span className="gh-bubble-user">
               <span className="gh-bubble-dot" />
-              OCTOCAT // GIT_DAEMON
+              VAULT BOY // VAULT 101
             </span>
-            <span className="gh-bubble-badge">{ru ? 'ПАСХАЛКА' : 'EASTER EGG'}</span>
+            <span className="gh-bubble-badge">PIP-BOY 3000</span>
           </div>
           <p className="gh-bubble-text">
             {restoreNotice ? (
@@ -262,7 +266,7 @@ export function GithubActivity({ locale }: GithubActivityProps) {
                 <span>{ru ? 'git restore --all' : 'git restore --all'}</span>
               </button>
               <span className="gh-bubble-tip">
-                {ru ? 'или кликни на Октокота 🐱' : 'or click Octocat 🐱'}
+                {ru ? 'или нажми на Волт-Боя 👍' : 'or click Vault Boy 👍'}
               </span>
             </div>
           )}
@@ -273,16 +277,16 @@ export function GithubActivity({ locale }: GithubActivityProps) {
           type="button"
           className={`gh-mascot-btn${mascotWiggle ? ' is-wiggling' : ''}`}
           onClick={handleMascotClick}
-          title={ru ? 'Октокот! Нажми меня' : 'Octocat! Click me'}
-          aria-label={ru ? 'Октокот GitHub маскот' : 'Octocat GitHub Mascot'}
+          title={ru ? 'Волт-Бой (Убежище 101) 👍' : 'Vault Boy (Vault 101) 👍'}
+          aria-label={ru ? 'Волт-Бой маскот Fallout 3' : 'Vault Boy Fallout 3 Mascot'}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/mascot/octocat-right.png"
-            alt="GitHub Octocat Mascot"
+            src="/mascot/vaultboy.png"
+            alt="Vault Boy (Fallout 3) Vault 101 Mascot"
             className="gh-mascot-img"
             width={220}
-            height={280}
+            height={275}
             loading="lazy"
           />
         </button>
