@@ -14,6 +14,7 @@ import { ThemeToggle } from './theme-toggle';
 import { MobileNav } from './mobile-nav';
 import { ItBackground } from './it-background';
 import { WorkGallerySlider, type GallerySlide } from './work-gallery-slider';
+import { GithubActivity, GithubMark } from './github-activity';
 
 type Accent = 'lime' | 'coral' | 'violet';
 
@@ -74,19 +75,6 @@ export type SiteContent = {
 
 function StatusMark({ accent = 'lime' }: { accent?: Accent }) {
   return <span className={`status-mark status-${accent}`} aria-hidden="true" />;
-}
-
-function GithubMark() {
-  return <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .7a11.3 11.3 0 0 0-3.6 22c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.4 3.6 1.1.1-.8.4-1.4.8-1.7-2.6-.3-5.4-1.3-5.4-5.6 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.5.1-3 0 0 1-.3 3.1 1.2a10.6 10.6 0 0 1 5.6 0C17.7 5 18.8 5.3 18.8 5.3c.6 1.5.2 2.7.1 3 .8.8 1.2 1.8 1.2 3 0 4.3-2.8 5.3-5.4 5.6.4.4.8 1.1.8 2.2v3.1c0 .3.2.7.8.6A11.3 11.3 0 0 0 12 .7Z" /></svg>;
-}
-
-function getContributionLevel(week: number, day: number): number {
-  if (week < 10) return (week * 7 + day) % 5 === 0 ? 2 : (week + day) % 3 === 0 ? 1 : 0;
-  if (week >= 10 && week < 18) return (week * 3 + day) % 4 === 0 ? 2 : (week + day) % 2 === 0 ? 1 : 0;
-  if (week >= 18 && week < 24) return (week + day) % 6 === 0 ? 0 : (week * 2 + day) % 3 === 0 ? 3 : 2;
-  if (week >= 24 && week < 38) return (week * 5 + day) % 7 === 0 ? 4 : (week + day) % 2 === 0 ? 3 : 2;
-  if (week >= 38 && week < 48) return (week + day) % 5 === 0 ? 4 : (week * 3 + day) % 2 === 0 ? 3 : 2;
-  return (week * 7 + day) % 3 === 0 ? 4 : 2;
 }
 
 function WorkCard({ item, index, locale }: { item: WorkItem; index: number; locale: 'ru' | 'en' }) {
@@ -315,101 +303,8 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
             </div>
           </div>
 
-          {/* Bento Card 3: GitHub Activity Heatmap Matrix */}
-          <div className="bento-card bento-github">
-            <div className="gh-header">
-              <div className="gh-id">
-                <div className="gh-avatar">
-                  <GithubMark />
-                </div>
-                <div>
-                  <div className="gh-title-row">
-                    <h3>GitHub Activity</h3>
-                    <a
-                      href="https://github.com/memasevich"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="gh-user-link"
-                    >
-                      @memasevich <ExternalLink size={12} aria-hidden="true" />
-                    </a>
-                  </div>
-                  <span className="gh-subhead">
-                    {ru ? '1,809+ контрибьюций за последний год' : '1,809+ contributions in the last year'}
-                  </span>
-                </div>
-              </div>
-
-              <div className="gh-metrics">
-                <div className="gh-metric-box">
-                  <span className="metric-val">1,809+</span>
-                  <span className="metric-lbl">{ru ? 'контрибьюций' : 'contributions'}</span>
-                </div>
-                <div className="gh-metric-box">
-                  <span className="metric-val">27+</span>
-                  <span className="metric-lbl">{ru ? 'репозиториев' : 'repos'}</span>
-                </div>
-                <div className="gh-metric-box">
-                  <span className="metric-val">100%</span>
-                  <span className="metric-lbl">{ru ? 'коммиты' : 'commits'}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="gh-heatmap-container">
-              <div className="gh-months" aria-hidden="true">
-                {(ru
-                  ? ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек']
-                  : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-                ).map((m) => (
-                  <span key={m}>{m}</span>
-                ))}
-              </div>
-
-              <div className="gh-grid-body">
-                <div className="gh-days" aria-hidden="true">
-                  <span>{ru ? 'Пн' : 'Mon'}</span>
-                  <span>{ru ? 'Ср' : 'Wed'}</span>
-                  <span>{ru ? 'Пт' : 'Fri'}</span>
-                </div>
-
-                <div className="gh-cells-grid">
-                  {Array.from({ length: 52 }, (_, week) => (
-                    <div className="gh-col" key={week}>
-                      {Array.from({ length: 7 }, (_, day) => {
-                        const lvl = getContributionLevel(week, day);
-                        return (
-                          <div
-                            key={day}
-                            className={`gh-cell lvl-${lvl}`}
-                            title={`Week ${week + 1}, Day ${day + 1}`}
-                          />
-                        );
-                      })}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="gh-footer">
-                <div className="gh-tags">
-                  <span className="gh-repo-tag">CoQ-ru-translate</span>
-                  <span className="gh-repo-tag">obsidian-hesh</span>
-                  <span className="gh-repo-tag">repo-russianlocalization</span>
-                  <span className="gh-repo-tag">Gnomoria-Russian-Translation</span>
-                </div>
-                <div className="gh-legend" aria-hidden="true">
-                  <span>{ru ? 'Меньше' : 'Less'}</span>
-                  <span className="gh-cell lvl-0" />
-                  <span className="gh-cell lvl-1" />
-                  <span className="gh-cell lvl-2" />
-                  <span className="gh-cell lvl-3" />
-                  <span className="gh-cell lvl-4" />
-                  <span>{ru ? 'Больше' : 'More'}</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* Bento Card 3: GitHub Activity Heatmap Matrix & Mascot Easter Egg */}
+          <GithubActivity locale={locale} />
         </div>
       </section>
 
