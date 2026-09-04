@@ -8,8 +8,37 @@ export const ru: SiteContent = {
   heroLead: 'Проектирую и поддерживаю инфраструктуру, автоматизирую процессы, создаю инструменты для реверс-инжиниринга и сложной локализации игр.',
   primaryCta: 'Смотреть работы',
   toolsTitle: 'Прикладная разработка',
-  toolsIntro: 'Реальные внутренние решения из публичного GitHub-профиля. Код закрыт, поэтому здесь только подтверждённая задача и результат.',
+  toolsIntro: 'Практические решения, сервисы автоматизации и мультимодельные ИИ-системы. Подтверждённые задачи, архитектура и воспроизводимый результат.',
   tools: [
+    {
+      title: 'FOOTLIVESTATS / ИИ-СТАТИСТ',
+      type: 'AI / SPORTS ANALYTICS / PRIVATE',
+      role: 'Архитектура системы, live-сбор данных, мультимодельный ИИ-пайплайн',
+      task: 'Непрерывный сбор live-статистики футбольных матчей, расчет fair odds / EV и выдача предиктивного анализа с высокой проходимостью.',
+      done: 'Проект стартовал как Telegram-бот (@botstavki) и эволюционировал в комплексный аналитический сервис. Ансамбль нейросетей Claude, ChatGPT, DeepSeek, Kimi 3 и GLM 5.3 с детерминированными код-гейтами фильтрации. Выдает глубокую тактическую аналитику и обеспечивает 86–89% побед еженедельно.',
+      status: 'в продакшене / приватный доступ',
+      accent: 'lime',
+      featured: true,
+      highlightMetric: '86–89% ПОБЕД В НЕДЕЛЮ',
+      tags: ['Claude', 'ChatGPT', 'DeepSeek', 'Kimi 3', 'GLM 5.3', 'Telegram Bot API', 'Python', 'Live Analytics', 'Data Aggregation'],
+      gallery: [
+        {
+          src: '/projects/footlivestats-signals.png',
+          alt: 'FootLiveStats — журнал live-сигналов и верификация исходов',
+          label: 'SCREEN_01 // ЖУРНАЛ СИГНАЛОВ (604/7D)',
+        },
+        {
+          src: '/projects/footlivestats-chart.png',
+          alt: 'FootLiveStats — динамика линии тотала и котировок',
+          label: 'SCREEN_02 // ДВИЖЕНИЕ ЛИНИИ И ЦЕН',
+        },
+        {
+          src: '/projects/footlivestats-ai.png',
+          alt: 'FootLiveStats — тактический разбор модуля Надзиратель',
+          label: 'SCREEN_03 // ИИ-АНАЛИЗАТОР «НАДЗИРАТЕЛЬ»',
+        },
+      ],
+    },
     { title: 'ЗАЩИТНИК ДЛЯ ТСД', type: 'ANDROID / INTERNAL', role: 'разработка приложения', task: 'Контролировать, находится ли складской ТСД в защитном чехле.', done: 'Приложение поднимает тревогу, если устройство вынули из чехла или оставили без присмотра.', status: 'внутренний проект / код закрыт', href: 'https://github.com/memasevich/memasevich', accent: 'violet' },
     { title: 'МОДУЛЬ СКАНИРОВАНИЯ WMS', type: 'WMS / INTERNAL', role: 'разработка и замена модуля', task: 'Заменить устаревшее стороннее решение GS Code.', done: 'Модуль сканирования WMS переписан на собственное решение.', status: 'внутренний проект / код закрыт', href: 'https://github.com/memasevich/memasevich', accent: 'coral' }
   ],

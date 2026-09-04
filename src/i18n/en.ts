@@ -8,8 +8,37 @@ export const en: SiteContent = {
   heroLead: 'Designing and maintaining infrastructure, automating processes, and creating tools for reverse-engineering and complex game localizations.',
   primaryCta: 'View work',
   toolsTitle: 'Applied development',
-  toolsIntro: 'Real internal solutions described in the public GitHub profile. The code is private, so only confirmed problems and outcomes are shown here.',
+  toolsIntro: 'Practical solutions, automation services, and multi-model AI systems. Confirmed problems, system architecture, and reproducible results.',
   tools: [
+    {
+      title: 'FOOTLIVESTATS / AI ANALYST',
+      type: 'AI / SPORTS ANALYTICS / PRIVATE',
+      role: 'System architecture, live parsers, multi-model AI ensemble',
+      task: 'Automated live statistical aggregation and predictive modeling for match dynamics in real time.',
+      done: 'Started originally as a Telegram bot (@botstavki) before evolving into an autonomous analytics service. Multi-model AI ensemble powered by Claude, ChatGPT, DeepSeek, Kimi 3, and GLM 5.3 with deterministic code-gate filtering. Delivers high-precision pre-match/live analysis with a consistent 86–89% weekly win rate.',
+      status: 'private service / production',
+      accent: 'lime',
+      featured: true,
+      highlightMetric: '86–89% WEEKLY WIN RATE',
+      tags: ['Claude', 'ChatGPT', 'DeepSeek', 'Kimi 3', 'GLM 5.3', 'Telegram Bot API', 'Python', 'Live Analytics', 'Data Aggregation'],
+      gallery: [
+        {
+          src: '/projects/footlivestats-signals.png',
+          alt: 'FootLiveStats — live signal log and outcome verification',
+          label: 'SCREEN_01 // SIGNAL LOG (604/7D)',
+        },
+        {
+          src: '/projects/footlivestats-chart.png',
+          alt: 'FootLiveStats — total line flow and odds dynamics',
+          label: 'SCREEN_02 // LINE & PRICE FLOW',
+        },
+        {
+          src: '/projects/footlivestats-ai.png',
+          alt: 'FootLiveStats — Overseer module tactical analysis',
+          label: 'SCREEN_03 // AI ANALYZER «OVERSEER»',
+        },
+      ],
+    },
     { title: 'HANDHELD TERMINAL GUARD', type: 'ANDROID / INTERNAL', role: 'application development', task: 'Detect whether a warehouse handheld terminal remains in its protective case.', done: 'The app triggers an alarm when the device is removed from the case or left unattended.', status: 'internal project / private code', href: 'https://github.com/memasevich/memasevich', accent: 'violet' },
     { title: 'WMS SCANNING MODULE', type: 'WMS / INTERNAL', role: 'module replacement and development', task: 'Replace the outdated third-party GS Code solution.', done: 'The WMS scanning module was rewritten as an in-house solution.', status: 'internal project / private code', href: 'https://github.com/memasevich/memasevich', accent: 'coral' }
   ],

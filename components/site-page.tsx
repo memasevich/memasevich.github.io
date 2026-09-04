@@ -24,6 +24,10 @@ type WorkItem = {
   status: string;
   href?: string;
   accent: Accent;
+  featured?: boolean;
+  highlightMetric?: string;
+  tags?: string[];
+  gallery?: { src: string; alt: string; label: string }[];
 };
 
 type Localization = {
@@ -87,10 +91,18 @@ function WorkCard({ item, index, locale }: { item: WorkItem; index: number; loca
   const ru = locale === 'ru';
 
   return (
-    <article className={`work-card work-${item.accent}`}>
+    <article className={`work-card work-${item.accent}${item.featured ? ' work-card-featured' : ''}`}>
       <header className="work-card-head">
-        <span>MOD_0{index + 1}</span>
-        <span className="work-badge">{item.type}</span>
+        <div className="work-head-left">
+          <span>MOD_0{index + 1}</span>
+          <span className="work-badge">{item.type}</span>
+        </div>
+        {item.highlightMetric && (
+          <div className="work-metric-pill">
+            <Zap size={12} aria-hidden="true" />
+            <span>{item.highlightMetric}</span>
+          </div>
+        )}
       </header>
       <div className="work-card-title">
         <StatusMark accent={item.accent} />
@@ -114,6 +126,37 @@ function WorkCard({ item, index, locale }: { item: WorkItem; index: number; loca
           <dd className="work-status">{item.status}</dd>
         </div>
       </dl>
+      {item.tags && item.tags.length > 0 && (
+        <div className="work-tags" aria-label={ru ? 'Стек технологий' : 'Technology stack'}>
+          {item.tags.map((tag) => (
+            <span className="work-tag" key={tag}>{tag}</span>
+          ))}
+        </div>
+      )}
+      {item.gallery && item.gallery.length > 0 && (
+        <div className="work-gallery">
+          <div className="work-gallery-grid">
+            {item.gallery.map((img) => (
+              <a
+                key={img.src}
+                href={img.src}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="work-gallery-item"
+                title={img.alt}
+              >
+                <figure>
+                  <img src={img.src} alt={img.alt} width="640" height="400" loading="lazy" decoding="async" />
+                  <figcaption>
+                    <span>{img.label}</span>
+                    <ExternalLink size={10} aria-hidden="true" />
+                  </figcaption>
+                </figure>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
       {item.href ? (
         <a className="work-link" href={item.href} target="_blank" rel="noopener noreferrer">
           {item.type.includes('INTERNAL')
@@ -126,7 +169,7 @@ function WorkCard({ item, index, locale }: { item: WorkItem; index: number; loca
           <ExternalLink size={14} aria-hidden="true" />
         </a>
       ) : (
-        <span className="work-todo">{ru ? 'Закрытый модуль' : 'Internal module'}</span>
+        <span className="work-todo">{ru ? 'Закрытый модуль / Приватный доступ' : 'Internal module / Private access'}</span>
       )}
     </article>
   );
