@@ -20,8 +20,8 @@ export const en: SiteContent = {
     { title: 'R.E.P.O.', area: 'TSV / interface / content', description: 'Russian localization using the game’s built-in localization system and three TSV files: Game, HUD, and Menu. It covers items, enemies, tutorial, and interface.', status: 'repository / ~100%', href: 'https://github.com/memasevich/repo-russianlocalization', note: 'SOURCE: STEAM GUIDE / PUBLIC COVER', image: '/projects/repo-localization.jpg', imageAlt: 'Cover of the public R.E.P.O. Russian localization guide' },
     { title: 'Gnomoria', area: 'C# / XNA / render interception', description: 'Dynamic Engine v0.6.0 intercepts XNA rendering and displays Cyrillic without editing font textures or XNB files. The release dictionary contains 12,253 entries.', status: 'repository / v0.6.0', href: 'https://github.com/memasevich/Gnomoria-Russian-Translation', note: 'SOURCE: GITHUB / images/in_game_menu.png', image: '/projects/gnomoria-localization.png', imageAlt: 'Russian Gnomoria menu screenshot from the project repository' }
   ],
-  favoriteGamesTitle: 'ENGINEERING GAMES',
-  favoriteGamesIntro: 'I have been a fan of engineering games since childhood. Although I don\'t have much time for them, these projects perfectly reflect my systemic approach and love for automation.',
+  favoriteGamesTitle: 'SYSTEMS THINKING & SIMULATIONS',
+  favoriteGamesIntro: 'Complex simulators and engineering sandboxes as a training ground for balancing data flows, queue logistics, and architecture planning. 7,500+ hours of experience.',
   favoriteGames: [
     { title: 'RimWorld', desc: 'Colony management, logistics and survival', img: '/games/rimworld.jpg', playtime: '3000 hrs' },
     { title: 'Satisfactory', desc: 'Massive automation and factories', img: '/games/satisfactory.jpg', playtime: '2500 hrs' },

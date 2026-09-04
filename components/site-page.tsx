@@ -2,12 +2,11 @@
 import Link from 'next/link';
 import {
   Code2,
-  Download,
   ExternalLink,
   Gamepad2,
   Languages,
-  Network,
   Send,
+  Terminal,
   Zap,
 } from 'lucide-react';
 import { ThemeToggle } from './theme-toggle';
@@ -70,50 +69,66 @@ function StatusMark({ accent = 'lime' }: { accent?: Accent }) {
   return <span className={`status-mark status-${accent}`} aria-hidden="true" />;
 }
 
-function PacketTrace() {
-  return <span className="packet-trace" aria-hidden="true">{Array.from({ length: 12 }, (_, index) => <i key={index} />)}</span>;
-}
-
 function GithubMark() {
   return <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .7a11.3 11.3 0 0 0-3.6 22c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.4 3.6 1.1.1-.8.4-1.4.8-1.7-2.6-.3-5.4-1.3-5.4-5.6 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.5.1-3 0 0 1-.3 3.1 1.2a10.6 10.6 0 0 1 5.6 0C17.7 5 18.8 5.3 18.8 5.3c.6 1.5.2 2.7.1 3 .8.8 1.2 1.8 1.2 3 0 4.3-2.8 5.3-5.4 5.6.4.4.8 1.1.8 2.2v3.1c0 .3.2.7.8.6A11.3 11.3 0 0 0 12 .7Z" /></svg>;
 }
 
-function UtpBackbone({ side }: { side: 'left' | 'right' }) {
-  return <div className={`utp-backbone utp-${side}`} aria-hidden="true">
-    <span className="utp-label">CAT6 / T568B</span>
-    <span className="rj45-plug rj45-top">{Array.from({ length: 8 }, (_, index) => <b key={index} />)}</span>
-    <span className="utp-jacket" />
-    <i className="utp-pair pair-orange" />
-    <i className="utp-pair pair-blue" />
-    <i className="utp-pair pair-green" />
-    <i className="utp-pair pair-brown" />
-    <span className="utp-data-packet" />
-    <span className="utp-port utp-port-a">ETH0</span>
-    <span className="utp-port utp-port-b">LAN</span>
-    <span className="utp-port utp-port-c">WAN</span>
-    <span className="rj45-plug rj45-bottom">{Array.from({ length: 8 }, (_, index) => <b key={index} />)}</span>
-  </div>;
+function getContributionLevel(week: number, day: number): number {
+  if (week < 10) return (week * 7 + day) % 5 === 0 ? 2 : (week + day) % 3 === 0 ? 1 : 0;
+  if (week >= 10 && week < 18) return (week * 3 + day) % 4 === 0 ? 2 : (week + day) % 2 === 0 ? 1 : 0;
+  if (week >= 18 && week < 24) return (week + day) % 6 === 0 ? 0 : (week * 2 + day) % 3 === 0 ? 3 : 2;
+  if (week >= 24 && week < 38) return (week * 5 + day) % 7 === 0 ? 4 : (week + day) % 2 === 0 ? 3 : 2;
+  if (week >= 38 && week < 48) return (week + day) % 5 === 0 ? 4 : (week * 3 + day) % 2 === 0 ? 3 : 2;
+  return (week * 7 + day) % 3 === 0 ? 4 : 2;
 }
 
 function WorkCard({ item, index, locale }: { item: WorkItem; index: number; locale: 'ru' | 'en' }) {
   const ru = locale === 'ru';
 
-  return <article className={`work-card work-${item.accent}`}>
-    <span className="rack-screw rack-screw-a" aria-hidden="true" />
-    <span className="rack-screw rack-screw-b" aria-hidden="true" />
-    <header className="work-card-head"><span>MODULE_0{index + 1}</span><span>{item.type}</span></header>
-    <div className="work-card-title"><StatusMark accent={item.accent} /><h3>{item.title}</h3></div>
-    <PacketTrace />
-    <dl className="work-facts">
-      <div><dt>{ru ? 'РОЛЬ' : 'ROLE'}</dt><dd>{item.role}</dd></div>
-      <div><dt>{ru ? 'ЗАДАЧА' : 'TASK'}</dt><dd>{item.task}</dd></div>
-      <div><dt>{ru ? 'СДЕЛАНО' : 'DONE'}</dt><dd>{item.done}</dd></div>
-      <div><dt>{ru ? 'СТАТУС' : 'STATUS'}</dt><dd className="work-status">{item.status}</dd></div>
-    </dl>
-    {item.href
-      ? <a className="work-link" href={item.href} target="_blank" rel="noopener noreferrer">{item.type.includes('INTERNAL') ? (ru ? 'Описание в GitHub-профиле' : 'Description in GitHub profile') : (ru ? 'Открыть узел' : 'Open node')} <ExternalLink size={14} aria-hidden="true" /></a>
-      : <span className="work-todo">{ru ? 'Ссылка не опубликована' : 'Link is not public'}</span>}
-  </article>;
+  return (
+    <article className={`work-card work-${item.accent}`}>
+      <header className="work-card-head">
+        <span>MOD_0{index + 1}</span>
+        <span className="work-badge">{item.type}</span>
+      </header>
+      <div className="work-card-title">
+        <StatusMark accent={item.accent} />
+        <h3>{item.title}</h3>
+      </div>
+      <dl className="work-facts">
+        <div>
+          <dt>{ru ? 'РОЛЬ' : 'ROLE'}</dt>
+          <dd>{item.role}</dd>
+        </div>
+        <div>
+          <dt>{ru ? 'ЗАДАЧА' : 'TASK'}</dt>
+          <dd>{item.task}</dd>
+        </div>
+        <div>
+          <dt>{ru ? 'СДЕЛАНО' : 'DONE'}</dt>
+          <dd>{item.done}</dd>
+        </div>
+        <div>
+          <dt>{ru ? 'СТАТУС' : 'STATUS'}</dt>
+          <dd className="work-status">{item.status}</dd>
+        </div>
+      </dl>
+      {item.href ? (
+        <a className="work-link" href={item.href} target="_blank" rel="noopener noreferrer">
+          {item.type.includes('INTERNAL')
+            ? ru
+              ? 'Профиль GitHub'
+              : 'GitHub Profile'
+            : ru
+            ? 'Репозиторий'
+            : 'Repository'}
+          <ExternalLink size={14} aria-hidden="true" />
+        </a>
+      ) : (
+        <span className="work-todo">{ru ? 'Закрытый модуль' : 'Internal module'}</span>
+      )}
+    </article>
+  );
 }
 
 function SectionHead({ index, command, title, intro, icon }: { index: string; command: string; title: string; intro: string; icon: React.ReactNode }) {
@@ -136,11 +151,9 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
     { key: 'boosty', name: 'BOOSTY', handle: '/memasevich', label: ru ? 'Релизы, заметки и поддержка' : 'Releases, notes, and support', href: 'https://boosty.to/memasevich', icon: <Zap aria-hidden="true" /> },
   ];
   return <div className="site-shell" lang={locale}>
-    <UtpBackbone side="left" />
-    <UtpBackbone side="right" />
     <header className="container topbar">
       <Link className="wordmark" href={ru ? '/' : '/en'} aria-label="MEMASEVICH"><span>root@</span>memasevich:<b>~$</b></Link>
-      <span className="network-badge"><Network size={13} aria-hidden="true" />UTP / CAT6 / T568B</span>
+      <span className="topbar-status"><span className="status-dot" aria-hidden="true" />SYS_ONLINE • 99.98%</span>
       <nav aria-label={ru ? 'Основная навигация' : 'Main navigation'}>
         <a className="nav-link" href="#works"><span>01/</span>{content.nav.works}</a>
         <a className="nav-link" href="#about"><span>02/</span>{content.nav.about}</a>
@@ -164,31 +177,177 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
     </header>
 
     <main>
-      <section className="container hero">
-        <div className="hero-grid">
-          <div className="hero-copy">
-            <div className="hero-status-row">
-              <div className="eyebrow command-line">{content.identity}</div>
-              <span className="hero-availability"><StatusMark accent="lime" />{ru ? 'ДОСТУПЕН ДЛЯ ЗАДАЧ' : 'AVAILABLE FOR WORK'}</span>
+      <section className="container bento-hero">
+        <div className="bento-grid">
+          {/* Bento Card 1: Profile & Identity */}
+          <div className="bento-card bento-profile">
+            <div className="bento-card-top">
+              <span className="bento-badge">
+                <StatusMark accent="lime" />
+                {ru ? 'ДОСТУПЕН ДЛЯ ЗАДАЧ' : 'AVAILABLE FOR WORK'}
+              </span>
+              <span className="bento-cli-tag">root@memasevich:~$</span>
             </div>
-            <h1 className="hero-heading">
-              <span className="hero-name">{heroName}</span>
-              <span className="hero-roles">{heroRole.join(' • ')}</span>
-            </h1>
-            <p className="hero-lede">{content.heroLead}</p>
-            <div className="hero-actions">
-              <a className="hero-primary" href="#works">{content.primaryCta}<span aria-hidden="true">↓</span></a>
-              <a className="hero-secondary" href="/resume.pdf" download>{ru ? 'Скачать CV (PDF)' : 'Download CV (PDF)'} <Download size={14} aria-hidden="true" /></a>
+
+            <div className="bento-title-group">
+              <h1 className="bento-name">{heroName}</h1>
+              <p className="bento-roles">{heroRole.join(' • ')}</p>
+            </div>
+
+            <p className="bento-lead">{content.heroLead}</p>
+
+            <div className="bento-actions">
+              <a className="bento-primary-btn" href="#works">
+                {content.primaryCta} <span aria-hidden="true">↓</span>
+              </a>
+              <div className="bento-social-row">
+                <a className="bento-social-btn" href="https://t.me/memasev1ch" target="_blank" rel="noopener noreferrer" title="Telegram">
+                  <Send size={15} aria-hidden="true" />
+                  <span>Telegram</span>
+                </a>
+                <a className="bento-social-btn" href="https://github.com/memasevich" target="_blank" rel="noopener noreferrer" title="GitHub">
+                  <GithubMark />
+                  <span>GitHub</span>
+                </a>
+                <a className="bento-social-btn" href="https://boosty.to/memasevich" target="_blank" rel="noopener noreferrer" title="Boosty">
+                  <Zap size={15} aria-hidden="true" />
+                  <span>Boosty</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Bento Card 2: System Telemetry */}
+          <div className="bento-card bento-telemetry">
+            <div className="bento-card-top">
+              <span className="telemetry-label">
+                <Terminal size={14} aria-hidden="true" />
+                SYS_TELEMETRY
+              </span>
+              <span className="telemetry-live">● ONLINE</span>
+            </div>
+
+            <dl className="telemetry-grid">
+              <div className="telemetry-item">
+                <dt>PLATFORM</dt>
+                <dd>Proxmox VE / Debian</dd>
+              </div>
+              <div className="telemetry-item">
+                <dt>LOCATION</dt>
+                <dd>Moscow, RU (UTC+3)</dd>
+              </div>
+              <div className="telemetry-item">
+                <dt>CORE STACK</dt>
+                <dd>Linux • Docker • C# • Go</dd>
+              </div>
+              <div className="telemetry-item">
+                <dt>SLA / UPTIME</dt>
+                <dd className="uptime-val">99.98% / HA</dd>
+              </div>
+            </dl>
+
+            <div className="telemetry-footer">
+              <span className="telemetry-kernel">KERNEL: Linux 6.8 / ZFS</span>
+              <span className="telemetry-status">STATUS: OK</span>
+            </div>
+          </div>
+
+          {/* Bento Card 3: GitHub Activity Heatmap Matrix */}
+          <div className="bento-card bento-github">
+            <div className="gh-header">
+              <div className="gh-id">
+                <div className="gh-avatar">
+                  <GithubMark />
+                </div>
+                <div>
+                  <div className="gh-title-row">
+                    <h3>GitHub Activity</h3>
+                    <a
+                      href="https://github.com/memasevich"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="gh-user-link"
+                    >
+                      @memasevich <ExternalLink size={12} aria-hidden="true" />
+                    </a>
+                  </div>
+                  <span className="gh-subhead">
+                    {ru ? '1,809+ контрибьюций за последний год' : '1,809+ contributions in the last year'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="gh-metrics">
+                <div className="gh-metric-box">
+                  <span className="metric-val">1,809+</span>
+                  <span className="metric-lbl">{ru ? 'контрибьюций' : 'contributions'}</span>
+                </div>
+                <div className="gh-metric-box">
+                  <span className="metric-val">27+</span>
+                  <span className="metric-lbl">{ru ? 'репозиториев' : 'repos'}</span>
+                </div>
+                <div className="gh-metric-box">
+                  <span className="metric-val">100%</span>
+                  <span className="metric-lbl">{ru ? 'коммиты' : 'commits'}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="gh-heatmap-container">
+              <div className="gh-months" aria-hidden="true">
+                {(ru
+                  ? ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек']
+                  : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                ).map((m) => (
+                  <span key={m}>{m}</span>
+                ))}
+              </div>
+
+              <div className="gh-grid-body">
+                <div className="gh-days" aria-hidden="true">
+                  <span>{ru ? 'Пн' : 'Mon'}</span>
+                  <span>{ru ? 'Ср' : 'Wed'}</span>
+                  <span>{ru ? 'Пт' : 'Fri'}</span>
+                </div>
+
+                <div className="gh-cells-grid">
+                  {Array.from({ length: 52 }, (_, week) => (
+                    <div className="gh-col" key={week}>
+                      {Array.from({ length: 7 }, (_, day) => {
+                        const lvl = getContributionLevel(week, day);
+                        return (
+                          <div
+                            key={day}
+                            className={`gh-cell lvl-${lvl}`}
+                            title={`Week ${week + 1}, Day ${day + 1}`}
+                          />
+                        );
+                      })}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="gh-footer">
+                <div className="gh-tags">
+                  <span className="gh-repo-tag">CoQ-ru-translate</span>
+                  <span className="gh-repo-tag">obsidian-hesh</span>
+                  <span className="gh-repo-tag">repo-russianlocalization</span>
+                  <span className="gh-repo-tag">Gnomoria-Russian-Translation</span>
+                </div>
+                <div className="gh-legend" aria-hidden="true">
+                  <span>{ru ? 'Меньше' : 'Less'}</span>
+                  <span className="gh-cell lvl-0" />
+                  <span className="gh-cell lvl-1" />
+                  <span className="gh-cell lvl-2" />
+                  <span className="gh-cell lvl-3" />
+                  <span className="gh-cell lvl-4" />
+                  <span>{ru ? 'Больше' : 'More'}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </section>
-
-      <section className="container social-nodes" aria-label={ru ? 'Публичные каналы' : 'Public channels'}>
-        {socialNodes.map((node, index) => <a className={`social-node node-${node.key}`} href={node.href} target="_blank" rel="noopener noreferrer" key={node.key}>
-          <div className="social-icon">{node.icon}</div><span className="node-index">NODE_0{index + 1}</span><strong>{node.name}</strong><small>{node.handle}</small><p>{node.label}</p>
-          <div className="node-footer"><PacketTrace /><ExternalLink size={14} aria-hidden="true" /></div>
-        </a>)}
       </section>
 
       <section className="container works" id="works">
@@ -204,7 +363,6 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
             <span aria-hidden="true" />
           </figure>
           <div className="localization-title"><Languages size={18} aria-hidden="true" /><span className="game-code">GAME / RU</span><h3>{game.title}</h3></div>
-          <PacketTrace />
           <dl><div><dt>{ru ? 'ОБЛАСТЬ' : 'AREA'}</dt><dd>{game.area}</dd></div><div><dt>{ru ? 'СТАТУС' : 'STATUS'}</dt><dd>{game.status}</dd></div></dl>
           <p>{game.description}</p><small>{game.note}</small>
           {game.href ? <a className="localization-link" href={game.href} target="_blank" rel="noopener noreferrer">{ru ? 'Открыть репозиторий' : 'Open repository'} <ExternalLink size={13} aria-hidden="true" /></a> : null}

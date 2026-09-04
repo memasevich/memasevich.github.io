@@ -79,9 +79,6 @@ export function MobileNav({ items, langLabel, locale = 'ru' }: { items: NavItem[
                   <Link className={locale === 'ru' ? 'active' : ''} href="/">RU</Link>
                   <Link className={locale === 'en' ? 'active' : ''} href="/en">EN</Link>
                 </span>
-                <a className="mobile-menu-cv" href="/resume.pdf" download>
-                  {locale === 'ru' ? 'Скачать CV (PDF)' : 'Download CV (PDF)'} ⤓
-                </a>
               </div>
             </nav>
           </div>,
