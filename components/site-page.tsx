@@ -12,6 +12,8 @@ import {
 } from 'lucide-react';
 import { ThemeToggle } from './theme-toggle';
 import { MobileNav } from './mobile-nav';
+import { ItBackground } from './it-background';
+import { WorkGallerySlider, type GallerySlide } from './work-gallery-slider';
 
 type Accent = 'lime' | 'coral' | 'violet';
 
@@ -27,7 +29,7 @@ type WorkItem = {
   featured?: boolean;
   highlightMetric?: string;
   tags?: string[];
-  gallery?: { src: string; alt: string; label: string }[];
+  gallery?: GallerySlide[];
 };
 
 type Localization = {
@@ -134,28 +136,7 @@ function WorkCard({ item, index, locale }: { item: WorkItem; index: number; loca
         </div>
       )}
       {item.gallery && item.gallery.length > 0 && (
-        <div className="work-gallery">
-          <div className="work-gallery-grid">
-            {item.gallery.map((img) => (
-              <a
-                key={img.src}
-                href={img.src}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="work-gallery-item"
-                title={img.alt}
-              >
-                <figure>
-                  <img src={img.src} alt={img.alt} width="640" height="400" loading="lazy" decoding="async" />
-                  <figcaption>
-                    <span>{img.label}</span>
-                    <ExternalLink size={10} aria-hidden="true" />
-                  </figcaption>
-                </figure>
-              </a>
-            ))}
-          </div>
-        </div>
+        <WorkGallerySlider items={item.gallery} locale={locale} />
       )}
       {item.href ? (
         <a className="work-link" href={item.href} target="_blank" rel="noopener noreferrer">
@@ -232,6 +213,7 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
     },
   ];
   return <div className="site-shell" lang={locale}>
+    <ItBackground />
     <header className="container topbar">
       <Link className="wordmark" href={ru ? '/' : '/en'} aria-label="MEMASEVICH"><span>root@</span>memasevich:<b>~$</b></Link>
       <span className="topbar-status"><span className="status-dot" aria-hidden="true" />SYS_ONLINE • 99.98%</span>
