@@ -2,12 +2,11 @@ import type { SiteContent } from '../../components/site-page';
 
 export const ru: SiteContent = {
   locale: 'ru',
-  nav: { works: 'Работы', about: 'Обо мне', contact: 'Контакт', resume: 'Резюме' },
+  nav: { works: 'Работы', about: 'Обо мне', resume: 'Резюме', games: 'Игры', contact: 'Контакт' },
   identity: 'root@memasevich:~$ whoami',
   heroTitle: 'MEMASEVICH\nСИСАДМИН / DEVOPS\nРАЗРАБОТЧИК',
   heroLead: 'Проектирую и поддерживаю инфраструктуру, автоматизирую процессы, создаю инструменты для реверс-инжиниринга и сложной локализации игр.',
   primaryCta: 'Смотреть работы',
-  secondaryCta: 'Скачать CV (PDF)',
   toolsTitle: 'Прикладная разработка',
   toolsIntro: 'Реальные внутренние решения из публичного GitHub-профиля. Код закрыт, поэтому здесь только подтверждённая задача и результат.',
   tools: [
@@ -24,10 +23,10 @@ export const ru: SiteContent = {
   favoriteGamesTitle: 'ИНЖЕНЕРНЫЕ ИГРЫ',
   favoriteGamesIntro: 'С детства фанатею от инженерных игр. Хотя времени на них не так много, эти проекты идеально отражают мой системный подход и любовь к автоматизации.',
   favoriteGames: [
-    { title: 'RimWorld', desc: 'Управление колонией, логистика и выживание', img: 'https://cdn.akamai.steamstatic.com/steam/apps/294100/capsule_616x353.jpg', playtime: '3000 ч.' },
-    { title: 'Satisfactory', desc: 'Масштабная автоматизация и фабрики', img: 'https://cdn.akamai.steamstatic.com/steam/apps/526870/capsule_616x353.jpg', playtime: '2500 ч.' },
-    { title: 'Gnomoria', desc: 'Глубокий менеджмент и микроконтроль', img: 'https://cdn.akamai.steamstatic.com/steam/apps/224500/capsule_616x353.jpg', playtime: '1000 ч.' },
-    { title: 'Melvor Idle', desc: 'Оптимизация процессов и idle-экономика', img: 'https://cdn.akamai.steamstatic.com/steam/apps/1267910/capsule_616x353.jpg', playtime: '1000 ч.' },
+    { title: 'RimWorld', desc: 'Управление колонией, логистика и выживание', img: '/games/rimworld.jpg', playtime: '3000 ч.' },
+    { title: 'Satisfactory', desc: 'Масштабная автоматизация и фабрики', img: '/games/satisfactory.jpg', playtime: '2500 ч.' },
+    { title: 'Gnomoria', desc: 'Глубокий менеджмент и микроконтроль', img: '/games/gnomoria.jpg', playtime: '1000 ч.' },
+    { title: 'Melvor Idle', desc: 'Оптимизация процессов и idle-экономика', img: '/games/melvor-idle.jpg', playtime: '1000 ч.' },
   ],
   aboutTitle: 'ОПЕРАТОР СИСТЕМЫ',
   aboutText: [

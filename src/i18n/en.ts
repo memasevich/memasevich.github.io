@@ -2,12 +2,11 @@ import type { SiteContent } from '../../components/site-page';
 
 export const en: SiteContent = {
   locale: 'en',
-  nav: { works: 'Work', about: 'About', contact: 'Contact', resume: 'Resume' },
+  nav: { works: 'Work', about: 'About', resume: 'Resume', games: 'Games', contact: 'Contact' },
   identity: 'root@memasevich:~$ whoami',
   heroTitle: 'MEMASEVICH\nSYSADMIN / DEVOPS\nSOFTWARE ENGINEER',
   heroLead: 'Designing and maintaining infrastructure, automating processes, and creating tools for reverse-engineering and complex game localizations.',
   primaryCta: 'View work',
-  secondaryCta: 'Download CV (PDF)',
   toolsTitle: 'Applied development',
   toolsIntro: 'Real internal solutions described in the public GitHub profile. The code is private, so only confirmed problems and outcomes are shown here.',
   tools: [
@@ -24,10 +23,10 @@ export const en: SiteContent = {
   favoriteGamesTitle: 'ENGINEERING GAMES',
   favoriteGamesIntro: 'I have been a fan of engineering games since childhood. Although I don\'t have much time for them, these projects perfectly reflect my systemic approach and love for automation.',
   favoriteGames: [
-    { title: 'RimWorld', desc: 'Colony management, logistics and survival', img: 'https://cdn.akamai.steamstatic.com/steam/apps/294100/capsule_616x353.jpg', playtime: '3000 hrs' },
-    { title: 'Satisfactory', desc: 'Massive automation and factories', img: 'https://cdn.akamai.steamstatic.com/steam/apps/526870/capsule_616x353.jpg', playtime: '2500 hrs' },
-    { title: 'Gnomoria', desc: 'Deep management and microcontrol', img: 'https://cdn.akamai.steamstatic.com/steam/apps/224500/capsule_616x353.jpg', playtime: '1000 hrs' },
-    { title: 'Melvor Idle', desc: 'Process optimization and idle economy', img: 'https://cdn.akamai.steamstatic.com/steam/apps/1267910/capsule_616x353.jpg', playtime: '1000 hrs' },
+    { title: 'RimWorld', desc: 'Colony management, logistics and survival', img: '/games/rimworld.jpg', playtime: '3000 hrs' },
+    { title: 'Satisfactory', desc: 'Massive automation and factories', img: '/games/satisfactory.jpg', playtime: '2500 hrs' },
+    { title: 'Gnomoria', desc: 'Deep management and microcontrol', img: '/games/gnomoria.jpg', playtime: '1000 hrs' },
+    { title: 'Melvor Idle', desc: 'Process optimization and idle economy', img: '/games/melvor-idle.jpg', playtime: '1000 hrs' },
   ],
   aboutTitle: 'SYSTEM OPERATOR',
   aboutText: [

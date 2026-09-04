@@ -2,12 +2,13 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
+import Link from "next/link";
 
 type NavItem = { href: string; index: string; label: string };
 
 const emptySubscribe = () => () => {};
 
-export function MobileNav({ items, langLabel }: { items: NavItem[]; langLabel: string }) {
+export function MobileNav({ items, langLabel, locale = 'ru' }: { items: NavItem[]; langLabel: string; locale?: 'ru' | 'en' }) {
   const [open, setOpen] = useState(false);
   const mounted = useSyncExternalStore(
     emptySubscribe,
@@ -73,6 +74,15 @@ export function MobileNav({ items, langLabel }: { items: NavItem[]; langLabel: s
                   <i>↵</i>
                 </a>
               ))}
+              <div className="mobile-menu-footer">
+                <span className="locale-switch">
+                  <Link className={locale === 'ru' ? 'active' : ''} href="/">RU</Link>
+                  <Link className={locale === 'en' ? 'active' : ''} href="/en">EN</Link>
+                </span>
+                <a className="mobile-menu-cv" href="/resume.pdf" download>
+                  {locale === 'ru' ? 'Скачать CV (PDF)' : 'Download CV (PDF)'} ⤓
+                </a>
+              </div>
             </nav>
           </div>,
           document.body

@@ -2,7 +2,9 @@
 import Link from 'next/link';
 import {
   Code2,
+  Download,
   ExternalLink,
+  Gamepad2,
   Languages,
   Network,
   Send,
@@ -37,12 +39,11 @@ type Localization = {
 
 export type SiteContent = {
   locale: 'ru' | 'en';
-  nav: { works: string; about: string; contact: string; resume: string };
+  nav: { works: string; about: string; resume: string; games: string; contact: string };
   identity: string;
   heroTitle: string;
   heroLead: string;
   primaryCta: string;
-  secondaryCta: string;
   toolsTitle: string;
   toolsIntro: string;
   tools: WorkItem[];
@@ -144,17 +145,20 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
         <a className="nav-link" href="#works"><span>01/</span>{content.nav.works}</a>
         <a className="nav-link" href="#about"><span>02/</span>{content.nav.about}</a>
         <a className="nav-link" href="#resume"><span>03/</span>{content.nav.resume}</a>
-        <a className="nav-link" href="#contact"><span>04/</span>{content.nav.contact}</a>
+        <a className="nav-link" href="#games"><span>04/</span>{content.nav.games}</a>
+        <a className="nav-link" href="#contact"><span>05/</span>{content.nav.contact}</a>
         <span className="locale-switch" aria-label={ru ? 'Язык сайта' : 'Site language'}><Link className={ru ? 'active' : ''} href="/">RU</Link><Link className={!ru ? 'active' : ''} href="/en">EN</Link></span>
         <ThemeToggle />
       </nav>
       <MobileNav
+        locale={locale}
         langLabel={ru ? 'Мобильная навигация' : 'Mobile navigation'}
         items={[
           { href: '#works', index: '01/', label: content.nav.works },
           { href: '#about', index: '02/', label: content.nav.about },
           { href: '#resume', index: '03/', label: content.nav.resume },
-          { href: '#contact', index: '04/', label: content.nav.contact },
+          { href: '#games', index: '04/', label: content.nav.games },
+          { href: '#contact', index: '05/', label: content.nav.contact },
         ]}
       />
     </header>
@@ -163,11 +167,18 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
       <section className="container hero">
         <div className="hero-grid">
           <div className="hero-copy">
-            <div className="eyebrow command-line">{content.identity}</div>
-            <h1><span>{heroName}</span>{heroRole.join('\n')}</h1>
+            <div className="hero-status-row">
+              <div className="eyebrow command-line">{content.identity}</div>
+              <span className="hero-availability"><StatusMark accent="lime" />{ru ? 'ДОСТУПЕН ДЛЯ ЗАДАЧ' : 'AVAILABLE FOR WORK'}</span>
+            </div>
+            <h1 className="hero-heading">
+              <span className="hero-name">{heroName}</span>
+              <span className="hero-roles">{heroRole.join(' • ')}</span>
+            </h1>
             <p className="hero-lede">{content.heroLead}</p>
             <div className="hero-actions">
               <a className="hero-primary" href="#works">{content.primaryCta}<span aria-hidden="true">↓</span></a>
+              <a className="hero-secondary" href="/resume.pdf" download>{ru ? 'Скачать CV (PDF)' : 'Download CV (PDF)'} <Download size={14} aria-hidden="true" /></a>
             </div>
           </div>
         </div>
@@ -241,7 +252,13 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
       </section>
 
       <section className="container games-section" id="games" aria-label={ru ? 'Инженерные игры' : 'Engineering Games'}>
-        <div className="section-head"><div className="eyebrow section-command"><span>04A</span>ls /games/engineering</div><h2>{content.favoriteGamesTitle}</h2><p>{content.favoriteGamesIntro}</p></div>
+        <SectionHead
+          index="04"
+          command="ls /games/engineering"
+          title={content.favoriteGamesTitle}
+          intro={content.favoriteGamesIntro}
+          icon={<Gamepad2 aria-hidden="true" />}
+        />
         <div className="games-grid">
           {content.favoriteGames.map((game, index) => (
             <article className="game-card" key={game.title}>
@@ -260,7 +277,7 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
 
       <section className="contact" id="contact"><div className="container">
         <div className="contact-terminal"><div className="contact-prompt"><span>root@memasevich:~$</span> connect --human</div><div className="contact-cursor" aria-hidden="true" /></div>
-        <div className="contact-top"><div><div className="eyebrow">03 — {content.contactEyebrow}</div><h2>{content.contactTitle}</h2><p>{content.contactText}</p></div><div className="contact-actions">{content.contactActions.map((action, index) => <a key={action.label} href={action.href} target={action.href.startsWith('http') ? '_blank' : undefined} rel={action.href.startsWith('http') ? 'noopener noreferrer' : undefined}><span>0{index + 1} / {action.label}</span><ExternalLink size={15} aria-hidden="true" /></a>)}</div></div>
+        <div className="contact-top"><div><div className="eyebrow">05 — {content.contactEyebrow}</div><h2>{content.contactTitle}</h2><p>{content.contactText}</p></div><div className="contact-actions">{content.contactActions.map((action, index) => <a key={action.label} href={action.href} target={action.href.startsWith('http') ? '_blank' : undefined} rel={action.href.startsWith('http') ? 'noopener noreferrer' : undefined}><span>0{index + 1} / {action.label}</span><ExternalLink size={15} aria-hidden="true" /></a>)}</div></div>
         <div className="contact-links">{socialNodes.map(node => <a href={node.href} target="_blank" rel="noopener noreferrer" key={node.key}>{node.icon}<span>{node.name}</span><small>{node.handle}</small></a>)}</div>
       </div></section>
     </main>
