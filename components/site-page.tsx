@@ -5,6 +5,7 @@ import {
   ExternalLink,
   Gamepad2,
   Languages,
+  Mail,
   Send,
   Terminal,
   Zap,
@@ -145,10 +146,47 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
   const ru = locale === 'ru';
   const [heroName, ...heroRole] = content.heroTitle.split('\n');
   const storyLabels = ru ? ['СТАРТ', 'ПЕРВЫЕ СЕРВЕРЫ', 'ПУТЬ', 'DEVOPS', 'СЕЙЧАС'] : ['START', 'FIRST SERVERS', 'THE PATH', 'DEVOPS', 'NOW'];
-  const socialNodes = [
-    { key: 'github', name: 'GITHUB', handle: '@memasevich', label: ru ? 'Код и публичные репозитории' : 'Code and public repositories', href: 'https://github.com/memasevich', icon: <GithubMark /> },
-    { key: 'telegram', name: 'TELEGRAM', handle: '@memasev1ch', label: ru ? 'Связь и сообщения об ошибках' : 'Contact and bug reports', href: 'https://t.me/memasev1ch', icon: <Send aria-hidden="true" /> },
-    { key: 'boosty', name: 'BOOSTY', handle: '/memasevich', label: ru ? 'Релизы, заметки и поддержка' : 'Releases, notes, and support', href: 'https://boosty.to/memasevich', icon: <Zap aria-hidden="true" /> },
+  const contactChannels = [
+    {
+      key: 'telegram',
+      name: 'TELEGRAM',
+      handle: '@memasev1ch',
+      desc: ru ? 'Оперативная связь, предложения и быстрые вопросы' : 'Direct messages, inquiries, and fast response',
+      badge: ru ? 'ОСНОВНОЙ КАНАЛ' : 'PRIMARY CHANNEL',
+      actionText: ru ? 'Написать в Telegram' : 'Message on Telegram',
+      href: 'https://t.me/memasev1ch',
+      icon: <Send size={18} aria-hidden="true" />,
+    },
+    {
+      key: 'email',
+      name: 'EMAIL',
+      handle: 'eganddn@gmail.com',
+      desc: ru ? 'Официальные запросы, проектная документация и ТЗ' : 'Formal inquiries, documentation, and specs',
+      badge: ru ? 'ПРЯМОЙ АДРЕС' : 'DIRECT EMAIL',
+      actionText: ru ? 'Написать на почту' : 'Send an Email',
+      href: 'mailto:eganddn@gmail.com',
+      icon: <Mail size={18} aria-hidden="true" />,
+    },
+    {
+      key: 'github',
+      name: 'GITHUB',
+      handle: '@memasevich',
+      desc: ru ? 'Открытые репозитории, баг-трекер и пул-реквесты' : 'Open-source code, issue tracker, pull requests',
+      badge: ru ? 'РЕПОЗИТОРИИ' : 'REPOSITORIES',
+      actionText: ru ? 'Открыть профиль' : 'Open GitHub Profile',
+      href: 'https://github.com/memasevich',
+      icon: <GithubMark />,
+    },
+    {
+      key: 'boosty',
+      name: 'BOOSTY',
+      handle: '/memasevich',
+      desc: ru ? 'Поддержка независимых игровых локализаций и утилит' : 'Support independent game localizations and tools',
+      badge: ru ? 'ПОДДЕРЖКА' : 'SPONSOR',
+      actionText: ru ? 'Поддержать автора' : 'Support on Boosty',
+      href: 'https://boosty.to/memasevich',
+      icon: <Zap size={18} aria-hidden="true" />,
+    },
   ];
   return <div className="site-shell" lang={locale}>
     <header className="container topbar">
@@ -433,11 +471,73 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
         </div>
       </section>
 
-      <section className="contact" id="contact"><div className="container">
-        <div className="contact-terminal"><div className="contact-prompt"><span>root@memasevich:~$</span> connect --human</div><div className="contact-cursor" aria-hidden="true" /></div>
-        <div className="contact-top"><div><div className="eyebrow">05 — {content.contactEyebrow}</div><h2>{content.contactTitle}</h2><p>{content.contactText}</p></div><div className="contact-actions">{content.contactActions.map((action, index) => <a key={action.label} href={action.href} target={action.href.startsWith('http') ? '_blank' : undefined} rel={action.href.startsWith('http') ? 'noopener noreferrer' : undefined}><span>0{index + 1} / {action.label}</span><ExternalLink size={15} aria-hidden="true" /></a>)}</div></div>
-        <div className="contact-links">{socialNodes.map(node => <a href={node.href} target="_blank" rel="noopener noreferrer" key={node.key}>{node.icon}<span>{node.name}</span><small>{node.handle}</small></a>)}</div>
-      </div></section>
+      <section className="contact" id="contact">
+        <div className="container">
+          <div className="contact-terminal">
+            <div className="contact-prompt">
+              <span>root@memasevich:~$</span> connect --channel
+            </div>
+            <div className="contact-status-meta">
+              <span className="status-mark status-lime" />
+              <span>SYS_ONLINE • FAST_RESPONSE</span>
+            </div>
+          </div>
+
+          <div className="contact-top">
+            <div className="contact-info">
+              <div className="eyebrow section-command">
+                <span>05</span> {content.contactEyebrow}
+              </div>
+              <h2 className="contact-title">{content.contactTitle}</h2>
+              <p className="contact-desc">{content.contactText}</p>
+            </div>
+
+            <div className="contact-availability-box">
+              <div className="avail-header">
+                <span className="status-mark status-lime" />
+                <span>{ru ? 'СТАТУС И ВРЕМЯ ОТВЕТА' : 'STATUS & RESPONSE TIME'}</span>
+              </div>
+              <p className="avail-desc">
+                {ru
+                  ? 'Открыт для обсуждения инфраструктурных задач, DevOps-автоматизации, реверс-инжиниринга и технического сотрудничества.'
+                  : 'Open for infrastructure challenges, DevOps automation, reverse engineering, and technical collaboration.'}
+              </p>
+              <div className="avail-meta">
+                <span className="avail-tag">{ru ? '● Ответ в течение суток' : '● Response within 24h'}</span>
+                <span className="avail-tag">{ru ? 'UTC+3 / Москва' : 'UTC+3 Timezone'}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="contact-bento-grid">
+            {contactChannels.map((channel) => (
+              <a
+                key={channel.key}
+                href={channel.href}
+                target={channel.href.startsWith('http') ? '_blank' : undefined}
+                rel={channel.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className={`contact-card contact-card-${channel.key}`}
+              >
+                <div className="contact-card-top">
+                  <div className="contact-card-icon">{channel.icon}</div>
+                  <span className="contact-card-badge">{channel.badge}</span>
+                </div>
+                <div className="contact-card-body">
+                  <div className="contact-card-name-row">
+                    <span className="contact-card-name">{channel.name}</span>
+                    <span className="contact-card-handle">{channel.handle}</span>
+                  </div>
+                  <p className="contact-card-desc">{channel.desc}</p>
+                </div>
+                <div className="contact-card-footer">
+                  <span>{channel.actionText}</span>
+                  <ExternalLink size={14} aria-hidden="true" />
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer className="container footer"><span>© 2026 MEMASEVICH</span><span>{content.footer}</span><span className="footer-status"><StatusMark />END_OF_TRANSMISSION</span></footer>

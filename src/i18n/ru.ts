@@ -2,7 +2,7 @@ import type { SiteContent } from '../../components/site-page';
 
 export const ru: SiteContent = {
   locale: 'ru',
-  nav: { works: 'Работы', about: 'Обо мне', resume: 'Резюме', games: 'Игры', contact: 'Контакт' },
+  nav: { works: 'Работы', about: 'Обо мне', resume: 'Резюме', games: 'Симуляции', contact: 'Контакты' },
   identity: 'root@memasevich:~$ whoami',
   heroTitle: 'MEMASEVICH\nСИСАДМИН / DEVOPS\nРАЗРАБОТЧИК',
   heroLead: 'Проектирую и поддерживаю инфраструктуру, автоматизирую процессы, создаю инструменты для реверс-инжиниринга и сложной локализации игр.',
@@ -49,9 +49,9 @@ export const ru: SiteContent = {
     { period: '2019 — 2022', company: 'GLORIA JEANS', role: 'ИНЖЕНЕР ТЕХНИЧЕСКОЙ ПОДДЕРЖКИ', desc: 'Обслуживание ИТ-инфраструктуры логистического центра (ТСД, принтеры Zebra/Kyocera, сетевое оборудование). Поддержка систем видеонаблюдения и ERP (1С).' },
     { period: '2017 — 2018', company: 'РОСТЕЛЕКОМ', role: 'ИНЖЕНЕР СВЯЗИ', desc: 'Настройка и наладка сетевого оборудования корпоративных клиентов (Juniper, MikroTik). Организация оптоволоконной и витопарной связи.' }
   ],
-  contactEyebrow: 'Контакт',
-  contactTitle: 'НА СВЯЗИ.\nПИШИ.',
-  contactText: 'Открыт к обсуждению инфраструктурных задач, проектов по реверс-инжинирингу, сложной локализации и техническому сотрудничеству.',
+  contactEyebrow: 'Контакты',
+  contactTitle: 'СВЯЗАТЬСЯ СО МНОЙ',
+  contactText: 'Открыт к обсуждению инфраструктурных задач, проектов по DevOps-автоматизации, реверс-инжинирингу и техническому сотрудничеству.',
   contactActions: [
     { label: 'Написать в Telegram', href: 'https://t.me/memasev1ch' },
     { label: 'Написать на почту', href: 'mailto:eganddn@gmail.com' },

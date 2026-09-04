@@ -2,7 +2,7 @@ import type { SiteContent } from '../../components/site-page';
 
 export const en: SiteContent = {
   locale: 'en',
-  nav: { works: 'Work', about: 'About', resume: 'Resume', games: 'Games', contact: 'Contact' },
+  nav: { works: 'Work', about: 'About', resume: 'Resume', games: 'Simulations', contact: 'Contact' },
   identity: 'root@memasevich:~$ whoami',
   heroTitle: 'MEMASEVICH\nSYSADMIN / DEVOPS\nSOFTWARE ENGINEER',
   heroLead: 'Designing and maintaining infrastructure, automating processes, and creating tools for reverse-engineering and complex game localizations.',
@@ -50,8 +50,8 @@ export const en: SiteContent = {
     { period: '2017 — 2018', company: 'ROSTELECOM', role: 'NETWORK ENGINEER', desc: 'Configured and maintained network equipment for corporate clients (Juniper, MikroTik). Deployed fiber optic and twisted-pair connections.' }
   ],
   contactEyebrow: 'Contact',
-  contactTitle: 'STAY IN\nTOUCH.',
-  contactText: 'Open to discussing infrastructure tasks, reverse-engineering projects, complex localizations, and technical collaboration.',
+  contactTitle: 'GET IN TOUCH',
+  contactText: 'Open to discussing infrastructure tasks, DevOps automation, reverse-engineering projects, and technical collaboration.',
   contactActions: [
     { label: 'Write on Telegram', href: 'https://t.me/memasev1ch' },
     { label: 'Write by email', href: 'mailto:eganddn@gmail.com' },
