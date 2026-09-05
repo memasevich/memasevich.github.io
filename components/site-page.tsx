@@ -15,6 +15,7 @@ import { MobileNav } from './mobile-nav';
 import { ItBackground } from './it-background';
 import { WorkGallerySlider, type GallerySlide } from './work-gallery-slider';
 import { GithubActivity, GithubMark } from './github-activity';
+import { TerminalDaemonHeist } from './terminal-daemon-heist';
 
 type Accent = 'lime' | 'coral' | 'violet';
 
@@ -241,7 +242,7 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
             </div>
 
             <div className="bento-title-group">
-              <h1 className="bento-name">{heroName}</h1>
+              <TerminalDaemonHeist heroName={heroName} locale={locale} />
               <p className="bento-roles">{heroRole.join(' • ')}</p>
             </div>
 
