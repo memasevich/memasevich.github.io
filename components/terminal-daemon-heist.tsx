@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { RotateCcw, Terminal, Zap } from 'lucide-react';
@@ -364,7 +364,7 @@ export function TerminalDaemonHeist({ heroName, locale }: TerminalDaemonHeistPro
 
         {/* Плейсхолдер при похищении (виден ТОЛЬКО в состоянии stolen) */}
         {state === 'stolen' && (
-          <output className="daemon-stolen-box">
+          <output className="daemon-stolen-box" aria-live="polite">
             <div className="daemon-stolen-header">
               <Terminal size={13} className="daemon-term-icon" aria-hidden="true" />
               <span className="daemon-stolen-title">

@@ -40,3 +40,4 @@ next-env.d.ts
 
 # test automation artifacts
 /.playwright-mcp/
+/playwright-screenshots/
