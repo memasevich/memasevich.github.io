@@ -34,6 +34,12 @@ type WorkItem = {
   gallery?: GallerySlide[];
 };
 
+export type LocalizationLink = {
+  label: string;
+  href: string;
+  badge?: string;
+};
+
 type Localization = {
   title: string;
   area: string;
@@ -43,6 +49,9 @@ type Localization = {
   image: string;
   imageAlt: string;
   href?: string;
+  tags?: string[];
+  highlights?: string[];
+  links?: LocalizationLink[];
 };
 
 export type SiteContent = {
@@ -314,18 +323,73 @@ export default function SitePage({ content, locale }: { content: SiteContent; lo
         <div className="work-grid">{content.tools.map((item, index) => <WorkCard item={item} index={index} locale={locale} key={item.title} />)}</div>
 
         <div className="subsection"><SectionHead index="01B" command="ls /work/localization" title={content.localizationTitle} intro={content.localizationIntro} icon={<Languages aria-hidden="true" />} /></div>
-        <div className="localization-grid">{content.localizations.map((game, index) => <article className="localization-card" key={game.title}>
-          <span className="localization-index">LOC_NODE_0{index + 1}</span>
-          <figure className="localization-media">
-            <img src={game.image} alt={game.imageAlt} width="640" height="480" loading="lazy" decoding="async" />
-            <figcaption>PUBLIC PROJECT IMAGE // SOURCE</figcaption>
-            <span aria-hidden="true" />
-          </figure>
-          <div className="localization-title"><Languages size={18} aria-hidden="true" /><span className="game-code">GAME / RU</span><h3>{game.title}</h3></div>
-          <dl><div><dt>{ru ? 'ОБЛАСТЬ' : 'AREA'}</dt><dd>{game.area}</dd></div><div><dt>{ru ? 'СТАТУС' : 'STATUS'}</dt><dd>{game.status}</dd></div></dl>
-          <p>{game.description}</p><small>{game.note}</small>
-          {game.href ? <a className="localization-link" href={game.href} target="_blank" rel="noopener noreferrer">{ru ? 'Открыть репозиторий' : 'Open repository'} <ExternalLink size={13} aria-hidden="true" /></a> : null}
-        </article>)}</div>
+        <div className="localization-grid">
+          {content.localizations.map((game, index) => (
+            <article className="localization-card" key={game.title}>
+              <span className="localization-index">LOC_NODE_0{index + 1}</span>
+              <figure className="localization-media">
+                <img src={game.image} alt={game.imageAlt} width="640" height="480" loading="lazy" decoding="async" />
+                <figcaption>PUBLIC PROJECT IMAGE // SOURCE</figcaption>
+                <span aria-hidden="true" />
+              </figure>
+              <div className="localization-title">
+                <Languages size={18} aria-hidden="true" />
+                <span className="game-code">GAME / RU</span>
+                <h3>{game.title}</h3>
+              </div>
+              <dl>
+                <div><dt>{ru ? 'ОБЛАСТЬ' : 'AREA'}</dt><dd>{game.area}</dd></div>
+                <div><dt>{ru ? 'СТАТУС' : 'STATUS'}</dt><dd>{game.status}</dd></div>
+              </dl>
+              <p>{game.description}</p>
+
+              {game.tags && game.tags.length > 0 && (
+                <div className="localization-tags" aria-label={ru ? 'Теги технологий' : 'Technology tags'}>
+                  {game.tags.map((tag) => (
+                    <span className="localization-tag" key={tag}>{tag}</span>
+                  ))}
+                </div>
+              )}
+
+              {game.highlights && game.highlights.length > 0 && (
+                <div className="localization-highlights-box">
+                  <span className="highlights-title">{ru ? 'АРХИТЕКТУРА И ДЕТАЛИ' : 'ARCHITECTURE & DETAILS'}</span>
+                  <ul className="localization-highlights">
+                    {game.highlights.map((hl) => (
+                      <li key={hl}>
+                        <span className="hl-bullet" aria-hidden="true">&gt;</span>
+                        <span>{hl}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <small>{game.note}</small>
+
+              <div className="localization-links-row">
+                {game.links && game.links.length > 0 ? (
+                  game.links.map((link) => (
+                    <a
+                      key={link.label}
+                      className="localization-link-btn"
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span>{link.label}</span>
+                      <ExternalLink size={12} aria-hidden="true" />
+                    </a>
+                  ))
+                ) : game.href ? (
+                  <a className="localization-link" href={game.href} target="_blank" rel="noopener noreferrer">
+                    {ru ? 'Открыть репозиторий' : 'Open repository'} <ExternalLink size={13} aria-hidden="true" />
+                  </a>
+                ) : null}
+              </div>
+            </article>
+          ))}
+        </div>
 
       </section>
 

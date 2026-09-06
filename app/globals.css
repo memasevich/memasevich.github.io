@@ -728,12 +728,13 @@ a:focus-visible { outline: 2px solid var(--signal-bright); outline-offset: 5px; 
 /* GitHub Activity Terminal Daemon & Big Red Button Scene */
 .gh-daemon-overlay {
   align-items: flex-end;
-  bottom: 12px;
+  bottom: 10px;
   display: flex;
-  gap: 12px;
+  height: 110px;
   pointer-events: auto;
   position: absolute;
-  right: 18px;
+  right: 14px;
+  width: 155px;
   z-index: 40;
 }
 .gh-daemon-overlay.state-entering {
@@ -743,120 +744,149 @@ a:focus-visible { outline: 2px solid var(--signal-bright); outline-offset: 5px; 
   animation: gh-daemon-walk-away .9s cubic-bezier(.4, 0, .2, 1) forwards;
 }
 
-.gh-daemon-sprite {
-  height: 96px;
-  position: relative;
-  width: 86px;
+/* Сотрясение всей карточки GitHub при мощном ударе кулаком по кнопке */
+.bento-github.gh-card-rumble {
+  animation: gh-card-rumble .22s cubic-bezier(.36, .07, .19, .97) both;
 }
+@keyframes gh-card-rumble {
+  0% { transform: translate(0, 0); }
+  15% { transform: translate(-3px, 2px) rotate(-.4deg); }
+  30% { transform: translate(3px, -2px) rotate(.4deg); }
+  45% { transform: translate(-2px, 1.5px); }
+  65% { transform: translate(2px, -1px); }
+  85% { transform: translate(-1px, .5px); }
+  100% { transform: translate(0, 0); }
+}
+
+.gh-daemon-scene {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+.daemon-svg-scene {
+  height: 100%;
+  overflow: visible;
+  width: 100%;
+}
+
+/* Постамент и большая красная кнопка */
+.gh-svg-button-station {
+  animation: gh-pedestal-pop .3s cubic-bezier(.175, .885, .32, 1.275) forwards;
+  cursor: pointer;
+  transform-origin: 28px 88px;
+}
+.gh-dome-ready {
+  transition: filter .15s ease;
+}
+.gh-svg-button-station:hover .gh-dome-ready {
+  filter: brightness(1.2) drop-shadow(0 0 8px rgba(239, 68, 68, .9));
+}
+.gh-dome-squashed {
+  filter: brightness(1.35) drop-shadow(0 0 12px rgba(239, 68, 68, 1));
+}
+
+@keyframes gh-pedestal-pop {
+  0% { opacity: 0; transform: translateY(14px) scale(.8); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Динамические позы демона: замах и сокрушительный удар */
+.daemon-character.posture-windup {
+  animation: daemon-body-windup .35s ease-out forwards;
+  transform-origin: 88px 95px;
+}
+@keyframes daemon-body-windup {
+  0% { transform: rotate(0); }
+  100% { transform: translate(2px, -1px) rotate(3.5deg); }
+}
+
+.daemon-character.posture-slam {
+  animation: daemon-body-slam .12s cubic-bezier(.1, .9, .2, 1) forwards;
+  transform-origin: 88px 95px;
+}
+@keyframes daemon-body-slam {
+  0% { transform: translate(2px, -1px) rotate(3.5deg); }
+  100% { transform: translate(-10px, 3px) rotate(-9.5deg); }
+}
+
+/* Дрожь ярости занесенного кулака перед ударом */
+.daemon-tremble-fist {
+  animation: fist-rage-tremble .08s infinite alternate ease-in-out;
+  transform-origin: 32px 22px;
+}
+@keyframes fist-rage-tremble {
+  0% { transform: translate(-.6px, -.6px) rotate(-2.5deg); }
+  100% { transform: translate(.6px, .6px) rotate(2.5deg); }
+}
+
+/* Эффект мощного обрушения руки при ударе */
+.daemon-slam-arm-group {
+  animation: arm-slam-down .1s cubic-bezier(.1, .9, .2, 1) forwards;
+  transform-origin: 70px 52px;
+}
+@keyframes arm-slam-down {
+  0% { opacity: .6; transform: translateY(-10px) rotate(12deg); }
+  100% { opacity: 1; transform: translateY(0) rotate(0); }
+}
+
+/* Ударные кольца и вспышка от удара */
+.gh-shockwave-ring.ring-1 {
+  animation: gh-ring-expand .42s cubic-bezier(.1, .8, .3, 1) forwards;
+  transform-origin: 28px 70px;
+}
+.gh-shockwave-ring.ring-2 {
+  animation: gh-ring-expand .5s cubic-bezier(.1, .8, .3, 1) .05s forwards;
+  transform-origin: 28px 70px;
+}
+@keyframes gh-ring-expand {
+  0% { opacity: 1; stroke-width: 3px; transform: scale(.3); }
+  100% { opacity: 0; stroke-width: .8px; transform: scale(2.4); }
+}
+
+.gh-impact-star {
+  animation: impact-star-pop .3s ease-out forwards;
+  transform-origin: 28px 68px;
+}
+@keyframes impact-star-pop {
+  0% { opacity: 1; transform: scale(.4) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.4) rotate(45deg); }
+  100% { opacity: 0; transform: scale(.2) rotate(90deg); }
+}
+
+.gh-spark.sp-1 { animation: spark-1 .32s ease-out forwards; }
+.gh-spark.sp-2 { animation: spark-2 .32s ease-out forwards; }
+.gh-spark.sp-3 { animation: spark-3 .3s ease-out forwards; }
+.gh-spark.sp-4 { animation: spark-4 .3s ease-out forwards; }
+
+@keyframes spark-1 { 0% { opacity: 1; transform: translate(0, 0); } 100% { opacity: 0; transform: translate(-14px, -7px); } }
+@keyframes spark-2 { 0% { opacity: 1; transform: translate(0, 0); } 100% { opacity: 0; transform: translate(14px, -6px); } }
+@keyframes spark-3 { 0% { opacity: 1; transform: translate(0, 0); } 100% { opacity: 0; transform: translate(-7px, -12px); } }
+@keyframes spark-4 { 0% { opacity: 1; transform: translate(0, 0); } 100% { opacity: 0; transform: translate(8px, -11px); } }
 
 /* Раздувание головы (голова увеличится) */
 .daemon-head-group {
-  transform-origin: 50px 35px;
+  transform-origin: 88px 35px;
   transition: transform .35s cubic-bezier(.34, 1.56, .64, 1);
 }
 .daemon-head-group.is-swelling {
   animation: daemon-head-swell .45s cubic-bezier(.175, .885, .32, 1.275) forwards;
-  transform-origin: 50px 35px;
+  transform-origin: 88px 35px;
 }
 
 @keyframes daemon-head-swell {
   0% { transform: scale(1); }
-  60% { transform: scale(1.5) translateY(-6px); }
-  100% { transform: scale(1.4) translateY(-5px); }
+  60% { transform: scale(1.48) translateY(-6px); }
+  100% { transform: scale(1.38) translateY(-5px); }
 }
 
 /* Ходьба ног */
 .is-walking.daemon-leg-left {
   animation: daemon-leg-cycle-1 .18s infinite alternate ease-in-out;
-  transform-origin: 40px 80px;
+  transform-origin: 78px 80px;
 }
 .is-walking.daemon-leg-right {
   animation: daemon-leg-cycle-2 .18s infinite alternate ease-in-out;
-  transform-origin: 60px 80px;
-}
-
-/* Большая красная аварийная кнопка */
-.gh-red-button-station {
-  align-items: center;
-  animation: gh-pedestal-pop .3s cubic-bezier(.175, .885, .32, 1.275) forwards;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 50;
-}
-.gh-hazard-pedestal {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-.gh-hazard-stripes {
-  background: repeating-linear-gradient(45deg, #eab308, #eab308 6px, #090c0f 6px, #090c0f 12px);
-  border: 1px solid #854d0e;
-  border-radius: 4px 4px 0 0;
-  height: 14px;
-  width: 48px;
-}
-.gh-pedestal-text {
-  background: #090c0f;
-  border: 1px solid rgba(234, 179, 8, .4);
-  color: #fbbf24;
-  font-family: 'JetBrains Mono', Consolas, monospace;
-  font-size: 7px;
-  font-weight: 700;
-  letter-spacing: .06em;
-  margin-top: -3px;
-  padding: 1px 4px;
-  text-transform: uppercase;
-}
-.gh-big-red-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin-bottom: -4px;
-  outline: none;
-  padding: 0;
-  position: relative;
-  transition: transform .12s ease;
-  z-index: 2;
-}
-.gh-red-dome {
-  background: radial-gradient(circle at 35% 25%, #f87171, #dc2626 60%, #991b1b);
-  border: 1.5px solid #fca5a5;
-  border-radius: 18px 18px 4px 4px;
-  box-shadow: 0 0 16px rgba(239, 68, 68, .75), inset 0 2px 4px rgba(255, 255, 255, .5);
-  height: 22px;
-  transition: transform .1s cubic-bezier(.34, 1.56, .64, 1), box-shadow .1s ease, filter .1s ease;
-  width: 34px;
-}
-.gh-red-button-station:hover .gh-red-dome {
-  box-shadow: 0 0 24px rgba(239, 68, 68, .95);
-  filter: brightness(1.1);
-  transform: translateY(-1px);
-}
-.gh-red-button-station.is-pressed .gh-red-dome {
-  box-shadow: 0 0 32px rgba(239, 68, 68, 1);
-  filter: brightness(1.3);
-  transform: translateY(7px) scaleY(.6);
-}
-.gh-button-shockwave {
-  animation: gh-shockwave .5s ease-out forwards;
-  border: 2px solid #ef4444;
-  border-radius: 50%;
-  left: 50%;
-  pointer-events: none;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-@keyframes gh-pedestal-pop {
-  0% { opacity: 0; transform: translateY(16px) scale(.8); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-}
-@keyframes gh-shockwave {
-  0% { height: 10px; opacity: 1; width: 10px; }
-  100% { height: 90px; opacity: 0; width: 90px; }
+  transform-origin: 98px 80px;
 }
 @keyframes gh-daemon-walk-in {
   0% { opacity: 0; transform: translateX(140px); }
@@ -894,7 +924,7 @@ a:focus-visible { outline: 2px solid var(--signal-bright); outline-offset: 5px; 
   content: '';
   height: 0;
   position: absolute;
-  right: 36px;
+  right: 54px;
   width: 0;
 }
 
@@ -1032,6 +1062,11 @@ a:focus-visible { outline: 2px solid var(--signal-bright); outline-offset: 5px; 
   display: flex;
   font-size: 10px;
   gap: 5px;
+  transition: opacity .25s ease;
+}
+.gh-legend.is-hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 .gh-legend .gh-cell {
   height: 10px;
@@ -1735,7 +1770,7 @@ a:focus-visible { outline: 2px solid var(--signal-bright); outline-offset: 5px; 
 }
 
 .localization-grid { display: grid; gap: 14px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.localization-card { background: linear-gradient(160deg, rgba(20,24,26,.96), rgba(9,12,13,.96)); border: 1px solid var(--line-hard); display: flex; flex-direction: column; min-height: 690px; padding: 20px; position: relative; transition: border-color .18s ease, transform .18s ease; }
+.localization-card { background: linear-gradient(160deg, rgba(20,24,26,.96), rgba(9,12,13,.96)); border: 1px solid var(--line-hard); display: flex; flex-direction: column; height: 100%; min-height: 640px; padding: 20px; position: relative; transition: border-color .18s ease, transform .18s ease; }
 .localization-card:hover { border-color: var(--signal); transform: translateY(-3px); }
 .localization-index { color: var(--muted); position: absolute; right: 21px; top: 21px; }
 .localization-media {
@@ -1771,8 +1806,18 @@ a:focus-visible { outline: 2px solid var(--signal-bright); outline-offset: 5px; 
 .localization-card > .packet-trace { flex: 0 0 auto; margin: 19px 0 6px; }
 .localization-card dl { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; margin: 18px 0; }
 .localization-card dd { font-size: 11px; margin: 6px 0 0; }
-.localization-card > p { color: var(--muted); font-family: var(--font-sans); font-size: 13px; line-height: 1.55; margin: 0 0 18px; }
-.localization-card > small { color: var(--coral); font-size: 8px; margin-bottom: 18px; text-transform: uppercase; }
+.localization-card > p { color: var(--muted); font-family: var(--font-sans); font-size: 13px; line-height: 1.55; margin: 0 0 14px; }
+.localization-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 14px; }
+.localization-tag { background: rgba(74, 222, 128, 0.08); border: 1px solid rgba(74, 222, 128, 0.22); border-radius: 3px; color: #86efac; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 600; letter-spacing: 0.02em; padding: 2px 7px; }
+.localization-highlights-box { background: rgba(4, 7, 9, 0.6); border-left: 2px solid var(--signal); margin: 6px 0 16px; padding: 10px 12px; }
+.highlights-title { color: var(--signal-bright); display: block; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 8px; text-transform: uppercase; }
+.localization-highlights { display: flex; flex-direction: column; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.localization-highlights li { align-items: flex-start; color: #cbd5e1; display: flex; font-family: var(--font-sans); font-size: 12px; gap: 7px; line-height: 1.45; }
+.hl-bullet { color: var(--signal); flex-shrink: 0; font-family: 'JetBrains Mono', Consolas, monospace; font-weight: 700; line-height: 1.35; }
+.localization-card > small { color: var(--coral); font-size: 8px; margin-bottom: 14px; text-transform: uppercase; }
+.localization-links-row { border-top: 1px solid rgba(255, 255, 255, 0.08); display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 14px; }
+.localization-link-btn { align-items: center; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 4px; color: var(--signal-bright); display: inline-flex; font-family: 'JetBrains Mono', Consolas, monospace; font-size: 10px; font-weight: 700; gap: 6px; letter-spacing: 0.03em; padding: 6px 11px; text-transform: uppercase; transition: all 0.15s ease; }
+.localization-link-btn:hover { background: rgba(74, 222, 128, 0.15); border-color: var(--signal); color: #ffffff; transform: translateY(-1px); }
 .localization-link { align-items: center; color: var(--signal-bright); display: flex; font-size: 10px; gap: 8px; margin-top: auto; text-transform: uppercase; }
 .localization-link:hover { color: var(--ink); }
 

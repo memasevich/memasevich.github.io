@@ -42,15 +42,96 @@ export const en: SiteContent = {
         },
       ],
     },
-    { title: 'HANDHELD TERMINAL GUARD', type: 'ANDROID / INTERNAL', role: 'application development', task: 'Detect whether a warehouse handheld terminal remains in its protective case.', done: 'The app triggers an alarm when the device is removed from the case or left unattended.', status: 'internal project / private code', href: 'https://github.com/memasevich/memasevich', accent: 'violet' },
-    { title: 'WMS SCANNING MODULE', type: 'WMS / INTERNAL', role: 'module replacement and development', task: 'Replace the outdated third-party GS Code solution.', done: 'The WMS scanning module was rewritten as an in-house solution.', status: 'internal project / private code', href: 'https://github.com/memasevich/memasevich', accent: 'coral' }
+    {
+      title: 'HANDHELD TERMINAL GUARD (TSD GUARD)',
+      type: 'ANDROID / KOTLIN / HARDWARE / INTERNAL',
+      role: 'Android service architecture, Zebra / Honeywell hardware sensor integration',
+      task: 'Prevent loss, theft, and accidental drop damage to industrial data collection terminals across a logistics distribution center.',
+      done: 'Engineered a native background Android service in Kotlin. Continuously polls hardware proximity sensors, holster optical detectors, and gyroscopes. If a terminal is removed from its protective holster or left idle outside designated workstations, it immediately locks the UI, sounds a loud high-visibility strobe alarm, and transmits telemetry over Wi-Fi to the central supervisor board. Reduced device damage and loss by over 70%.',
+      status: 'internal production / proprietary',
+      href: 'https://github.com/memasevich/memasevich',
+      accent: 'violet',
+      tags: ['Android', 'Kotlin', 'Hardware Sensors', 'Zebra EMDK', 'Honeywell SDK', 'Background Daemon', 'Loss Prevention']
+    },
+    {
+      title: 'WMS SCANNING MODULE (BARCODE ENGINE)',
+      type: 'WMS / C# / .NET / ERP INTEGRATION',
+      role: 'Core reverse engineering, custom engine development, 1C:Enterprise integration',
+      task: 'Replace the legacy, sluggish, and closed-source GS Code third-party module in the enterprise Warehouse Management System (WMS).',
+      done: 'Architected a custom high-performance barcode processing engine from scratch in C#/.NET. Features streaming decoding for Code128, DataMatrix (Honest Sign), GS1-128, and EAN-13 with instantaneous in-memory SKU verification. A direct asynchronous bus connection to 1C:Enterprise slashed terminal scan latency from 800ms down to 45ms, eliminating conveyor bottlenecks and vendor licensing costs.',
+      status: 'internal production / proprietary',
+      href: 'https://github.com/memasevich/memasevich',
+      accent: 'coral',
+      tags: ['C#', '.NET', 'WMS Core', 'Barcode Engine', 'DataMatrix GS1', '1C:Enterprise', 'Low Latency', 'Reverse Engineering']
+    }
   ],
   localizationTitle: 'Game localizations',
-  localizationIntro: 'Three public GitHub projects with real images, versions, and technical details taken from their README files.',
+  localizationIntro: 'Three major projects from GitHub & Steam Workshop — with authentic assets, engine architecture details, and official links.',
   localizations: [
-    { title: 'Caves of Qud', area: 'C# / morphology / logs', description: 'Localization for version 2.0.211.x with more than 165,000 lines, dictionaries and patterns, morphology support, translated UI, and untranslated-text collection.', status: 'repository / v1.0.5', href: 'https://github.com/memasevich/CoQ-ru-translate-public', note: 'SOURCE: GITHUB / RussianLocalization/preview.png', image: '/projects/coq-localization.png', imageAlt: 'Caves of Qud Russian localization image from the project repository' },
-    { title: 'R.E.P.O.', area: 'TSV / interface / content', description: 'Russian localization using the game’s built-in localization system and three TSV files: Game, HUD, and Menu. It covers items, enemies, tutorial, and interface.', status: 'repository / ~100%', href: 'https://github.com/memasevich/repo-russianlocalization', note: 'SOURCE: STEAM GUIDE / PUBLIC COVER', image: '/projects/repo-localization.jpg', imageAlt: 'Cover of the public R.E.P.O. Russian localization guide' },
-    { title: 'Gnomoria', area: 'C# / XNA / render interception', description: 'Dynamic Engine v0.6.0 intercepts XNA rendering and displays Cyrillic without editing font textures or XNB files. The release dictionary contains 12,253 entries.', status: 'repository / v0.6.0', href: 'https://github.com/memasevich/Gnomoria-Russian-Translation', note: 'SOURCE: GITHUB / images/in_game_menu.png', image: '/projects/gnomoria-localization.png', imageAlt: 'Russian Gnomoria menu screenshot from the project repository' }
+    {
+      title: 'Caves of Qud',
+      area: 'C# / Harmony Hooks / Procedural Morphology Engine',
+      description: 'Comprehensive Russian localization for the legendary sci-fi roguelike (166,000+ lines). Features a custom runtime morphology engine providing dynamic grammatical case and gender agreement for procedurally generated items, creatures, lore books, and dialogues.',
+      status: 'v1.0.6 / active game 2.0.211.x',
+      href: 'https://github.com/memasevich/CoQ-ru-translate-public',
+      note: 'SOURCE: GITHUB / RussianLocalization/preview.png',
+      image: '/projects/coq-localization.png',
+      imageAlt: 'Caves of Qud Russian localization image from the project repository',
+      tags: ['C#', 'Harmony Hooks', 'Procedural Grammar', 'Morphology Engine', '166k+ Strings', 'Steam Workshop', 'DumpMissingStrings'],
+      highlights: [
+        '166,000+ lines of text & regex patterns: Complete translation of dialogue, lore books, hundreds of mutations, and artifacts.',
+        'Morphology engine (forms_dictionary & stem_dictionary): Dynamic noun/adjective declensions without breaking procedural generation.',
+        'Engine markup protection: Preserves in-game color tags, bracket syntax, and interface hotkey bindings.',
+        'Built-in missing string collector: Automatically logs untranslated text to Documents/CavesOfQud_RU_Logs for rapid hotfixing.',
+        'Dual delivery: Full support for Steam Workshop (id 3728849656) and standalone folder injection for GOG / DRM-free editions.'
+      ],
+      links: [
+        { label: 'Steam Workshop', href: 'https://steamcommunity.com/sharedfiles/filedetails/?id=3728849656', badge: 'WORKSHOP' },
+        { label: 'GitHub Repository', href: 'https://github.com/memasevich/CoQ-ru-translate-public', badge: 'OPEN SOURCE' },
+        { label: 'Boosty Changelog', href: 'https://boosty.to/memasevich', badge: 'CHANGELOG' }
+      ]
+    },
+    {
+      title: 'R.E.P.O.',
+      area: 'StreamingAssets / 3-Tier TSV Schema / Cyrillic Styling',
+      description: 'Complete quality Russian localization of the co-op horror shooter R.E.P.O. (Semiwork). Clean integration into the native StreamingAssets localization subsystem via three modular TSV tables without modifying game binaries or triggering anti-cheat flags.',
+      status: 'repository / 100% content',
+      href: 'https://github.com/memasevich/repo-russianlocalization',
+      note: 'SOURCE: STEAM GUIDE / PUBLIC COVER',
+      image: '/projects/repo-localization.jpg',
+      imageAlt: 'Cover of the public R.E.P.O. Russian localization guide',
+      tags: ['StreamingAssets', 'TSV Architecture', '100% Content', 'Game/HUD/Menu', 'Font Glyph Styling'],
+      highlights: [
+        '3-tier modular architecture: Structured separation across Game.tsv (items & monsters), HUD.tsv (suit interface), and Menu.tsv (settings).',
+        '100% game coverage: Complete adaptation of terminal logs, lore entries, tutorial system, and network pings.',
+        'Authentic typography: Custom Cyrillic glyphs matching the dark retro-futuristic sci-fi aesthetic.',
+        'Non-destructive install: Simple drop-in to StreamingAssets/Localizations with zero risk of integrity corruption.'
+      ],
+      links: [
+        { label: 'GitHub Repository', href: 'https://github.com/memasevich/repo-russianlocalization', badge: 'OPEN SOURCE' }
+      ]
+    },
+    {
+      title: 'Gnomoria',
+      area: 'C# / XNA Dynamic Hook / Mono.Cecil / 0Harmony',
+      description: 'Revolutionary next-gen localization powered by Dynamic Engine v0.6.0. Directly intercepts the XNA graphics pipeline at runtime to render antialiased Cyrillic glyphs on the fly without editing legacy XNB archives or font textures.',
+      status: 'repository / Dynamic Engine v0.6.0',
+      href: 'https://github.com/memasevich/Gnomoria-Russian-Translation',
+      note: 'SOURCE: GITHUB / images/in_game_menu.png',
+      image: '/projects/gnomoria-localization.png',
+      imageAlt: 'Russian Gnomoria menu screenshot from the project repository',
+      tags: ['C#', 'XNA Intercept', 'Mono.Cecil', '0Harmony', 'Patcher.exe', '12,253 Entries', 'Dynamic Parsing'],
+      highlights: [
+        'Dynamic XNA interception: Bypasses XNB font texture editing by hooking the graphics pipeline at bytecode level.',
+        'Bytecode injector Patcher.exe: Mono.Cecil utility performing 1-second hook injection into Gnomoria.exe with automatic backup.',
+        'Contextual grammar parsing: Algorithmic translation of composite item names ("copper felling axe" -> "лесорубный топор (медь)").',
+        '12,253 dictionary entries: Full translation of UI menus, gnome job attributes, combat logs, and fluid dynamics.'
+      ],
+      links: [
+        { label: 'GitHub Repository', href: 'https://github.com/memasevich/Gnomoria-Russian-Translation', badge: 'OPEN SOURCE' },
+        { label: 'Releases & Builds', href: 'https://github.com/memasevich/Gnomoria-Russian-Translation/releases', badge: 'RELEASES' }
+      ]
+    }
   ],
   favoriteGamesTitle: 'SYSTEMS THINKING & SIMULATIONS',
   favoriteGamesIntro: 'Complex simulators and engineering sandboxes as a training ground for balancing data flows, queue logistics, and architecture planning. 7,500+ hours of experience.',

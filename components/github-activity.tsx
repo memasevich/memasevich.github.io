@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { ExternalLink } from 'lucide-react';
@@ -82,7 +82,7 @@ export function GithubActivity({ locale }: GithubActivityProps) {
       setDaemonState('glaring');
 
       const t2 = window.setTimeout(() => {
-        // Фаза 3: Демон со стуком нажимает на кнопку (450ms)
+        // Фаза 3: Демон со стуком нажимает на кнопку (700ms)
         setDaemonState('pressing');
         executeRestore();
 
@@ -102,7 +102,7 @@ export function GithubActivity({ locale }: GithubActivityProps) {
           }, 1200);
 
           seqTimersRef.current.push(t4);
-        }, 450);
+        }, 700);
 
         seqTimersRef.current.push(t3);
       }, 2400);
@@ -130,7 +130,7 @@ export function GithubActivity({ locale }: GithubActivityProps) {
         seqTimersRef.current.push(t3);
       }, 1200);
       seqTimersRef.current.push(t2);
-    }, 450);
+    }, 700);
 
     seqTimersRef.current.push(t1);
   }, [daemonState, clearSeqTimers, executeRestore]);
@@ -170,7 +170,10 @@ export function GithubActivity({ locale }: GithubActivityProps) {
   }, [eraseCell]);
 
   return (
-    <div className="bento-card bento-github" aria-label="GitHub Activity">
+    <div
+      className={`bento-card bento-github ${daemonState === 'pressing' ? 'gh-card-rumble' : ''}`}
+      aria-label="GitHub Activity"
+    >
       <div className="gh-header">
         <div className="gh-id">
           <div className="gh-avatar">
@@ -283,7 +286,7 @@ export function GithubActivity({ locale }: GithubActivityProps) {
             <span className="gh-repo-tag">repo-russianlocalization</span>
             <span className="gh-repo-tag">Gnomoria-Russian-Translation</span>
           </div>
-          <div className="gh-legend" aria-hidden="true">
+          <div className={`gh-legend ${daemonState !== 'idle' ? 'is-hidden' : ''}`} aria-hidden="true">
             <span>{ru ? 'Меньше' : 'Less'}</span>
             <span className="gh-cell lvl-0" />
             <span className="gh-cell lvl-1" />
@@ -325,175 +328,323 @@ export function GithubActivity({ locale }: GithubActivityProps) {
             </div>
           )}
 
-          {/* Большая красная аварийная кнопка */}
-          {(daemonState === 'glaring' || daemonState === 'pressing' || daemonState === 'restoring') && (
-            <div
-              className={`gh-red-button-station ${
-                daemonState === 'pressing' || daemonState === 'restoring' ? 'is-pressed' : ''
-              }`}
-            >
-              <div className="gh-hazard-pedestal">
-                <div className="gh-hazard-stripes" />
-                <span className="gh-pedestal-text">EMERGENCY GC</span>
-              </div>
-              <button
-                type="button"
-                className="gh-big-red-btn"
-                onClick={handleManualPress}
-                title={ru ? 'Экстренная кнопка восстановления' : 'Emergency restore button'}
-                aria-label={ru ? 'Нажать кнопку восстановления' : 'Press restore button'}
-              >
-                <div className="gh-red-dome" />
-              </button>
-              {(daemonState === 'pressing' || daemonState === 'restoring') && (
-                <div className="gh-button-shockwave" />
-              )}
-            </div>
-          )}
-
-          {/* Векторный Терминальный Демон с раздувающейся головой */}
-          <div className="gh-daemon-sprite">
+          {/* Интерактивная векторная сцена: Аварийная кнопка + Демон с реалистичным ударом */}
+          <div className="gh-daemon-scene">
             <svg
-              viewBox="0 0 100 110"
-              className="daemon-svg"
+              viewBox="0 0 155 110"
+              className={`daemon-svg-scene state-${daemonState}`}
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <ellipse cx="50" cy="103" rx="28" ry="6" className="daemon-shadow" />
+              <defs>
+                {/* Радиальный градиент красного купола */}
+                <radialGradient id="gh-dome-grad" cx="35%" cy="25%" r="75%">
+                  <stop offset="0%" stopColor="#fca5a5" />
+                  <stop offset="30%" stopColor="#ef4444" />
+                  <stop offset="75%" stopColor="#b91c1c" />
+                  <stop offset="100%" stopColor="#7f1d1d" />
+                </radialGradient>
 
-              {/* Частицы пыли при ходьбе */}
-              {(daemonState === 'entering' || daemonState === 'exiting') && (
-                <g className="daemon-particles">
-                  <circle cx="16" cy="98" r="3.5" className="daemon-particle p-1" />
-                  <circle cx="9" cy="93" r="2.5" className="daemon-particle p-2" />
-                  <circle cx="4" cy="100" r="2" className="daemon-particle p-3" />
+                {/* Свечение кнопки */}
+                <filter id="gh-glow-fx" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="2.5" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+
+                {/* Паттерн полос аварийного постамента */}
+                <pattern
+                  id="gh-hazard-pattern"
+                  width="8"
+                  height="8"
+                  patternUnits="userSpaceOnUse"
+                  patternTransform="rotate(45)"
+                >
+                  <rect width="4" height="8" fill="#eab308" />
+                  <rect x="4" width="4" height="8" fill="#090c0f" />
+                </pattern>
+              </defs>
+
+              {/* Тень под демоном */}
+              <ellipse cx="88" cy="103" rx="26" ry="6" className="daemon-shadow" />
+
+              {/* Аварийная стойка с большой красной кнопкой */}
+              {(daemonState === 'glaring' || daemonState === 'pressing' || daemonState === 'restoring') && (
+                <g
+                  className={`gh-svg-button-station ${
+                    daemonState === 'pressing' || daemonState === 'restoring' ? 'is-pressed' : ''
+                  }`}
+                >
+                  {/* Тень кнопки */}
+                  <ellipse cx="28" cy="100" rx="19" ry="4" fill="rgba(0,0,0,0.5)" />
+
+                  {/* Постамент со стробоскопическими полосами */}
+                  <rect x="9" y="80" width="38" height="18" rx="3" fill="#090c0f" stroke="#854d0e" strokeWidth="1" />
+                  <rect x="10" y="81" width="36" height="7" rx="1.5" fill="url(#gh-hazard-pattern)" />
+
+                  {/* Табличка EMERGENCY GC */}
+                  <rect x="11" y="89" width="34" height="8" rx="1.5" fill="#090c0f" stroke="rgba(234, 179, 8, 0.45)" strokeWidth="0.8" />
+                  <text
+                    x="28"
+                    y="95"
+                    textAnchor="middle"
+                    fill="#fbbf24"
+                    fontSize="5"
+                    fontWeight="bold"
+                    fontFamily="monospace"
+                    letterSpacing="0.05em"
+                  >
+                    EMERGENCY GC
+                  </text>
+
+                  {/* Металлическое основание купола */}
+                  <rect x="18" y="74.5" width="20" height="6" rx="1.5" fill="#27272a" stroke="#52525b" strokeWidth="0.8" />
+
+                  {/* Красный купол кнопки: прижатый купол vs надутый купол */}
+                  {daemonState === 'pressing' || daemonState === 'restoring' ? (
+                    /* Сплющенный купол под ударом кулака: верх ровно на y=68 */
+                    <path
+                      d="M 15 75.5 C 15 68, 41 68, 41 75.5 Z"
+                      fill="url(#gh-dome-grad)"
+                      filter="url(#gh-glow-fx)"
+                      className="gh-dome-squashed"
+                    />
+                  ) : (
+                    /* Исходный упругий купол: верх на y=58 */
+                    <path
+                      d="M 18 75 C 18 58, 38 58, 38 75 Z"
+                      fill="url(#gh-dome-grad)"
+                      filter="url(#gh-glow-fx)"
+                      className="gh-dome-ready"
+                    />
+                  )}
+
+                  {/* Интерактивная зона клика по кнопке */}
+                  <rect
+                    x="7"
+                    y="54"
+                    width="42"
+                    height="45"
+                    fill="transparent"
+                    cursor={daemonState === 'glaring' ? 'pointer' : 'default'}
+                    onClick={handleManualPress}
+                  >
+                    <title>{ru ? 'Экстренная кнопка восстановления' : 'Emergency restore button'}</title>
+                  </rect>
                 </g>
               )}
 
-              {/* Хвостик демона */}
-              <path
-                d="M32 75 C20 78, 12 70, 10 58 C9 50, 14 44, 8 40"
-                className="daemon-tail"
-                stroke="var(--terminal)"
-                strokeWidth="3.5"
-                strokeLinecap="round"
-              />
-              <polygon
-                points="5,42 11,35 15,44"
-                className="daemon-tail-tip"
-                fill="var(--terminal)"
-              />
+              {/* Ударные волны и визуальный импакт от удара по кнопке */}
+              {daemonState === 'pressing' && (
+                <g className="gh-slam-fx">
+                  {/* Концентрические кольца ударной волны из точки контакта (28, 68) */}
+                  <ellipse cx="28" cy="70" rx="15" ry="7" className="gh-shockwave-ring ring-1" fill="none" stroke="#ef4444" strokeWidth="2.5" />
+                  <ellipse cx="28" cy="70" rx="24" ry="11" className="gh-shockwave-ring ring-2" fill="none" stroke="#fca5a5" strokeWidth="1.8" />
 
-              {/* Левая нога */}
-              <g className={`daemon-leg daemon-leg-left ${daemonState === 'entering' || daemonState === 'exiting' ? 'is-walking' : ''}`}>
-                <rect x="36" y="80" width="8" height="18" rx="4" className="daemon-limb" />
-                <rect x="32" y="94" width="14" height="7" rx="3.5" className="daemon-boot" />
-              </g>
+                  {/* Вспышка в точке удара кулака о купол */}
+                  <path
+                    d="M 28 60 L 30 66 L 36 68 L 30 70 L 28 76 L 26 70 L 20 68 L 26 66 Z"
+                    fill="#ffffff"
+                    className="gh-impact-star"
+                  />
 
-              {/* Правая нога */}
-              <g className={`daemon-leg daemon-leg-right ${daemonState === 'entering' || daemonState === 'exiting' ? 'is-walking' : ''}`}>
-                <rect x="56" y="80" width="8" height="18" rx="4" className="daemon-limb" />
-                <rect x="54" y="94" width="14" height="7" rx="3.5" className="daemon-boot" />
-              </g>
+                  {/* Разлетающиеся искры от сокрушительного удара */}
+                  <circle cx="16" cy="63" r="1.8" fill="#fbbf24" className="gh-spark sp-1" />
+                  <circle cx="40" cy="62" r="1.8" fill="#fbbf24" className="gh-spark sp-2" />
+                  <circle cx="21" cy="55" r="1.4" fill="#ef4444" className="gh-spark sp-3" />
+                  <circle cx="35" cy="55" r="1.4" fill="#ef4444" className="gh-spark sp-4" />
+                </g>
+              )}
 
-              {/* Тело */}
-              <rect
-                x="28"
-                y="45"
-                width="44"
-                height="42"
-                rx="14"
-                className="daemon-body-shell"
-              />
-
-              {/* Индикатор шелла '>_gc' */}
-              <rect x="36" y="55" width="28" height="16" rx="4" className="daemon-chest-screen" />
-              <text
-                x="41"
-                y="66"
-                className="daemon-chest-text"
-                fill="var(--terminal)"
-                fontSize="9"
-                fontFamily="monospace"
-                fontWeight="bold"
+              {/* Корпус демона с динамической анимацией позы */}
+              <g
+                className={`daemon-character ${
+                  daemonState === 'glaring'
+                    ? 'posture-windup'
+                    : daemonState === 'pressing'
+                    ? 'posture-slam'
+                    : ''
+                }`}
               >
-                &gt;_gc
-              </text>
+                {/* Частицы пыли при ходьбе */}
+                {(daemonState === 'entering' || daemonState === 'exiting') && (
+                  <g className="daemon-particles">
+                    <circle cx="56" cy="98" r="3.5" className="daemon-particle p-1" />
+                    <circle cx="49" cy="93" r="2.5" className="daemon-particle p-2" />
+                    <circle cx="44" cy="100" r="2" className="daemon-particle p-3" />
+                  </g>
+                )}
 
-              {/* Анимированная голова с раздуванием (голова увеличивается) */}
-              <g className={`daemon-head-group ${daemonState === 'glaring' || daemonState === 'pressing' ? 'is-swelling' : ''}`}>
+                {/* Хвостик демона */}
+                <path
+                  d="M106 74 C117 77, 125 69, 127 57 C128 49, 123 43, 129 39"
+                  className="daemon-tail"
+                  stroke="var(--terminal)"
+                  strokeWidth="3.5"
+                  strokeLinecap="round"
+                />
+                <polygon
+                  points="132,41 126,34 122,43"
+                  className="daemon-tail-tip"
+                  fill="var(--terminal)"
+                />
+
+                {/* Левая нога */}
+                <g className={`daemon-leg daemon-leg-left ${daemonState === 'entering' || daemonState === 'exiting' ? 'is-walking' : ''}`}>
+                  <rect x="74" y="80" width="8" height="18" rx="4" className="daemon-limb" />
+                  <rect x="70" y="94" width="14" height="7" rx="3.5" className="daemon-boot" />
+                </g>
+
+                {/* Правая нога */}
+                <g className={`daemon-leg daemon-leg-right ${daemonState === 'entering' || daemonState === 'exiting' ? 'is-walking' : ''}`}>
+                  <rect x="94" y="80" width="8" height="18" rx="4" className="daemon-limb" />
+                  <rect x="92" y="94" width="14" height="7" rx="3.5" className="daemon-boot" />
+                </g>
+
+                {/* Тело */}
                 <rect
-                  x="25"
-                  y="18"
-                  width="50"
-                  height="34"
-                  rx="12"
-                  className="daemon-head-shell"
+                  x="66"
+                  y="45"
+                  width="44"
+                  height="42"
+                  rx="14"
+                  className="daemon-body-shell"
                 />
 
-                <path
-                  d="M32 20 L24 6 Q29 5 36 17 Z"
-                  className="daemon-horn"
+                {/* Индикатор шелла '>_gc' */}
+                <rect x="74" y="55" width="28" height="16" rx="4" className="daemon-chest-screen" />
+                <text
+                  x="79"
+                  y="66"
+                  className="daemon-chest-text"
                   fill="var(--terminal)"
-                />
-                <path
-                  d="M68 20 L76 6 Q71 5 64 17 Z"
-                  className="daemon-horn"
-                  fill="var(--terminal)"
-                />
+                  fontSize="9"
+                  fontFamily="monospace"
+                  fontWeight="bold"
+                >
+                  &gt;_gc
+                </text>
 
-                <rect x="31" y="27" width="38" height="15" rx="6" className="daemon-visor" />
-
-                {/* Подозрительный суровый взгляд с нахмуренными бровями */}
-                {daemonState === 'glaring' || daemonState === 'pressing' ? (
-                  <g className="daemon-eyes-suspicious">
-                    {/* Нахмуренные брови */}
-                    <path d="M34 29 L48 33" stroke="#ef4444" strokeWidth="2.5" strokeLinecap="round" />
-                    <path d="M66 29 L52 33" stroke="#ef4444" strokeWidth="2.5" strokeLinecap="round" />
-                    {/* Суженные подозрительные зрачки */}
-                    <ellipse cx="43" cy="35" rx="3.2" ry="1.8" fill="#ef4444" />
-                    <ellipse cx="57" cy="35" rx="3.2" ry="1.8" fill="#ef4444" />
-                    <circle cx="43" cy="35" r="0.9" fill="#ffffff" />
-                    <circle cx="57" cy="35" r="0.9" fill="#ffffff" />
-                  </g>
-                ) : (
-                  <g className="daemon-eyes-normal">
-                    <circle cx="42" cy="34" r="3.5" fill="var(--terminal)" />
-                    <circle cx="58" cy="34" r="3.5" fill="var(--terminal)" />
-                    <circle cx="44" cy="33" r="1.2" fill="#ffffff" />
-                    <circle cx="60" cy="33" r="1.2" fill="#ffffff" />
-                  </g>
-                )}
-              </g>
-
-              {/* Руки */}
-              <g className="daemon-arms">
-                {daemonState === 'pressing' ? (
-                  /* Рука давит сверху на большую красную кнопку */
-                  <path
-                    d="M32 55 Q16 68 6 88"
-                    stroke="var(--terminal)"
-                    strokeWidth="5"
-                    strokeLinecap="round"
-                  />
-                ) : daemonState === 'glaring' ? (
-                  /* Рука занесена над кнопкой */
-                  <path
-                    d="M32 55 Q18 42 12 30"
-                    stroke="var(--terminal)"
-                    strokeWidth="5"
-                    strokeLinecap="round"
-                  />
-                ) : (
+                {/* Голова демона */}
+                <g className={`daemon-head-group ${daemonState === 'glaring' || daemonState === 'pressing' ? 'is-swelling' : ''}`}>
                   <rect
-                    x="22"
-                    y="50"
-                    width="8"
-                    height="20"
-                    rx="4"
-                    className="daemon-limb"
+                    x="63"
+                    y="18"
+                    width="50"
+                    height="34"
+                    rx="12"
+                    className="daemon-head-shell"
                   />
-                )}
+
+                  {/* Рога */}
+                  <path
+                    d="M70 20 L62 6 Q67 5 74 17 Z"
+                    className="daemon-horn"
+                    fill="var(--terminal)"
+                  />
+                  <path
+                    d="M106 20 L114 6 Q109 5 102 17 Z"
+                    className="daemon-horn"
+                    fill="var(--terminal)"
+                  />
+
+                  <rect x="69" y="27" width="38" height="15" rx="6" className="daemon-visor" />
+
+                  {/* Выражение глаз: подозрительное vs умиротворенное vs обычное */}
+                  {daemonState === 'glaring' || daemonState === 'pressing' ? (
+                    <g className="daemon-eyes-suspicious">
+                      {/* Нахмуренные грозные брови */}
+                      <path d="M72 29 L86 33" stroke="#ef4444" strokeWidth="2.6" strokeLinecap="round" />
+                      <path d="M104 29 L90 33" stroke="#ef4444" strokeWidth="2.6" strokeLinecap="round" />
+                      {/* Суженные подозрительные зрачки */}
+                      <ellipse cx="81" cy="35" rx="3.2" ry="1.8" fill="#ef4444" />
+                      <ellipse cx="95" cy="35" rx="3.2" ry="1.8" fill="#ef4444" />
+                      <circle cx="81" cy="35" r="0.9" fill="#ffffff" />
+                      <circle cx="95" cy="35" r="0.9" fill="#ffffff" />
+                    </g>
+                  ) : daemonState === 'restoring' ? (
+                    <g className="daemon-eyes-content">
+                      {/* Довольные прищуренные глаза ^_^ */}
+                      <path d="M77 36 Q81 30 85 36" stroke="var(--terminal)" strokeWidth="2.4" strokeLinecap="round" fill="none" />
+                      <path d="M91 36 Q95 30 99 36" stroke="var(--terminal)" strokeWidth="2.4" strokeLinecap="round" fill="none" />
+                    </g>
+                  ) : (
+                    <g className="daemon-eyes-normal">
+                      <circle cx="80" cy="34" r="3.5" fill="var(--terminal)" />
+                      <circle cx="96" cy="34" r="3.5" fill="var(--terminal)" />
+                      <circle cx="82" cy="33" r="1.2" fill="#ffffff" />
+                      <circle cx="98" cy="33" r="1.2" fill="#ffffff" />
+                    </g>
+                  )}
+                </g>
+
+                {/* Правая рука (сзади) */}
+                <rect
+                  x="106"
+                  y="50"
+                  width="8"
+                  height="20"
+                  rx="4"
+                  className="daemon-limb"
+                />
+
+                {/* Левая рука: замах, сокрушительный удар и отдых */}
+                <g className="daemon-arms">
+                  {daemonState === 'pressing' ? (
+                    /* Удар: мощный кулак обрушивается точно на центр купола (28, 68) */
+                    <g className="daemon-slam-arm-group">
+                      <path
+                        d="M 70 52 C 54 54, 38 61, 28 68"
+                        stroke="var(--terminal)"
+                        strokeWidth="7"
+                        strokeLinecap="round"
+                      />
+                      {/* Сжатый механический кулак, вдавливающий купол кнопки */}
+                      <circle cx="28" cy="68" r="7" fill="#15803d" stroke="#4ade80" strokeWidth="2.2" />
+                      <line x1="24" y1="65" x2="32" y2="65" stroke="#86efac" strokeWidth="1.6" strokeLinecap="round" />
+                      <line x1="23" y1="68" x2="33" y2="68" stroke="#86efac" strokeWidth="1.6" strokeLinecap="round" />
+                      <line x1="24" y1="71" x2="32" y2="71" stroke="#86efac" strokeWidth="1.6" strokeLinecap="round" />
+                    </g>
+                  ) : daemonState === 'glaring' ? (
+                    /* Замах: кулак занесён высоко над кнопкой (32, 22) и дрожит от ярости */
+                    <g className="daemon-windup-arm-group">
+                      <path
+                        d="M 70 52 C 56 32, 44 18, 32 22"
+                        stroke="var(--terminal)"
+                        strokeWidth="6.5"
+                        strokeLinecap="round"
+                      />
+                      {/* Сжатый дрожащий кулак строго над куполом кнопки */}
+                      <g className="daemon-tremble-fist">
+                        <circle cx="32" cy="22" r="7" fill="#15803d" stroke="#4ade80" strokeWidth="2" />
+                        <line x1="28" y1="19" x2="36" y2="19" stroke="#86efac" strokeWidth="1.5" strokeLinecap="round" />
+                        <line x1="27" y1="22" x2="37" y2="22" stroke="#86efac" strokeWidth="1.5" strokeLinecap="round" />
+                        <line x1="28" y1="25" x2="36" y2="25" stroke="#86efac" strokeWidth="1.5" strokeLinecap="round" />
+                      </g>
+                    </g>
+                  ) : daemonState === 'restoring' ? (
+                    /* Расслабленная рука после нажатия */
+                    <g className="daemon-rest-arm-group">
+                      <path
+                        d="M 70 52 Q 48 60 28 69"
+                        stroke="var(--terminal)"
+                        strokeWidth="5.5"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="28" cy="69" r="4.5" fill="var(--terminal)" />
+                    </g>
+                  ) : (
+                    /* Рука при ходьбе */
+                    <g className="daemon-walk-arm-group">
+                      <path
+                        d="M 70 52 Q 65 65 63 74"
+                        stroke="var(--terminal)"
+                        strokeWidth="5.5"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="63" cy="74" r="3.5" fill="var(--terminal)" />
+                    </g>
+                  )}
+                </g>
               </g>
             </svg>
           </div>
