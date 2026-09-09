@@ -2,13 +2,21 @@ import type { SiteContent } from '../../components/site-page';
 
 export const ru: SiteContent = {
   locale: 'ru',
-  nav: { works: 'Работы', about: 'Обо мне', resume: 'Резюме', games: 'Симуляции', contact: 'Контакты' },
+  nav: {
+    works: 'Работы',
+    about: 'Обо мне',
+    resume: 'Резюме',
+    games: 'Симуляции',
+    contact: 'Контакты',
+  },
   identity: 'root@memasevich:~$ whoami',
   heroTitle: 'MEMASEVICH\nСИСАДМИН / DEVOPS\nРАЗРАБОТЧИК',
-  heroLead: 'Проектирую и поддерживаю инфраструктуру, автоматизирую процессы, создаю инструменты для реверс-инжиниринга и сложной локализации игр.',
+  heroLead:
+    'Проектирую и поддерживаю инфраструктуру, автоматизирую процессы, создаю инструменты для реверс-инжиниринга и сложной локализации игр.',
   primaryCta: 'Смотреть работы',
   toolsTitle: 'Прикладная разработка',
-  toolsIntro: 'Практические решения, сервисы автоматизации и мультимодельные ИИ-системы. Подтверждённые задачи, архитектура и воспроизводимый результат.',
+  toolsIntro:
+    'Практические решения, сервисы автоматизации и мультимодельные ИИ-системы. Подтверждённые задачи, архитектура и воспроизводимый результат.',
   tools: [
     {
       title: 'FOOTLIVESTATS / ИИ-СТАТИСТ',
@@ -20,7 +28,17 @@ export const ru: SiteContent = {
       accent: 'lime',
       featured: true,
       highlightMetric: '86–89% ПОБЕД В НЕДЕЛЮ',
-      tags: ['Claude', 'ChatGPT', 'DeepSeek', 'Kimi 3', 'GLM 5.3', 'Telegram Bot API', 'Python', 'Live Analytics', 'Data Aggregation'],
+      tags: [
+        'Claude',
+        'ChatGPT',
+        'DeepSeek',
+        'Kimi 3',
+        'GLM 5.3',
+        'Telegram Bot API',
+        'Python',
+        'Live Analytics',
+        'Data Aggregation',
+      ],
       gallery: [
         {
           src: '/projects/footlivestats-signals.png',
@@ -51,7 +69,15 @@ export const ru: SiteContent = {
       status: 'внутренний прод / закрытый код',
       href: 'https://github.com/memasevich/memasevich',
       accent: 'violet',
-      tags: ['Android', 'Kotlin', 'Hardware Sensors', 'Zebra EMDK', 'Honeywell SDK', 'Background Daemon', 'Loss Prevention']
+      tags: [
+        'Android',
+        'Kotlin',
+        'Hardware Sensors',
+        'Zebra EMDK',
+        'Honeywell SDK',
+        'Background Daemon',
+        'Loss Prevention',
+      ],
     },
     {
       title: 'МОДУЛЬ СКАНИРОВАНИЯ WMS (BARCODE ENGINE)',
@@ -62,84 +88,166 @@ export const ru: SiteContent = {
       status: 'внутренний прод / закрытый код',
       href: 'https://github.com/memasevich/memasevich',
       accent: 'coral',
-      tags: ['C#', '.NET', 'WMS Core', 'Barcode Engine', 'DataMatrix GS1', '1C:Enterprise', 'Low Latency', 'Reverse Engineering']
-    }
+      tags: [
+        'C#',
+        '.NET',
+        'WMS Core',
+        'Barcode Engine',
+        'DataMatrix GS1',
+        '1C:Enterprise',
+        'Low Latency',
+        'Reverse Engineering',
+      ],
+    },
   ],
   localizationTitle: 'Игровые локализации',
-  localizationIntro: 'Три масштабных проекта из профиля — с реальными изображениями, версиями, архитектурой движков и ссылками из GitHub и Steam Workshop.',
+  localizationIntro:
+    'Три масштабных проекта из профиля — с реальными изображениями, версиями, архитектурой движков и ссылками из GitHub и Steam Workshop.',
   localizations: [
     {
       title: 'Caves of Qud',
       area: 'C# / Harmony / Морфологический движок',
-      description: 'Полномасштабная адаптация культового научно-фантастического рогалика (166 000+ строк). Собственный морфологический движок для процедурной генерации текстов с динамическим согласованием родов и падежей существительных и прилагательных.',
+      description:
+        'Полномасштабная адаптация культового научно-фантастического рогалика (166 000+ строк). Собственный морфологический движок для процедурной генерации текстов с динамическим согласованием родов и падежей существительных и прилагательных.',
       status: 'v1.0.6 / актуальная игра 2.0.211.x',
       href: 'https://github.com/memasevich/CoQ-ru-translate-public',
       note: 'SOURCE: GITHUB / RussianLocalization/preview.png',
       image: '/projects/coq-localization.png',
-      imageAlt: 'Русская локализация Caves of Qud — изображение из репозитория проекта',
-      tags: ['C#', 'Harmony Hooks', 'Procedural Grammar', 'Morphology Engine', '166k+ Strings', 'Steam Workshop', 'DumpMissingStrings'],
+      imageAlt:
+        'Русская локализация Caves of Qud — изображение из репозитория проекта',
+      tags: [
+        'C#',
+        'Harmony Hooks',
+        'Procedural Grammar',
+        'Morphology Engine',
+        '166k+ Strings',
+        'Steam Workshop',
+        'DumpMissingStrings',
+      ],
       highlights: [
         '166 000+ строк текста и регулярных паттернов: полный перевод диалогов, книг истории, сотен артефактов и мутаций.',
         'Морфологический движок (forms_dictionary & stem_dictionary): падежное согласование динамических существительных и прилагательных.',
         'Защита игровой разметки: сохранение синтаксиса встроенных цветовых тегов и горячих клавиш интерфейса.',
         'Встроенный трекер непереведённых строк: автосбор отсутствующих фраз в Documents/CavesOfQud_RU_Logs для оперативных хотфиксов.',
-        'Универсальная установка: поддержка Steam Workshop (id 3728849656) и автономная ручная инъекция для GOG / DRM-free.'
+        'Универсальная установка: поддержка Steam Workshop (id 3728849656) и автономная ручная инъекция для GOG / DRM-free.',
       ],
       links: [
-        { label: 'Steam Workshop', href: 'https://steamcommunity.com/sharedfiles/filedetails/?id=3728849656', badge: 'WORKSHOP' },
-        { label: 'GitHub Репозиторий', href: 'https://github.com/memasevich/CoQ-ru-translate-public', badge: 'OPEN SOURCE' },
-        { label: 'Boosty Патчноуты', href: 'https://boosty.to/memasevich', badge: 'CHANGELOG' }
-      ]
+        {
+          label: 'Steam Workshop',
+          href: 'https://steamcommunity.com/sharedfiles/filedetails/?id=3728849656',
+          badge: 'WORKSHOP',
+        },
+        {
+          label: 'GitHub Репозиторий',
+          href: 'https://github.com/memasevich/CoQ-ru-translate-public',
+          badge: 'OPEN SOURCE',
+        },
+        {
+          label: 'Boosty Патчноуты',
+          href: 'https://boosty.to/memasevich',
+          badge: 'CHANGELOG',
+        },
+      ],
     },
     {
       title: 'R.E.P.O.',
       area: 'StreamingAssets / Трёхуровневая TSV-схема / Кириллица',
-      description: 'Полная качественная локализация кооперативного хоррор-шутера R.E.P.O. (Semiwork). Интеграция в нативную подсистему локализации игры через три независимые TSV-таблицы без изменения бинарников и риска конфликтов.',
+      description:
+        'Полная качественная локализация кооперативного хоррор-шутера R.E.P.O. (Semiwork). Интеграция в нативную подсистему локализации игры через три независимые TSV-таблицы без изменения бинарников и риска конфликтов.',
       status: 'репозиторий / 100% контента',
       href: 'https://github.com/memasevich/repo-russianlocalization',
       note: 'SOURCE: STEAM GUIDE / PUBLIC COVER',
       image: '/projects/repo-localization.jpg',
-      imageAlt: 'Обложка публичного руководства по русской локализации R.E.P.O.',
-      tags: ['StreamingAssets', 'TSV Architecture', '100% Контент', 'Game/HUD/Menu', 'Font Glyph Styling'],
+      imageAlt:
+        'Обложка публичного руководства по русской локализации R.E.P.O.',
+      tags: [
+        'StreamingAssets',
+        'TSV Architecture',
+        '100% Контент',
+        'Game/HUD/Menu',
+        'Font Glyph Styling',
+      ],
       highlights: [
         'Трёхуровневый пайплайн: разделение переводов на Game.tsv (предметы и монстры), HUD.tsv (скафандр) и Menu.tsv (настройки).',
         '100% покрытие игры: адаптация терминологии терминалов, всех описаний лора, обучающего курса и сетевых сообщений.',
         'Аутентичный стиль шрифтов: полная поддержка кириллических глифов в оригинальном мрачном sci-fi стиле игры.',
-        'Чистая установка: простая замена файлов в StreamingAssets/Localizations без риска бана античитом.'
+        'Чистая установка: простая замена файлов в StreamingAssets/Localizations без риска бана античитом.',
       ],
       links: [
-        { label: 'GitHub Репозиторий', href: 'https://github.com/memasevich/repo-russianlocalization', badge: 'OPEN SOURCE' }
-      ]
+        {
+          label: 'GitHub Репозиторий',
+          href: 'https://github.com/memasevich/repo-russianlocalization',
+          badge: 'OPEN SOURCE',
+        },
+      ],
     },
     {
       title: 'Gnomoria',
       area: 'C# / XNA Dynamic Hook / Mono.Cecil / 0Harmony',
-      description: 'Революционный русификатор нового поколения Dynamic Engine v0.6.0. Перехватывает системные методы отрисовки графического движка XNA на лету, обеспечивая динамический рендеринг кириллицы без перерисовки оригинальных XNB-архивов.',
+      description:
+        'Революционный русификатор нового поколения Dynamic Engine v0.6.0. Перехватывает системные методы отрисовки графического движка XNA на лету, обеспечивая динамический рендеринг кириллицы без перерисовки оригинальных XNB-архивов.',
       status: 'репозиторий / Dynamic Engine v0.6.0',
       href: 'https://github.com/memasevich/Gnomoria-Russian-Translation',
       note: 'SOURCE: GITHUB / images/in_game_menu.png',
       image: '/projects/gnomoria-localization.png',
       imageAlt: 'Русское меню Gnomoria — скриншот из репозитория проекта',
-      tags: ['C#', 'XNA Intercept', 'Mono.Cecil', '0Harmony', 'Patcher.exe', '12 253 Записи', 'Dynamic Parsing'],
+      tags: [
+        'C#',
+        'XNA Intercept',
+        'Mono.Cecil',
+        '0Harmony',
+        'Patcher.exe',
+        '12 253 Записи',
+        'Dynamic Parsing',
+      ],
       highlights: [
         'Динамический перехват XNA: полный отказ от перерисовки текстур шрифтов и архивов XNB — перехват текста прямо в пайплайне рендера.',
         'Инъектор Patcher.exe: утилита на Mono.Cecil для моментальной инъекции загрузчика хуков в Gnomoria.exe с автобекапом.',
         'Контекстный парсер грамматики: алгоритмический перевод составных названий предметов («copper felling axe» → «лесорубный топор (медь)»).',
-        '12 253 словарных записи: полный перевод меню, параметров гномов, боевых логов, динамических жидкостей и статусов крепости.'
+        '12 253 словарных записи: полный перевод меню, параметров гномов, боевых логов, динамических жидкостей и статусов крепости.',
       ],
       links: [
-        { label: 'GitHub Репозиторий', href: 'https://github.com/memasevich/Gnomoria-Russian-Translation', badge: 'OPEN SOURCE' },
-        { label: 'Релизы и сборки', href: 'https://github.com/memasevich/Gnomoria-Russian-Translation/releases', badge: 'RELEASES' }
-      ]
-    }
+        {
+          label: 'GitHub Репозиторий',
+          href: 'https://github.com/memasevich/Gnomoria-Russian-Translation',
+          badge: 'OPEN SOURCE',
+        },
+        {
+          label: 'Релизы и сборки',
+          href: 'https://github.com/memasevich/Gnomoria-Russian-Translation/releases',
+          badge: 'RELEASES',
+        },
+      ],
+    },
   ],
   favoriteGamesTitle: 'СИСТЕМНОЕ МЫШЛЕНИЕ И СИМУЛЯЦИИ',
-  favoriteGamesIntro: 'Сложные симуляторы и инженерные песочницы как полигон для отработки балансировки потоков данных, логистики очередей и архитектурного планирования. Суммарный опыт — 7500+ часов.',
+  favoriteGamesIntro:
+    'Сложные симуляторы и инженерные песочницы как полигон для отработки балансировки потоков данных, логистики очередей и архитектурного планирования. Суммарный опыт — 7500+ часов.',
   favoriteGames: [
-    { title: 'RimWorld', desc: 'Управление колонией, логистика и выживание', img: '/games/rimworld.jpg', playtime: '3000 ч.' },
-    { title: 'Satisfactory', desc: 'Масштабная автоматизация и фабрики', img: '/games/satisfactory.jpg', playtime: '2500 ч.' },
-    { title: 'Gnomoria', desc: 'Глубокий менеджмент и микроконтроль', img: '/games/gnomoria.jpg', playtime: '1000 ч.' },
-    { title: 'Melvor Idle', desc: 'Оптимизация процессов и idle-экономика', img: '/games/melvor-idle.jpg', playtime: '1000 ч.' },
+    {
+      title: 'RimWorld',
+      desc: 'Управление колонией, логистика и выживание',
+      img: '/games/rimworld.jpg',
+      playtime: '3000 ч.',
+    },
+    {
+      title: 'Satisfactory',
+      desc: 'Масштабная автоматизация и фабрики',
+      img: '/games/satisfactory.jpg',
+      playtime: '2500 ч.',
+    },
+    {
+      title: 'Gnomoria',
+      desc: 'Глубокий менеджмент и микроконтроль',
+      img: '/games/gnomoria.jpg',
+      playtime: '1000 ч.',
+    },
+    {
+      title: 'Melvor Idle',
+      desc: 'Оптимизация процессов и idle-экономика',
+      img: '/games/melvor-idle.jpg',
+      playtime: '1000 ч.',
+    },
   ],
   aboutTitle: 'ОПЕРАТОР СИСТЕМЫ',
   aboutText: [
@@ -147,29 +255,255 @@ export const ru: SiteContent = {
     'Развертывание первых серверов и веб-проектов. Практические эксперименты с хостингами, сетями и базами данных. Параллельное освоение реверс-инжиниринга и модификации клиентских файлов.',
     'Систематизация инженерного опыта. Изучение скриптинга, языков программирования и архитектуры ПО. Переход в профессиональное системное администрирование: работа с инфраструктурой провайдеров и крупного ритейла.',
     'Эволюция в DevOps. Фокус на автоматизации рутины, развертывании CI/CD, контейнеризации и поддержке отказоустойчивых систем. Оптимизация процессов разработки и интеграции.',
-    'Развитие собственной инфраструктуры. Использование локальных ИИ-моделей на собственных мощностях для аналитики, парсинга кода и автоматизации переводов. Постоянный фокус на надежность систем и открытый код.'
+    'Развитие собственной инфраструктуры. Использование локальных ИИ-моделей на собственных мощностях для аналитики, парсинга кода и автоматизации переводов. Постоянный фокус на надежность систем и открытый код.',
   ],
-  techStackTitle: 'СТЕК ТЕХНОЛОГИЙ',
+  infraMetricsTitle: 'МАСШТАБ СИСТЕМ И ИНФРАСТРУКТУРЫ',
+  infraMetrics: [
+    {
+      value: '40+',
+      label: 'СЕТЕВЫЕ СВИТЧИ',
+      desc: 'Управляемые L2/L3 коммутаторы (Juniper, HPE FlexFabric, Cisco) в отказоустойчивых стеках',
+    },
+    {
+      value: '200+',
+      label: 'СИСТЕМЫ БЕЗОПАСНОСТИ',
+      desc: 'Комплекс IP-видеонаблюдения RVi AI LPR, турникеты и СКУД PERCo S-20/SM12',
+    },
+    {
+      value: '100+',
+      label: 'ТСД & ТЕРМОПЕЧАТЬ',
+      desc: 'Парк Zebra TC/MC, Honeywell, стационарные принтеры Zebra/Kyocera (ZPL)',
+    },
+    {
+      value: 'TGW',
+      label: 'СКЛАДСКАЯ РОБОТИКА',
+      desc: 'Конвейерные линии и сортировочные комплексы TGW Stingray, 24/7 диспетчеризация',
+    },
+    {
+      value: 'DR / SAN',
+      label: 'СХД И СЕРВЕРЫ',
+      desc: 'IBM FlashSystem 5000 SAN, серверные узлы Lenovo SR850P, кластер Proxmox/ESXi',
+    },
+    {
+      value: '10 ЛЕТ',
+      label: 'ПРОИЗВОДСТВЕННЫЙ ОПЫТ',
+      desc: 'Непрерывный стаж: телеком-провайдеры, логистические центры класса «А», DevOps',
+    },
+  ],
+  techStackTitle: 'ТЕХНОЛОГИЧЕСКИЙ СТЕК',
   techStack: [
-    { category: 'INFRASTRUCTURE & OS', items: ['Proxmox', 'ESXi', 'Docker', 'Windows Server / AD', 'Linux (CentOS, Debian)', 'Zabbix'] },
-    { category: 'NETWORKING', items: ['Juniper', 'HPE FlexFabric', 'Cisco / Aruba', 'MikroTik', 'VLAN / LACP / QoS', 'TCP/IP'] },
-    { category: 'DEV & AUTOMATION', items: ['PowerShell', 'Bash', 'Python', 'C#', 'GitLab CI', 'PHP / SQL'] },
-    { category: 'HARDWARE & SYSTEMS', items: ['IBM System / Flash', 'Lenovo SR Series', 'Zebra / Honeywell TSD', 'TGW Logistics', 'PERCo', 'APC / PDU'] }
+    {
+      category: 'СЕРВЕРЫ И СХД',
+      items: [
+        'IBM FlashSystem 5000',
+        'Lenovo SR850P',
+        'SAN / Fibre Channel',
+        'RAID / LUN Management',
+        'Disaster Recovery (DR)',
+        'APC Smart-UPS / PDU',
+      ],
+    },
+    {
+      category: 'СЕТЕВАЯ ИНФРАСТРУКТУРА',
+      items: [
+        'Juniper JunOS',
+        'HPE FlexFabric',
+        'Cisco IOS / Aruba',
+        'MikroTik RouterOS',
+        'VLAN / LACP / STP',
+        'OSPF / Routing',
+        'ВОЛС / OTDR',
+      ],
+    },
+    {
+      category: 'ВИРТУАЛИЗАЦИЯ И ОС',
+      items: [
+        'Proxmox VE',
+        'VMware ESXi',
+        'Docker',
+        'Linux (Debian, CentOS)',
+        'Windows Server 2012-2022',
+        'Active Directory / GPO',
+      ],
+    },
+    {
+      category: 'МОНИТОРИНГ И СКРИПТЫ',
+      items: [
+        'Zabbix Enterprise',
+        'PowerShell',
+        'Bash',
+        'Python',
+        'GitLab CI / Git',
+        'SNMP / Syslog',
+        'REST API / Webhooks',
+      ],
+    },
+    {
+      category: 'СКЛАД И РОБОТИКА',
+      items: [
+        'TGW Logistics Robotics',
+        'ТСД Zebra / Honeywell',
+        'Промышленный ZPL',
+        '1С:Предприятие 8.3 ERP',
+        'Wi-Fi 802.11k/r/v Roaming',
+      ],
+    },
+    {
+      category: 'БЕЗОПАСНОСТЬ И СКУД',
+      items: [
+        'RVi IP CCTV (AI LPR)',
+        'СКУД PERCo S-20 / SM12',
+        'NVR / DVR Trassir',
+        'Биометрия / Турникеты',
+        'Пожарно-охранная интеграция',
+      ],
+    },
   ],
   experienceTitle: 'СИСТЕМНЫЙ ЛОГ ОПЫТА',
   experience: [
-    { period: '2022 — НАСТ. ВРЕМЯ', company: 'GLORIA JEANS', role: 'СИСТЕМНЫЙ АДМИНИСТРАТОР / DEVOPS', desc: 'Устранение сбоев роботизированных конвейеров (TGW), администрирование серверов (IBM, Lenovo), сетей (Juniper, HPE). Внедрение систем мониторинга (Zabbix), скриптинг (PowerShell/Bash/Python) для автоматизации.' },
-    { period: '2019 — 2022', company: 'GLORIA JEANS', role: 'ИНЖЕНЕР ТЕХНИЧЕСКОЙ ПОДДЕРЖКИ', desc: 'Обслуживание ИТ-инфраструктуры логистического центра (ТСД, принтеры Zebra/Kyocera, сетевое оборудование). Поддержка систем видеонаблюдения и ERP (1С).' },
-    { period: '2017 — 2018', company: 'РОСТЕЛЕКОМ', role: 'ИНЖЕНЕР СВЯЗИ', desc: 'Настройка и наладка сетевого оборудования корпоративных клиентов (Juniper, MikroTik). Организация оптоволоконной и витопарной связи.' }
+    {
+      period: '2022 — НАСТ. ВРЕМЯ',
+      company: 'GLORIA JEANS',
+      location: 'Логистический комплекс класса «А», Кемеровская обл.',
+      role: 'СТАРШИЙ СИСТЕМНЫЙ АДМИНИСТРАТОР / DEVOPS',
+      scale:
+        'Enterprise Logistics / 40+ Sw / 200+ IP Cam / 100+ ТСД / TGW Robotics',
+      desc: 'Полное сопровождение и масштабирование IT-инфраструктуры высоконагруженного логистического комплекса. Обеспечение непрерывности бизнес-процессов 24/7, администрирование отказоустойчивых кластеров и роботизированных конвейеров.',
+      highlights: [
+        'Администрирование СХД IBM FlashSystem 5000 и серверов Lenovo SR850P: конфигурация RAID/LUN, zoning в SAN-сети, реализация DR-планов без простоя сервисов.',
+        'Управление сетевым ядром (Juniper, HPE FlexFabric, Cisco): настройка VLAN, LACP-агрегации, OSPF, ACL и сегментация критических сервисов логистики.',
+        'Инженерное сопровождение роботизированных конвейеров TGW Logistics: интеграция с WMS/ERP, устранение аппаратных сбоев контроллеров и сортировочных линий.',
+        'Развертывание системы мониторинга Zabbix: сбор метрик серверов, свитчей, ИБП, термодатчиков серверных и авто-оповещение дежурной службы.',
+        'Автоматизация рутины на PowerShell, Bash и Python: скрипты синхронизации учетных записей AD/LDAP, мониторинга очереди печати ZPL и парсинга логов.',
+        'Эксплуатация систем безопасности: 200+ IP-камер RVi с распознаванием номеров (LPR), СКУД PERCo S-20 / турникеты SM12, интеграция с пожарной сигнализацией.',
+      ],
+      stack: [
+        'IBM FlashSystem',
+        'Lenovo SR850P',
+        'Juniper',
+        'HPE FlexFabric',
+        'Proxmox',
+        'ESXi',
+        'Zabbix',
+        'TGW Robotics',
+        'PERCo',
+        'PowerShell',
+        'Python',
+        'Docker',
+      ],
+    },
+    {
+      period: '2019 — 2022',
+      company: 'GLORIA JEANS',
+      location: 'Логистический центр, Новокузнецк',
+      role: 'ИНЖЕНЕР ТЕХНИЧЕСКОЙ ПОДДЕРЖКИ / СИСТЕМНЫЙ АДМИНИСТРАТОР',
+      scale: '24/7 ServiceDesk / Wi-Fi Роуминг / Zebra / Kyocera / 1C ECOM',
+      desc: 'Обеспечение бесперебойного функционирования складских терминалов, промышленных принтеров этикеток и локальной сети в круглосуточном режиме.',
+      highlights: [
+        'Поддержка и конфигурирование парка из 100+ ТСД (Zebra, Honeywell, CipherLab) на базе Android и Windows CE, кастомизация RDP/Telnet-клиентов.',
+        'Развертывание и ремонт промышленного печатного оборудования Zebra ZT/ZD и Kyocera: программирование шаблонов ZPL, сетевой мониторинг очередей печати.',
+        'Тонкая настройка бесшовного Wi-Fi роуминга (802.11k/r/v) на складе площадью десятки тысяч кв.м для исключения обрывов сессий ТСД.',
+        'Поддержка клиентских рабочих мест 1С:Предприятие 8.3 (ERP / ECOM), администрирование прав пользователей в Active Directory и групповых политик GPO.',
+      ],
+      stack: [
+        'Zebra TSD',
+        'Honeywell',
+        'ZPL',
+        'Wi-Fi Roaming',
+        'Active Directory',
+        'GPO',
+        '1C Enterprise',
+        'Kyocera',
+        'Windows Server',
+      ],
+    },
+    {
+      period: '2018 — 2019',
+      company: 'GLORIA JEANS',
+      location: 'Новокузнецк',
+      role: 'СПЕЦИАЛИСТ IT-ПОДДЕРЖКИ / ЭНИКЕЙ',
+      scale: 'Primary Support / Hardware Maintenance / Cable Plants',
+      desc: 'Первичный ввод в эксплуатацию аппаратного обеспечения, сборка и диагностика рабочих станций, устранение аппаратных и программных сбоев.',
+      highlights: [
+        'Модульный и компонентный ремонт ПК, замена комплектующих, диагностика материнских плат, блоков питания и накопителей.',
+        'Монтаж кабельных трасс ЛВС, обжим витой пары, кроссировка патч-панелей и установка телекоммуникационных шкафов.',
+        'Оперативное решение инцидентов пользователей: настройка офисного ПО, периферии, сетевых сканеров и принтеров.',
+      ],
+      stack: [
+        'Hardware Repair',
+        'LAN Cabling',
+        'Cable Tester',
+        'Windows 10/7',
+        'Workstation Setup',
+        'Peripherals',
+      ],
+    },
+    {
+      period: '2017 — 2018',
+      company: 'РОСТЕЛЕКОМ',
+      location: 'Кемеровская область',
+      role: 'ИНЖЕНЕР СВЯЗИ И СЕТЕЙ КОРПОРАТИВНЫХ КЛИЕНТОВ',
+      scale: 'B2B Telecom / ВОЛС / L2/L3 Routing / Juniper / MikroTik',
+      desc: 'Организация и пусконаладка каналов связи для корпоративного сектора, подключение юридических лиц к оптическим и медным магистралям.',
+      highlights: [
+        'Сварка и тестирование волоконно-оптических линий связи (ВОЛС), измерение затухания оптическим рефлектометром (OTDR).',
+        'Базовая и расширенная настройка маршрутизаторов и коммутаторов Juniper, MikroTik, Cisco для предоставления услуг VPN, L2-транзита и SIP-телефонии.',
+        'Диагностика физического и канального уровней (OSI L1-L3), устранение кабельных повреждений и оптимизация маршрутизации.',
+      ],
+      stack: [
+        'ВОЛС / OTDR',
+        'Juniper JunOS',
+        'MikroTik RouterOS',
+        'VLAN',
+        'VPN / IPsec',
+        'SIP / VoIP',
+        'B2B Telecom',
+      ],
+    },
+    {
+      period: '2016',
+      company: 'ПРОКОПЬЕВСКИЙ ТЕХНИКУМ (ППЭТ)',
+      location: 'Прокопьевск',
+      role: 'МЛАДШИЙ СИСТЕМНЫЙ АДМИНИСТРАТОР',
+      scale: 'Educational Network / 150+ PC Labs',
+      desc: 'Администрирование компьютерных классов и лабораторий образовательного учреждения, сетевая инфраструктура и подготовка ПО для учебных процессов.',
+      highlights: [
+        'Развертывание образов ОС и учебного ПО на десятки рабочих станций через сеть (PXE / WDS).',
+        'Обслуживание серверной стойки техникума, разграничение прав доступа студентов и преподавателей в доменной сети.',
+        'Настройка локальной сети между учебными корпусами и поддержка интерактивного оборудования.',
+      ],
+      stack: [
+        'PXE / WDS',
+        'Windows Server',
+        'Active Directory',
+        'PC Deployment',
+        'LAN Routing',
+      ],
+    },
+  ],
+  educationTitle: 'ОБРАЗОВАНИЕ И КВАЛИФИКАЦИЯ',
+  education: [
+    {
+      year: '2017',
+      institution: 'Прокопьевский промышленно-экономический техникум (ППЭТ)',
+      degree: 'Техник по компьютерным системам и комплексам (КСК)',
+      honors: 'ДИПЛОМ С ОТЛИЧИЕМ (КРАСНЫЙ ДИПЛОМ)',
+      details: [
+        'Победитель и участник всероссийских научно-практических конференций по информационным технологиям и программированию.',
+        'Фундаментальная подготовка: микропроцессорные системы, цифровая схемотехника, архитектура ЭВМ, монтаж и наладка сетевых комплексов.',
+        'Английский язык: B2 (Vantage / Upper-Intermediate) — свободное чтение и составление технической документации, англоязычные RFC и спецификации оборудования.',
+      ],
+    },
   ],
   contactEyebrow: 'Контакты',
   contactTitle: 'СВЯЗАТЬСЯ СО МНОЙ',
-  contactText: 'Открыт к обсуждению инфраструктурных задач, проектов по DevOps-автоматизации, реверс-инжинирингу и техническому сотрудничеству.',
+  contactText:
+    'Открыт к обсуждению инфраструктурных задач, проектов по DevOps-автоматизации, реверс-инжинирингу и техническому сотрудничеству.',
   contactActions: [
     { label: 'Написать в Telegram', href: 'https://t.me/memasev1ch' },
     { label: 'Написать на почту', href: 'mailto:eganddn@gmail.com' },
     { label: 'Открыть GitHub', href: 'https://github.com/memasevich' },
-    { label: 'Поддержать на Boosty', href: 'https://boosty.to/memasevich' }
+    { label: 'Поддержать на Boosty', href: 'https://boosty.to/memasevich' },
   ],
   footer: 'Русский — основная версия',
 };
