@@ -702,7 +702,10 @@ export default function SitePage({
               </div>
               <div className="exp-timeline">
                 {content.experience.map((job, idx) => (
-                  <article className="exp-node" key={idx}>
+                  <article
+                    className={`exp-node ${idx === 0 ? 'exp-node-current' : ''}`}
+                    key={idx}
+                  >
                     <div className="exp-meta">
                       <span className="exp-period">{job.period}</span>
                       <b className="exp-company">{job.company}</b>
