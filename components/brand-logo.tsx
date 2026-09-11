@@ -5,12 +5,12 @@ import React from 'react';
 
 interface BrandLogoProps {
   className?: string;
-  variant?: 'topbar' | 'hero';
+  variant?: 'topbar' | 'hero' | 'contact';
 }
 
 export function BrandLogo({
   className = '',
-  variant = 'topbar',
+  variant = 'contact',
 }: BrandLogoProps) {
   if (variant === 'topbar') {
     return (
@@ -31,9 +31,13 @@ export function BrandLogo({
     );
   }
 
+  const isContact = variant === 'contact';
+  const wrapClass = isContact ? 'contact-brand-wrap' : 'brand-wrap';
+  const brandClass = isContact ? 'contact-brand' : 'brand';
+
   return (
-    <div className={`brand-wrap ${className}`.trim()}>
-      <div className="brand">
+    <div className={`${wrapClass} ${className}`.trim()}>
+      <div className={brandClass}>
         <div className="ambient" aria-hidden="true" />
         <div className="energy" aria-hidden="true" />
 
@@ -43,7 +47,7 @@ export function BrandLogo({
           alt="Memasevich"
           width="1672"
           height="941"
-          loading="eager"
+          loading="lazy"
           decoding="async"
         />
 

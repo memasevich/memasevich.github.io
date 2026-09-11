@@ -329,13 +329,10 @@ export default function SitePage({
           />
           <span>root@</span>memasevich:<b>~$</b>
         </Link>
-        <Link
-          className="topbar-brand-slot"
-          href={ru ? '/' : '/en'}
-          aria-label="MEMASEVICH"
-        >
-          <BrandLogo variant="topbar" />
-        </Link>
+        <span className="topbar-status">
+          <span className="status-dot" aria-hidden="true" />
+          SYS_ONLINE • 99.98%
+        </span>
         <nav aria-label={ru ? 'Основная навигация' : 'Main navigation'}>
           <a className="nav-link" href="#works">
             <span>01/</span>
@@ -876,35 +873,39 @@ export default function SitePage({
               </div>
             </div>
 
-            <div className="contact-top">
+            <div className="contact-top contact-top-split">
               <div className="contact-info">
                 <div className="eyebrow section-command">
                   <span>05</span> {content.contactEyebrow}
                 </div>
                 <h2 className="contact-title">{content.contactTitle}</h2>
                 <p className="contact-desc">{content.contactText}</p>
+
+                <div className="contact-availability-box">
+                  <div className="avail-header">
+                    <span className="status-mark status-lime" />
+                    <span>
+                      {ru ? 'СТАТУС И ВРЕМЯ ОТВЕТА' : 'STATUS & RESPONSE TIME'}
+                    </span>
+                  </div>
+                  <p className="avail-desc">
+                    {ru
+                      ? 'Открыт для обсуждения инфраструктурных задач, DevOps-автоматизации, реверс-инжиниринга и технического сотрудничества.'
+                      : 'Open for infrastructure challenges, DevOps automation, reverse engineering, and technical collaboration.'}
+                  </p>
+                  <div className="avail-meta">
+                    <span className="avail-tag">
+                      {ru ? '● Ответ в течение суток' : '● Response within 24h'}
+                    </span>
+                    <span className="avail-tag">
+                      {ru ? 'UTC+3 / Москва' : 'UTC+3 Timezone'}
+                    </span>
+                  </div>
+                </div>
               </div>
 
-              <div className="contact-availability-box">
-                <div className="avail-header">
-                  <span className="status-mark status-lime" />
-                  <span>
-                    {ru ? 'СТАТУС И ВРЕМЯ ОТВЕТА' : 'STATUS & RESPONSE TIME'}
-                  </span>
-                </div>
-                <p className="avail-desc">
-                  {ru
-                    ? 'Открыт для обсуждения инфраструктурных задач, DevOps-автоматизации, реверс-инжиниринга и технического сотрудничества.'
-                    : 'Open for infrastructure challenges, DevOps automation, reverse engineering, and technical collaboration.'}
-                </p>
-                <div className="avail-meta">
-                  <span className="avail-tag">
-                    {ru ? '● Ответ в течение суток' : '● Response within 24h'}
-                  </span>
-                  <span className="avail-tag">
-                    {ru ? 'UTC+3 / Москва' : 'UTC+3 Timezone'}
-                  </span>
-                </div>
+              <div className="contact-brand-column">
+                <BrandLogo variant="contact" />
               </div>
             </div>
 
