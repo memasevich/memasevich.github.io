@@ -14,9 +14,9 @@ export const en: SiteContent = {
   heroLead:
     'Designing and maintaining infrastructure, automating processes, and creating tools for reverse-engineering and complex game localizations.',
   primaryCta: 'View work',
-  toolsTitle: 'Applied development',
+  toolsTitle: 'Applied Development',
   toolsIntro:
-    'Practical solutions, automation services, and multi-model AI systems. Confirmed problems, system architecture, and reproducible results.',
+    'Engineering tools, automation services, and applied utilities built to solve real-world production challenges.',
   tools: [
     {
       title: 'FOOTLIVESTATS / AI ANALYST',
@@ -122,9 +122,9 @@ export const en: SiteContent = {
       ],
     },
   ],
-  localizationTitle: 'Game localizations',
+  localizationTitle: 'Game Localizations',
   localizationIntro:
-    'Three major projects from GitHub & Steam Workshop — with authentic assets, engine architecture details, and official links.',
+    'Major reverse-engineering and translation projects: custom engine architecture, open-source code on GitHub, and Steam Workshop builds.',
   localizations: [
     {
       title: 'Caves of Qud',
@@ -206,7 +206,7 @@ export const en: SiteContent = {
       title: 'Gnomoria',
       area: 'C# / XNA Dynamic Hook / Mono.Cecil / 0Harmony',
       description:
-        'Revolutionary next-gen localization powered by Dynamic Engine v0.6.0. Directly intercepts the XNA graphics pipeline at runtime to render antialiased Cyrillic glyphs on the fly without editing legacy XNB archives or font textures.',
+        'Dynamic Engine v0.6.0 translation mod. Intercepts XNA rendering pipeline calls on the fly, delivering dynamic Cyrillic text rendering without altering original XNB game archives.',
       status: 'repository / Dynamic Engine v0.6.0',
       href: 'https://github.com/memasevich/Gnomoria-Russian-Translation',
       note: 'SOURCE: GITHUB / images/in_game_menu.png',
@@ -248,7 +248,7 @@ export const en: SiteContent = {
   ],
   favoriteGamesTitle: 'SYSTEMS THINKING & SIMULATIONS',
   favoriteGamesIntro:
-    'Complex simulators and engineering sandboxes as a training ground for balancing data flows, queue logistics, and architecture planning. 7,500+ hours of experience.',
+    'Engineering sandboxes and complex simulators as a training ground for systems thinking, queue balancing, and logistics. Over 7,500 total hours played.',
   favoriteGames: [
     {
       title: 'RimWorld',
@@ -277,11 +277,11 @@ export const en: SiteContent = {
   ],
   aboutTitle: 'SYSTEM OPERATOR',
   aboutText: [
-    'Technical background from an early age. Exploring hardware, assembling and diagnosing PCs, deeply diving into OS principles. Transitioning from a user to a systems architecture researcher.',
-    'Deploying early servers and web projects. Practical experiments with hosting, networking, and databases. Parallel development in reverse-engineering and modifying client files.',
-    'Systematizing engineering experience. Studying scripting, programming languages, and software architecture. Transitioning into professional system administration: managing infrastructure for ISPs and large-scale retail.',
-    'Evolution into DevOps. Focusing on routine automation, CI/CD deployment, containerization, and maintaining fault-tolerant systems. Optimizing development and integration workflows.',
-    'Expanding personal infrastructure. Utilizing local AI models on proprietary hardware for analytics, code parsing, and complex translation automation. Continuous focus on system reliability and open-source tooling.',
+    'Tinkering with hardware and networks since childhood — from component-level PC repairs to kernel tuning and network protocols. A relentless curiosity about "how things work under the hood" quickly turned into a career.',
+    'Started by self-hosting game servers and web services, getting hands-on experience with production traffic spikes and resilience. Alongside, dove into reverse engineering: disassembling game binaries, hooking routines, and inspecting data structures.',
+    'Cut my teeth in enterprise operations: managing infrastructure for a regional ISP and a nationwide retail chain. Owned dozens of switch stacks, server racks, SAN storage units, and specialized POS hardware.',
+    'Over time, sysadmin work evolved naturally into DevOps. The core focus: eliminating routine through code — reliable CI/CD pipelines, Docker containerization, automated deployment, and high-availability setups.',
+    'Today, I build independent open-source tools and self-hosted services. I run a home Proxmox homelab cluster, utilize local LLMs for deep code analysis, and engineer rock-solid systems.',
   ],
   infraMetricsTitle: 'SYSTEM & INFRASTRUCTURE SCALE',
   infraMetrics: [
@@ -524,7 +524,7 @@ export const en: SiteContent = {
   contactEyebrow: 'Contact',
   contactTitle: 'GET IN TOUCH',
   contactText:
-    'Open to discussing infrastructure tasks, DevOps automation, reverse-engineering projects, and technical collaboration.',
+    'Feel free to reach out regarding infrastructure challenges, architecture design, or collaboration. Telegram is fastest for direct chat; email works best for formal inquiries.',
   contactActions: [
     { label: 'Write on Telegram', href: 'https://t.me/memasev1ch' },
     { label: 'Write by email', href: 'mailto:eganddn@gmail.com' },

@@ -3510,8 +3510,11 @@ a:focus-visible {
   position: relative;
   width: 100%;
 }
+.contact-brand-column .contact-brand-wrap {
+  margin: 0;
+}
 .contact-brand-column .contact-brand {
-  max-width: 440px;
+  max-width: 260px;
   width: 100%;
 }
 .contact-top {
@@ -4016,6 +4019,9 @@ a:focus-visible {
   .contact-top {
     padding-top: 48px;
     gap: 28px;
+  }
+  .contact-brand-column .contact-brand {
+    max-width: 200px;
   }
   .contact-title {
     font-size: clamp(1.6rem, 6.5vw, 2.1rem);

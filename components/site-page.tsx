@@ -890,8 +890,8 @@ export default function SitePage({
                   </div>
                   <p className="avail-desc">
                     {ru
-                      ? 'Открыт для обсуждения инфраструктурных задач, DevOps-автоматизации, реверс-инжиниринга и технического сотрудничества.'
-                      : 'Open for infrastructure challenges, DevOps automation, reverse engineering, and technical collaboration.'}
+                      ? 'Рассматриваю интересные инженерные задачи, проекты по автоматизации и реверс-инжинирингу. На связи в рабочие часы по Москве.'
+                      : 'Open to high-impact infrastructure, automation, and reverse engineering challenges. Active during Moscow business hours.'}
                   </p>
                   <div className="avail-meta">
                     <span className="avail-tag">
