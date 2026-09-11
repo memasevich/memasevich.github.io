@@ -9,10 +9,30 @@ export const metadata: Metadata = {
     template: '%s — MEMASEVICH',
   },
   description: 'Memasevich — системный администратор, DevOps-специалист и независимый разработчик. Инфраструктура, инструменты и русские игровые локализации.',
-  icons: { icon: '/favicon.svg' },
+  icons: {
+    icon: [
+      { url: '/mascot/mascot-m.png', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/mascot/mascot-m.png',
+    apple: '/mascot/mascot-m.png',
+  },
   alternates: { canonical: '/', languages: { 'ru-RU': '/', en: '/en', 'x-default': '/' } },
-  openGraph: { title: 'MEMASEVICH — системы, разработка и игровые локализации', description: 'Инфраструктура, инструменты и русские игровые локализации.', url: 'https://memasevich.github.io/', siteName: 'MEMASEVICH', locale: 'ru_RU', type: 'website' },
-  twitter: { card: 'summary_large_image', title: 'MEMASEVICH — системы, разработка и игровые локализации', description: 'Инфраструктура, инструменты и русские игровые локализации.' },
+  openGraph: {
+    title: 'MEMASEVICH — системы, разработка и игровые локализации',
+    description: 'Инфраструктура, инструменты и русские игровые локализации.',
+    url: 'https://memasevich.github.io/',
+    siteName: 'MEMASEVICH',
+    images: [{ url: '/memasevich.png', width: 1672, height: 941, alt: 'MEMASEVICH' }],
+    locale: 'ru_RU',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MEMASEVICH — системы, разработка и игровые локализации',
+    description: 'Инфраструктура, инструменты и русские игровые локализации.',
+    images: ['/memasevich.png'],
+  },
   robots: { index: true, follow: true },
 };
 

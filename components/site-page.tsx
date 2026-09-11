@@ -16,6 +16,7 @@ import { ItBackground } from './it-background';
 import { WorkGallerySlider, type GallerySlide } from './work-gallery-slider';
 import { GithubActivity, GithubMark } from './github-activity';
 import { TerminalDaemonHeist } from './terminal-daemon-heist';
+import { BrandLogo } from './brand-logo';
 
 type Accent = 'lime' | 'coral' | 'violet';
 
@@ -319,6 +320,13 @@ export default function SitePage({
           href={ru ? '/' : '/en'}
           aria-label="MEMASEVICH"
         >
+          <img
+            src="/mascot/mascot-m.png"
+            alt=""
+            width="24"
+            height="24"
+            className="wordmark-mascot"
+          />
           <span>root@</span>memasevich:<b>~$</b>
         </Link>
         <span className="topbar-status">
@@ -374,6 +382,7 @@ export default function SitePage({
 
       <main>
         <section className="container bento-hero">
+          <BrandLogo />
           <div className="bento-grid">
             {/* Bento Card 1: Profile & Identity */}
             <div className="bento-card bento-profile">
