@@ -5,12 +5,20 @@ import React from 'react';
 
 interface BrandLogoProps {
   className?: string;
+  variant?: 'topbar' | 'hero';
 }
 
-export function BrandLogo({ className = '' }: BrandLogoProps) {
+export function BrandLogo({
+  className = '',
+  variant = 'topbar',
+}: BrandLogoProps) {
+  const isTopbar = variant === 'topbar';
+
   return (
-    <div className={`brand-wrap ${className}`.trim()}>
-      <div className="brand">
+    <div
+      className={`brand-wrap ${isTopbar ? 'brand-wrap-topbar' : ''} ${className}`.trim()}
+    >
+      <div className={`brand ${isTopbar ? 'brand-topbar' : ''}`}>
         <div className="ambient" aria-hidden="true" />
         <div className="energy" aria-hidden="true" />
 

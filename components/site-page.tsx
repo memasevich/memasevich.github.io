@@ -329,10 +329,13 @@ export default function SitePage({
           />
           <span>root@</span>memasevich:<b>~$</b>
         </Link>
-        <span className="topbar-status">
-          <span className="status-dot" aria-hidden="true" />
-          SYS_ONLINE • 99.98%
-        </span>
+        <Link
+          className="topbar-brand-slot"
+          href={ru ? '/' : '/en'}
+          aria-label="MEMASEVICH"
+        >
+          <BrandLogo variant="topbar" />
+        </Link>
         <nav aria-label={ru ? 'Основная навигация' : 'Main navigation'}>
           <a className="nav-link" href="#works">
             <span>01/</span>
@@ -382,7 +385,6 @@ export default function SitePage({
 
       <main>
         <section className="container bento-hero">
-          <BrandLogo />
           <div className="bento-grid">
             {/* Bento Card 1: Profile & Identity */}
             <div className="bento-card bento-profile">
