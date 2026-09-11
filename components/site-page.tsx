@@ -321,7 +321,7 @@ export default function SitePage({
           aria-label="MEMASEVICH"
         >
           <img
-            src="/mascot/mascot-m.png"
+            src="/mascot/mascot-m.webp"
             alt=""
             width="24"
             height="24"
@@ -616,7 +616,7 @@ export default function SitePage({
             </div>
             <figure className="portrait-card">
               <img
-                src="/portrait/memasevich-workspace.jpg"
+                src="/portrait/memasevich-workspace.webp"
                 alt={
                   ru
                     ? 'Memasevich за рабочим местом'

@@ -41,19 +41,19 @@ export const ru: SiteContent = {
       ],
       gallery: [
         {
-          src: '/projects/footlivestats-signals.png',
+          src: '/projects/footlivestats-signals.webp',
           alt: 'FootLiveStats — журнал live-сигналов и верификация исходов',
           label: 'SCREEN_01 // ЖУРНАЛ СИГНАЛОВ (604/7D)',
           desc: 'Сводка верифицированных сигналов бота за 7 дней (604 события с подтверждённым исходом). Код-гейты отсекают шумы, обеспечивая стабильную проходимость 86–89% в неделю.',
         },
         {
-          src: '/projects/footlivestats-chart.png',
+          src: '/projects/footlivestats-chart.webp',
           alt: 'FootLiveStats — динамика линии тотала и котировок',
           label: 'SCREEN_02 // ДВИЖЕНИЕ ЛИНИИ И ЦЕН',
           desc: 'Синхронный мониторинг движения линии тотала (жёлтая кривая) и коэффициентов на ТБ в реальном времени. Мгновенная фиксация просадки и Value-исходов.',
         },
         {
-          src: '/projects/footlivestats-ai.png',
+          src: '/projects/footlivestats-ai.webp',
           alt: 'FootLiveStats — тактический разбор модуля Надзиратель',
           label: 'SCREEN_03 // ИИ-АНАЛИЗАТОР «НАДЗИРАТЕЛЬ»',
           desc: 'Модуль глубокого анализа на базе ансамбля Claude, ChatGPT, DeepSeek, Kimi 3 и GLM 5.3: сопоставление прематч-модели и текущего темпа игры для точечных прогнозов.',
@@ -134,7 +134,7 @@ export const ru: SiteContent = {
       status: 'v1.0.6 / актуальная игра 2.0.211.x',
       href: 'https://github.com/memasevich/CoQ-ru-translate-public',
       note: 'SOURCE: GITHUB / RussianLocalization/preview.png',
-      image: '/projects/coq-localization.png',
+      image: '/projects/coq-localization.webp',
       imageAlt:
         'Русская локализация Caves of Qud — изображение из репозитория проекта',
       tags: [
@@ -179,7 +179,7 @@ export const ru: SiteContent = {
       status: 'репозиторий / 100% контента',
       href: 'https://github.com/memasevich/repo-russianlocalization',
       note: 'SOURCE: STEAM GUIDE / PUBLIC COVER',
-      image: '/projects/repo-localization.jpg',
+      image: '/projects/repo-localization.webp',
       imageAlt:
         'Обложка публичного руководства по русской локализации R.E.P.O.',
       tags: [
@@ -211,7 +211,7 @@ export const ru: SiteContent = {
       status: 'репозиторий / Dynamic Engine v0.6.0',
       href: 'https://github.com/memasevich/Gnomoria-Russian-Translation',
       note: 'SOURCE: GITHUB / images/in_game_menu.png',
-      image: '/projects/gnomoria-localization.png',
+      image: '/projects/gnomoria-localization.webp',
       imageAlt: 'Русское меню Gnomoria — скриншот из репозитория проекта',
       tags: [
         'C#',
@@ -254,25 +254,25 @@ export const ru: SiteContent = {
     {
       title: 'RimWorld',
       desc: 'Управление колонией, логистика и выживание',
-      img: '/games/rimworld.jpg',
+      img: '/games/rimworld.webp',
       playtime: '3000 ч.',
     },
     {
       title: 'Satisfactory',
       desc: 'Масштабная автоматизация и фабрики',
-      img: '/games/satisfactory.jpg',
+      img: '/games/satisfactory.webp',
       playtime: '2500 ч.',
     },
     {
       title: 'Gnomoria',
       desc: 'Глубокий менеджмент и микроконтроль',
-      img: '/games/gnomoria.jpg',
+      img: '/games/gnomoria.webp',
       playtime: '1000 ч.',
     },
     {
       title: 'Melvor Idle',
       desc: 'Оптимизация процессов и idle-экономика',
-      img: '/games/melvor-idle.jpg',
+      img: '/games/melvor-idle.webp',
       playtime: '1000 ч.',
     },
   ],

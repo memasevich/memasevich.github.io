@@ -18,7 +18,7 @@ export function BrandLogo({
         <span className="topbar-brand-glow" aria-hidden="true" />
         <span className="topbar-brand-energy" aria-hidden="true" />
         <img
-          src="/memasevich.png"
+          src="/memasevich.webp"
           className="topbar-brand-img"
           alt="Memasevich"
           width="1672"
@@ -42,7 +42,7 @@ export function BrandLogo({
         <div className="energy" aria-hidden="true" />
 
         <img
-          src="/memasevich.png"
+          src="/memasevich.webp"
           className="logo"
           alt="Memasevich"
           width="1672"
