@@ -11,10 +11,11 @@ export const metadata: Metadata = {
   description: 'Memasevich — системный администратор, DevOps-специалист и независимый разработчик. Инфраструктура, инструменты и русские игровые локализации.',
   icons: {
     icon: [
-      { url: '/mascot/mascot-m.png', type: 'image/png' },
       { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/mascot/mascot-m.png', type: 'image/png' },
     ],
-    shortcut: '/mascot/mascot-m.png',
+    shortcut: '/favicon.ico',
     apple: '/mascot/mascot-m.png',
   },
   alternates: { canonical: '/', languages: { 'ru-RU': '/', en: '/en', 'x-default': '/' } },
