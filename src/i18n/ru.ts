@@ -121,10 +121,77 @@ export const ru: SiteContent = {
         'Performance',
       ],
     },
+    {
+      title: 'UNITY GAMEDEV & VOXEL ENGINE',
+      type: 'UNITY / C# / VOXEL MESHING / OPEN SOURCE',
+      role: 'Архитектура воксельного движка, генерация мешей, шейдеры, оптимизация чанков',
+      task: 'Исследование и разработка высокопроизводительной процедурной генерации 3D-воксельных пространств в среде Unity3D с оптимизацией draw calls.',
+      done: 'На базе исследований репозиториев CubeWorld и Unity Open Project реализован прототип воксельного движка на C#. Разработан процедурный мешер с жадным объединением смежных полигонов (Greedy Meshing), многопоточная генерация чанков без просадок FPS в основном цикле Unity и кастомные шейдеры освещения.',
+      status: 'исследования / open-source репозиторий',
+      href: 'https://github.com/memasevich/CubeWorld',
+      accent: 'violet',
+      tags: [
+        'Unity3D',
+        'C#',
+        'Voxel Engine',
+        'Greedy Meshing',
+        'Chunk Streaming',
+        'Custom Shaders',
+        'Multithreading',
+        'Open Source',
+      ],
+    },
   ],
   localizationTitle: 'Игровые локализации',
   localizationIntro:
     'Масштабные проекты реверс-инжиниринга и перевода: архитектура движков, открытый исходный код на GitHub и сборки в Steam Workshop.',
+  showcase: {
+    eyebrow: 'GOOGLE SEARCH // AI OVERVIEW DOSSIER',
+    badge: 'VERIFIED DEVELOPER',
+    title:
+      'Memasevich — независимый разработчик, автор русификатора Caves of Qud и системный инженер',
+    quote:
+      '«Memasevich — независимый разработчик ПО и системный администратор. Он известен как автор русификатора для игры Caves of Qud, а также ведет блог на платформе Boosty, где делится новостями разработки и обновлениями модов.»',
+    image: '/projects/steam-showcase-googled.webp',
+    imageAlt:
+      'Google AI Overview снимок: Memasevich — разработчик русификатора Caves of Qud',
+    desc: 'Публичная верификация поисковой системы Google: результаты индексации подтверждают авторство ключевых модификаций, глубокую техническую экспертизу в C# / Unity и активное присутствие в игровом сообществе Steam и Boosty.',
+    points: [
+      {
+        title: 'Caves of Qud RU (v1.0.6)',
+        desc: '166 000+ строк, кастомный морфологический движок склонения падежей и родов, поддержка Steam Workshop и автономного установщика.',
+      },
+      {
+        title: 'Реверс-инжиниринг и байткод-инъекции',
+        desc: 'Mono.Cecil, Harmony-хуки, перехват конвейера отрисовки XNA/Unity, разработка алгоритмических патчеров без повреждения оригинальных бинарников.',
+      },
+      {
+        title: 'Автономные 1-Click GUI-установщики',
+        desc: 'Windows-установщики (.exe) для каждого проекта локализации с автоопределением директории игры, бэкапом и валидацией хешей.',
+      },
+      {
+        title: 'Открытый код и поддержка сообщества',
+        desc: 'Публичные репозитории на GitHub, релизы для Steam / GOG версий, регулярные чейнджлоги на Boosty.',
+      },
+    ],
+    links: [
+      {
+        label: 'Steam Workshop',
+        href: 'https://steamcommunity.com/sharedfiles/filedetails/?id=3728849656',
+        badge: 'STEAM',
+      },
+      {
+        label: 'Boosty Блог',
+        href: 'https://boosty.to/memasevich',
+        badge: 'UPDATES',
+      },
+      {
+        label: 'GitHub Профиль',
+        href: 'https://github.com/memasevich',
+        badge: 'GITHUB',
+      },
+    ],
+  },
   localizations: [
     {
       title: 'Caves of Qud',
@@ -155,6 +222,11 @@ export const ru: SiteContent = {
       ],
       links: [
         {
+          label: 'Скачать установщик (.exe)',
+          href: 'https://github.com/memasevich/CoQ-ru-translate-public/releases/download/v1.0.6/CavesOfQudRussianLocalizationInstaller.exe',
+          badge: 'EXE v1.0.6',
+        },
+        {
           label: 'Steam Workshop',
           href: 'https://steamcommunity.com/sharedfiles/filedetails/?id=3728849656',
           badge: 'WORKSHOP',
@@ -176,7 +248,7 @@ export const ru: SiteContent = {
       area: 'StreamingAssets / Трёхуровневая TSV-схема / Кириллица',
       description:
         'Полная качественная локализация кооперативного хоррор-шутера R.E.P.O. (Semiwork). Интеграция в нативную подсистему локализации игры через три независимые TSV-таблицы без изменения бинарников и риска конфликтов.',
-      status: 'репозиторий / 100% контента',
+      status: 'репозиторий / релиз v1.0.0 (130+ загрузок)',
       href: 'https://github.com/memasevich/repo-russianlocalization',
       note: 'SOURCE: STEAM GUIDE / PUBLIC COVER',
       image: '/projects/repo-localization.webp',
@@ -197,9 +269,19 @@ export const ru: SiteContent = {
       ],
       links: [
         {
+          label: 'Скачать установщик (.exe)',
+          href: 'https://github.com/memasevich/repo-russianlocalization/releases/download/v1.0.0/RepoRussianLocalizationInstaller.exe',
+          badge: 'EXE v1.0.0',
+        },
+        {
           label: 'GitHub Репозиторий',
           href: 'https://github.com/memasevich/repo-russianlocalization',
           badge: 'OPEN SOURCE',
+        },
+        {
+          label: 'Релизы и сборки',
+          href: 'https://github.com/memasevich/repo-russianlocalization/releases',
+          badge: 'RELEASES',
         },
       ],
     },
@@ -207,8 +289,8 @@ export const ru: SiteContent = {
       title: 'Gnomoria',
       area: 'C# / XNA Dynamic Hook / Mono.Cecil / 0Harmony',
       description:
-        'Мод русификации Dynamic Engine v0.6.0. Перехватывает вызовы отрисовки графического движка XNA на лету, реализуя динамический рендеринг кириллицы без модификации оригинальных XNB-архивов.',
-      status: 'репозиторий / Dynamic Engine v0.6.0',
+        'Мод русификации Dynamic Engine v0.7.0. Перехватывает вызовы отрисовки графического движка XNA на лету, реализуя динамический рендеринг кириллицы без модификации оригинальных XNB-архивов. Включает 46 unit-тестов для проверки правил лингвистического парсера.',
+      status: 'репозиторий / Dynamic Engine v0.7.0 (46 тестов)',
       href: 'https://github.com/memasevich/Gnomoria-Russian-Translation',
       note: 'SOURCE: GITHUB / images/in_game_menu.png',
       image: '/projects/gnomoria-localization.webp',
@@ -230,6 +312,11 @@ export const ru: SiteContent = {
       ],
       links: [
         {
+          label: 'Скачать установщик (.exe)',
+          href: 'https://github.com/memasevich/Gnomoria-Russian-Translation/releases/download/v0.7.0/GnomoriaRussianTranslationInstaller.exe',
+          badge: 'EXE v0.7.0',
+        },
+        {
           label: 'GitHub Репозиторий',
           href: 'https://github.com/memasevich/Gnomoria-Russian-Translation',
           badge: 'OPEN SOURCE',
@@ -240,9 +327,9 @@ export const ru: SiteContent = {
           badge: 'PERFORMANCE MOD',
         },
         {
-          label: 'Релизы и сборки',
-          href: 'https://github.com/memasevich/Gnomoria-Russian-Translation/releases',
-          badge: 'RELEASES',
+          label: 'Релиз v0.7.0',
+          href: 'https://github.com/memasevich/Gnomoria-Russian-Translation/releases/tag/v0.7.0',
+          badge: 'v0.7.0',
         },
       ],
     },

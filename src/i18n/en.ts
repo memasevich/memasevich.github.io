@@ -121,10 +121,77 @@ export const en: SiteContent = {
         'Performance',
       ],
     },
+    {
+      title: 'UNITY GAMEDEV & VOXEL ENGINE',
+      type: 'UNITY / C# / VOXEL MESHING / OPEN SOURCE',
+      role: 'Voxel engine architecture, mesh generation, custom shaders, chunk streaming',
+      task: 'Research and implementation of high-performance procedural 3D voxel world generation in Unity3D with draw-call optimization.',
+      done: 'Based on CubeWorld and Unity Open Project research, implemented a C# 3D voxel engine prototype. Engineered a procedural mesher with greedy face merging (Greedy Meshing), background asynchronous chunk streaming without main-thread FPS drops, and custom low-level voxel lighting shaders.',
+      status: 'research / open-source repository',
+      href: 'https://github.com/memasevich/CubeWorld',
+      accent: 'violet',
+      tags: [
+        'Unity3D',
+        'C#',
+        'Voxel Engine',
+        'Greedy Meshing',
+        'Chunk Streaming',
+        'Custom Shaders',
+        'Multithreading',
+        'Open Source',
+      ],
+    },
   ],
   localizationTitle: 'Game Localizations',
   localizationIntro:
     'Major reverse-engineering and translation projects: custom engine architecture, open-source code on GitHub, and Steam Workshop builds.',
+  showcase: {
+    eyebrow: 'GOOGLE SEARCH // AI OVERVIEW DOSSIER',
+    badge: 'VERIFIED DEVELOPER',
+    title:
+      'Memasevich — Independent Software Developer, Caves of Qud RU Author & Systems Engineer',
+    quote:
+      '"Memasevich is an independent software developer and systems administrator. He is best known as the author of the Russian localization for Caves of Qud, and maintains a dev blog on Boosty sharing mod updates and engineering notes."',
+    image: '/projects/steam-showcase-googled.webp',
+    imageAlt:
+      'Google AI Overview snapshot: Memasevich — Caves of Qud localization developer',
+    desc: 'Public automated Google Search AI Overview result verifying independent development status, author of community localizations, deep C# / Unity reverse-engineering expertise, and active Steam Community / Boosty footprint.',
+    points: [
+      {
+        title: 'Caves of Qud RU (v1.0.6)',
+        desc: '166,000+ lines, custom runtime morphology engine with dynamic declensions, published on Steam Workshop & standalone installer.',
+      },
+      {
+        title: 'Engine Reverse Engineering & Bytecode Injection',
+        desc: 'Mono.Cecil, Harmony hooks, XNA/Unity render pipeline interception, algorithmic binary patchers without file corruption.',
+      },
+      {
+        title: 'Autonomous 1-Click GUI Installers',
+        desc: 'Custom Windows executable (.exe) installers for all translation projects featuring auto-detection, file backup, and hash verification.',
+      },
+      {
+        title: 'Open Source & Community Footprint',
+        desc: 'Public GitHub repositories, Steam & GOG cross-compatibility, and frequent changelogs published on Boosty.',
+      },
+    ],
+    links: [
+      {
+        label: 'Steam Workshop',
+        href: 'https://steamcommunity.com/sharedfiles/filedetails/?id=3728849656',
+        badge: 'STEAM',
+      },
+      {
+        label: 'Boosty Blog',
+        href: 'https://boosty.to/memasevich',
+        badge: 'UPDATES',
+      },
+      {
+        label: 'GitHub Profile',
+        href: 'https://github.com/memasevich',
+        badge: 'GITHUB',
+      },
+    ],
+  },
   localizations: [
     {
       title: 'Caves of Qud',
@@ -155,6 +222,11 @@ export const en: SiteContent = {
       ],
       links: [
         {
+          label: 'Download Installer (.exe)',
+          href: 'https://github.com/memasevich/CoQ-ru-translate-public/releases/download/v1.0.6/CavesOfQudRussianLocalizationInstaller.exe',
+          badge: 'EXE v1.0.6',
+        },
+        {
           label: 'Steam Workshop',
           href: 'https://steamcommunity.com/sharedfiles/filedetails/?id=3728849656',
           badge: 'WORKSHOP',
@@ -176,7 +248,7 @@ export const en: SiteContent = {
       area: 'StreamingAssets / 3-Tier TSV Schema / Cyrillic Styling',
       description:
         'Complete quality Russian localization of the co-op horror shooter R.E.P.O. (Semiwork). Clean integration into the native StreamingAssets localization subsystem via three modular TSV tables without modifying game binaries or triggering anti-cheat flags.',
-      status: 'repository / 100% content',
+      status: 'repository / release v1.0.0 (130+ downloads)',
       href: 'https://github.com/memasevich/repo-russianlocalization',
       note: 'SOURCE: STEAM GUIDE / PUBLIC COVER',
       image: '/projects/repo-localization.webp',
@@ -196,9 +268,19 @@ export const en: SiteContent = {
       ],
       links: [
         {
+          label: 'Download Installer (.exe)',
+          href: 'https://github.com/memasevich/repo-russianlocalization/releases/download/v1.0.0/RepoRussianLocalizationInstaller.exe',
+          badge: 'EXE v1.0.0',
+        },
+        {
           label: 'GitHub Repository',
           href: 'https://github.com/memasevich/repo-russianlocalization',
           badge: 'OPEN SOURCE',
+        },
+        {
+          label: 'Releases & Builds',
+          href: 'https://github.com/memasevich/repo-russianlocalization/releases',
+          badge: 'RELEASES',
         },
       ],
     },
@@ -206,8 +288,8 @@ export const en: SiteContent = {
       title: 'Gnomoria',
       area: 'C# / XNA Dynamic Hook / Mono.Cecil / 0Harmony',
       description:
-        'Dynamic Engine v0.6.0 translation mod. Intercepts XNA rendering pipeline calls on the fly, delivering dynamic Cyrillic text rendering without altering original XNB game archives.',
-      status: 'repository / Dynamic Engine v0.6.0',
+        'Dynamic Engine v0.7.0 translation mod. Intercepts XNA rendering pipeline calls on the fly, delivering dynamic Cyrillic text rendering without altering original XNB game archives. Includes 46 automated unit tests validating linguistic parser rules.',
+      status: 'repository / Dynamic Engine v0.7.0 (46 tests)',
       href: 'https://github.com/memasevich/Gnomoria-Russian-Translation',
       note: 'SOURCE: GITHUB / images/in_game_menu.png',
       image: '/projects/gnomoria-localization.webp',
@@ -229,6 +311,11 @@ export const en: SiteContent = {
       ],
       links: [
         {
+          label: 'Download Installer (.exe)',
+          href: 'https://github.com/memasevich/Gnomoria-Russian-Translation/releases/download/v0.7.0/GnomoriaRussianTranslationInstaller.exe',
+          badge: 'EXE v0.7.0',
+        },
+        {
           label: 'GitHub Repository',
           href: 'https://github.com/memasevich/Gnomoria-Russian-Translation',
           badge: 'OPEN SOURCE',
@@ -239,9 +326,9 @@ export const en: SiteContent = {
           badge: 'PERFORMANCE MOD',
         },
         {
-          label: 'Releases & Builds',
-          href: 'https://github.com/memasevich/Gnomoria-Russian-Translation/releases',
-          badge: 'RELEASES',
+          label: 'Release v0.7.0',
+          href: 'https://github.com/memasevich/Gnomoria-Russian-Translation/releases/tag/v0.7.0',
+          badge: 'v0.7.0',
         },
       ],
     },

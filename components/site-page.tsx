@@ -17,6 +17,7 @@ import { WorkGallerySlider, type GallerySlide } from './work-gallery-slider';
 import { GithubActivity, GithubMark } from './github-activity';
 import { TerminalDaemonHeist } from './terminal-daemon-heist';
 import { BrandLogo } from './brand-logo';
+import { GoogleAiShowcase, type ShowcaseData } from './google-ai-showcase';
 
 type Accent = 'lime' | 'coral' | 'violet';
 
@@ -98,6 +99,7 @@ export type SiteContent = {
   tools: WorkItem[];
   localizationTitle: string;
   localizationIntro: string;
+  showcase?: ShowcaseData;
   localizations: Localization[];
   aboutTitle: string;
   aboutText: string[];
@@ -509,6 +511,13 @@ export default function SitePage({
               icon={<Languages aria-hidden="true" />}
             />
           </div>
+
+          {content.showcase && (
+            <div className="showcase-container">
+              <GoogleAiShowcase data={content.showcase} locale={locale} />
+            </div>
+          )}
+
           <div className="localization-grid">
             {content.localizations.map((game, index) => (
               <article className="localization-card" key={game.title}>
