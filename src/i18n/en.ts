@@ -20,6 +20,8 @@ export const en: SiteContent = {
   tools: [
     {
       title: 'FOOTLIVESTATS / AI ANALYST',
+      summary:
+        'FootLiveStats combines live football statistics with AI match analysis. The Android app is published on RuStore.',
       type: 'AI / SPORTS ANALYTICS / PRIVATE',
       role: 'System architecture, live parsers, multi-model AI ensemble',
       task: 'Automated live statistical aggregation and predictive modeling for match dynamics in real time.',
@@ -64,6 +66,8 @@ export const en: SiteContent = {
     },
     {
       title: 'HANDHELD TERMINAL GUARD (TSD GUARD)',
+      summary:
+        'An Android service that protects warehouse handheld terminals by monitoring device state and alerting when a terminal is removed from its case or left unattended.',
       type: 'ANDROID / KOTLIN / HARDWARE / INTERNAL',
       role: 'Android service architecture, Zebra / Honeywell hardware sensor integration',
       task: 'Prevent loss, theft, and accidental drop damage to industrial data collection terminals across a logistics distribution center.',
@@ -83,6 +87,8 @@ export const en: SiteContent = {
     },
     {
       title: 'WMS SCANNING MODULE (BARCODE ENGINE)',
+      summary:
+        'A custom barcode scanning module for WMS. Replaces a third-party solution and connects data processing to the corporate system.',
       type: 'WMS / C# / .NET / ERP INTEGRATION',
       role: 'Core reverse engineering, custom engine development, 1C:Enterprise integration',
       task: 'Replace the legacy, sluggish, and closed-source GS Code third-party module in the enterprise Warehouse Management System (WMS).',
@@ -103,6 +109,8 @@ export const en: SiteContent = {
     },
     {
       title: 'GNOMORIA LATE-GAME OPTIMIZER',
+      summary:
+        'A Gnomoria optimizer for large colonies: reduces engine load, improves pathfinding, and addresses memory limits.',
       type: 'GAME ENGINE / C# / HARMONY / OPEN SOURCE',
       role: 'Low-level XNA reverse engineering, algorithmic A* optimization, Mono.Cecil injector',
       task: 'Eliminate severe late-game framerate drops (down to 18 FPS), CPU simulation bottlenecks, and OutOfMemory crashes in Gnomoria with 100–250+ gnomes.',

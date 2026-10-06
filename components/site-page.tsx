@@ -7,15 +7,12 @@ import {
   Languages,
   Mail,
   Send,
-  Terminal,
   Zap,
 } from 'lucide-react';
 import { ThemeToggle } from './theme-toggle';
 import { MobileNav } from './mobile-nav';
-import { ItBackground } from './it-background';
 import { WorkGallerySlider, type GallerySlide } from './work-gallery-slider';
 import { GithubActivity, GithubMark } from './github-activity';
-import { TerminalDaemonHeist } from './terminal-daemon-heist';
 import { BrandLogo } from './brand-logo';
 import { GoogleAiShowcase, type ShowcaseData } from './google-ai-showcase';
 
@@ -23,6 +20,7 @@ type Accent = 'lime' | 'coral' | 'violet';
 
 type WorkItem = {
   title: string;
+  summary: string;
   type: string;
   role: string;
   task: string;
@@ -148,7 +146,7 @@ function WorkCard({
     >
       <header className="work-card-head">
         <div className="work-head-left">
-          <span>MOD_0{index + 1}</span>
+          <span>{String(index + 1).padStart(2, '0')}</span>
           <span className="work-badge">{item.type}</span>
         </div>
         {item.highlightMetric && (
@@ -159,39 +157,44 @@ function WorkCard({
         )}
       </header>
       <div className="work-card-title">
-        <StatusMark accent={item.accent} />
         <h3>{item.title}</h3>
       </div>
-      <dl className="work-facts">
-        <div>
-          <dt>{ru ? 'РОЛЬ' : 'ROLE'}</dt>
-          <dd>{item.role}</dd>
-        </div>
-        <div>
-          <dt>{ru ? 'ЗАДАЧА' : 'TASK'}</dt>
-          <dd>{item.task}</dd>
-        </div>
-        <div>
-          <dt>{ru ? 'СДЕЛАНО' : 'DONE'}</dt>
-          <dd>{item.done}</dd>
-        </div>
-        <div>
-          <dt>{ru ? 'СТАТУС' : 'STATUS'}</dt>
-          <dd className="work-status">{item.status}</dd>
-        </div>
-      </dl>
-      {item.tags && item.tags.length > 0 && (
-        <div
-          className="work-tags"
-          aria-label={ru ? 'Стек технологий' : 'Technology stack'}
-        >
-          {item.tags.map((tag) => (
-            <span className="work-tag" key={tag}>
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
+      <p className="project-summary">{item.summary}</p>
+      <details className="work-details">
+        <summary>
+          {ru ? 'О проекте и технологиях' : 'Project and technology'}
+        </summary>
+        <dl className="work-facts">
+          <div>
+            <dt>{ru ? 'РОЛЬ' : 'ROLE'}</dt>
+            <dd>{item.role}</dd>
+          </div>
+          <div>
+            <dt>{ru ? 'ЗАДАЧА' : 'TASK'}</dt>
+            <dd>{item.task}</dd>
+          </div>
+          <div>
+            <dt>{ru ? 'СДЕЛАНО' : 'DONE'}</dt>
+            <dd>{item.done}</dd>
+          </div>
+          <div>
+            <dt>{ru ? 'СТАТУС' : 'STATUS'}</dt>
+            <dd className="work-status">{item.status}</dd>
+          </div>
+        </dl>
+        {item.tags && item.tags.length > 0 && (
+          <div
+            className="work-tags"
+            aria-label={ru ? 'Стек технологий' : 'Technology stack'}
+          >
+            {item.tags.map((tag) => (
+              <span className="work-tag" key={tag}>
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </details>
       {item.gallery && item.gallery.length > 0 && (
         <WorkGallerySlider items={item.gallery} locale={locale} />
       )}
@@ -317,7 +320,6 @@ export default function SitePage({
   ];
   return (
     <div className="site-shell" lang={locale}>
-      <ItBackground />
       <header className="container topbar">
         <Link
           className="wordmark"
@@ -398,7 +400,7 @@ export default function SitePage({
               </div>
 
               <div className="bento-title-group">
-                <TerminalDaemonHeist heroName={heroName} locale={locale} />
+                <h1 className="profile-name">{heroName}</h1>
                 <p className="bento-roles">{heroRole.join(' • ')}</p>
               </div>
 
@@ -456,45 +458,44 @@ export default function SitePage({
               </div>
             </div>
 
-            {/* Bento Card 2: System Telemetry */}
-            <div className="bento-card bento-telemetry">
-              <div className="bento-card-top">
-                <span className="telemetry-label">
-                  <Terminal size={14} aria-hidden="true" />
-                  SYS_TELEMETRY
-                </span>
-                <span className="telemetry-live">● ONLINE</span>
+            <aside
+              className="hero-focus"
+              aria-label={ru ? 'Направления работы' : 'Areas of work'}
+            >
+              <span className="eyebrow">
+                {ru
+                  ? 'ОТ ИДЕИ ДО РАБОТАЮЩЕЙ СИСТЕМЫ'
+                  : 'FROM IDEA TO WORKING SYSTEM'}
+              </span>
+              <h2>
+                {ru
+                  ? 'Делаю сложное понятным.'
+                  : 'Making complex things clear.'}
+              </h2>
+              <p>
+                {ru
+                  ? 'Инфраструктура, приложения и игровые локализации. Проекты, которые можно изучить, попробовать и обсудить.'
+                  : 'Infrastructure, apps, and game localizations. Projects you can explore, try, and discuss.'}
+              </p>
+              <div className="hero-focus-links">
+                <a href="#works">
+                  <span>01</span>
+                  {ru ? 'Приложения и инструменты' : 'Apps and tools'}
+                  <span>↗</span>
+                </a>
+                <a href="#localizations">
+                  <span>02</span>
+                  {ru ? 'Игровые локализации' : 'Game localizations'}
+                  <span>↗</span>
+                </a>
+                <a href="#resume">
+                  <span>03</span>
+                  {ru ? 'Опыт и навыки' : 'Experience and skills'}
+                  <span>↗</span>
+                </a>
               </div>
-
-              <dl className="telemetry-grid">
-                <div className="telemetry-item">
-                  <dt>PLATFORM</dt>
-                  <dd>Proxmox VE / Debian</dd>
-                </div>
-                <div className="telemetry-item">
-                  <dt>LOCATION</dt>
-                  <dd>Moscow, RU (UTC+3)</dd>
-                </div>
-                <div className="telemetry-item">
-                  <dt>CORE STACK</dt>
-                  <dd>Linux • Docker • C# • Go</dd>
-                </div>
-                <div className="telemetry-item">
-                  <dt>SLA / UPTIME</dt>
-                  <dd className="uptime-val">99.98% / HA</dd>
-                </div>
-              </dl>
-
-              <div className="telemetry-footer">
-                <span className="telemetry-kernel">
-                  KERNEL: Linux 6.8 / ZFS
-                </span>
-                <span className="telemetry-status">STATUS: OK</span>
-              </div>
-            </div>
-
-            {/* Bento Card 3: GitHub Activity Heatmap Matrix & Mascot Easter Egg */}
-            <GithubActivity locale={locale} />
+              <span className="hero-stack">Linux / Docker / C# / Go</span>
+            </aside>
           </div>
         </section>
 
@@ -517,7 +518,7 @@ export default function SitePage({
             ))}
           </div>
 
-          <div className="subsection">
+          <div className="subsection" id="localizations">
             <SectionHead
               index="01B"
               command="ls /work/localization"
@@ -526,12 +527,6 @@ export default function SitePage({
               icon={<Languages aria-hidden="true" />}
             />
           </div>
-
-          {content.showcase && (
-            <div className="showcase-container">
-              <GoogleAiShowcase data={content.showcase} locale={locale} />
-            </div>
-          )}
 
           <div className="localization-grid">
             {content.localizations.map((game, index) => (
@@ -634,6 +629,27 @@ export default function SitePage({
           </div>
         </section>
 
+        <section className="container community-context">
+          <details className="additional-context">
+            <summary>
+              {ru
+                ? 'Активность и публичные материалы'
+                : 'Activity and public materials'}
+            </summary>
+            <GithubActivity locale={locale} />
+          </details>{' '}
+          {content.showcase && (
+            <details className="additional-context">
+              <summary>
+                {ru ? 'Проекты в поиске Google' : 'Projects in Google Search'}
+              </summary>
+              <div className="showcase-container">
+                <GoogleAiShowcase data={content.showcase} locale={locale} />
+              </div>
+            </details>
+          )}
+        </section>
+
         <section className="container about" id="about">
           <div className="about-label">
             <div className="eyebrow section-command">
@@ -661,16 +677,22 @@ export default function SitePage({
           </div>
           <div className="about-copy">
             <h2>{content.aboutTitle}</h2>
-            <div className="about-story">
-              {content.aboutText.map((paragraph, index) => (
-                <p key={paragraph}>
-                  <span className="story-index">
-                    0{index + 1} / {storyLabels[index]}
-                  </span>
-                  <span>{paragraph}</span>
-                </p>
-              ))}
-            </div>
+            <p className="about-intro">{content.aboutText[0]}</p>
+            <details className="personal-story">
+              <summary>
+                {ru ? 'Подробнее о моём пути' : 'More about my journey'}
+              </summary>
+              <div className="about-story">
+                {content.aboutText.slice(1).map((paragraph, index) => (
+                  <p key={paragraph}>
+                    <span className="story-index">
+                      0{index + 2} / {storyLabels[index + 1]}
+                    </span>
+                    <span>{paragraph}</span>
+                  </p>
+                ))}
+              </div>
+            </details>
             <span className="about-sign">
               MEMASEVICH / INDEPENDENT / SYSTEMS
             </span>
