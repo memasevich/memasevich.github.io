@@ -29,6 +29,7 @@ type WorkItem = {
   done: string;
   status: string;
   href?: string;
+  linkLabel?: string;
   accent: Accent;
   featured?: boolean;
   highlightMetric?: string;
@@ -201,13 +202,14 @@ function WorkCard({
           target="_blank"
           rel="noopener noreferrer"
         >
-          {item.type.includes('INTERNAL')
-            ? ru
-              ? 'Профиль GitHub'
-              : 'GitHub Profile'
-            : ru
-              ? 'Репозиторий'
-              : 'Repository'}
+          {item.linkLabel ??
+            (item.type.includes('INTERNAL')
+              ? ru
+                ? 'Профиль GitHub'
+                : 'GitHub Profile'
+              : ru
+                ? 'Репозиторий'
+                : 'Repository')}
           <ExternalLink size={14} aria-hidden="true" />
         </a>
       ) : (
@@ -406,6 +408,19 @@ export default function SitePage({
                 <a className="bento-primary-btn" href="#works">
                   {content.primaryCta} <span aria-hidden="true">↓</span>
                 </a>
+                <a
+                  className="bento-store-link"
+                  href="https://www.rustore.ru/catalog/app/ru.botstavki.dashboard"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>
+                    {ru
+                      ? 'FootLiveStats в RuStore'
+                      : 'FootLiveStats on RuStore'}
+                  </span>
+                  <ExternalLink size={15} aria-hidden="true" />
+                </a>
                 <div className="bento-social-row">
                   <a
                     className="bento-social-btn"
@@ -533,7 +548,9 @@ export default function SitePage({
                     loading="lazy"
                     decoding="async"
                   />
-                  <figcaption>PUBLIC PROJECT IMAGE // SOURCE</figcaption>
+                  <figcaption>
+                    {ru ? 'ПРОЕКТ / ЛОКАЛИЗАЦИЯ' : 'PROJECT / LOCALIZATION'}
+                  </figcaption>
                   <span aria-hidden="true" />
                 </figure>
                 <div className="localization-title">
@@ -567,10 +584,10 @@ export default function SitePage({
                 )}
 
                 {game.highlights && game.highlights.length > 0 && (
-                  <div className="localization-highlights-box">
-                    <span className="highlights-title">
+                  <details className="localization-highlights-box project-details">
+                    <summary className="highlights-title">
                       {ru ? 'АРХИТЕКТУРА И ДЕТАЛИ' : 'ARCHITECTURE & DETAILS'}
-                    </span>
+                    </summary>
                     <ul className="localization-highlights">
                       {game.highlights.map((hl) => (
                         <li key={hl}>
@@ -581,7 +598,7 @@ export default function SitePage({
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </details>
                 )}
 
                 <small>{game.note}</small>

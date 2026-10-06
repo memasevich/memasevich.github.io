@@ -3,7 +3,7 @@ import type { SiteContent } from '../../components/site-page';
 export const en: SiteContent = {
   locale: 'en',
   nav: {
-    works: 'Work',
+    works: 'Projects',
     about: 'About',
     resume: 'Resume',
     games: 'Simulations',
@@ -13,7 +13,7 @@ export const en: SiteContent = {
   heroTitle: 'MEMASEVICH\nSYSADMIN / DEVOPS\nSOFTWARE ENGINEER',
   heroLead:
     'Designing and maintaining infrastructure, automating processes, and creating tools for reverse-engineering and complex game localizations.',
-  primaryCta: 'View work',
+  primaryCta: 'View projects',
   toolsTitle: 'Applied Development',
   toolsIntro:
     'Engineering tools, automation services, and applied utilities built to solve real-world production challenges.',
@@ -24,7 +24,9 @@ export const en: SiteContent = {
       role: 'System architecture, live parsers, multi-model AI ensemble',
       task: 'Automated live statistical aggregation and predictive modeling for match dynamics in real time.',
       done: 'Started originally as a Telegram bot (@botstavki) before evolving into an autonomous analytics service. Multi-model AI ensemble powered by Claude, ChatGPT, DeepSeek, Kimi 3, and GLM 5.3 with deterministic code-gate filtering. Delivers high-precision pre-match/live analysis with a consistent 86–89% weekly win rate.',
-      status: 'private service / production',
+      status: 'service in production / Android app on RuStore',
+      href: 'https://www.rustore.ru/catalog/app/ru.botstavki.dashboard',
+      linkLabel: 'View app on RuStore',
       accent: 'lime',
       featured: true,
       highlightMetric: '86–89% WEEKLY WIN RATE',
@@ -127,7 +129,7 @@ export const en: SiteContent = {
     'Major reverse-engineering and translation projects: custom engine architecture, open-source code on GitHub, and Steam Workshop builds.',
   showcase: {
     eyebrow: 'GOOGLE SEARCH // AI OVERVIEW DOSSIER',
-    badge: 'VERIFIED DEVELOPER',
+    badge: 'GOOGLE SEARCH',
     title:
       'Memasevich — Independent Software Developer, Caves of Qud RU Author & Systems Engineer',
     quote:
@@ -135,7 +137,7 @@ export const en: SiteContent = {
     image: '/projects/steam-showcase-googled.webp',
     imageAlt:
       'Google AI Overview snapshot: Memasevich — Caves of Qud localization developer',
-    desc: 'Public automated Google Search AI Overview result verifying independent development status, author of community localizations, deep C# / Unity reverse-engineering expertise, and active Steam Community / Boosty footprint.',
+    desc: 'A snapshot of Google Search with an AI Overview about my projects. Explore the repositories, Steam Workshop, and Boosty for source code, development details, and updates.',
     points: [
       {
         title: 'Caves of Qud RU (v1.0.6)',

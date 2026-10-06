@@ -320,7 +320,9 @@ a:focus-visible {
   flex-shrink: 0;
   height: 24px;
   object-fit: contain;
-  transition: transform 0.2s ease, filter 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
   width: 24px;
 }
 .wordmark:hover .wordmark-mascot {
@@ -555,8 +557,7 @@ a:focus-visible {
 .brand .logo,
 .contact-brand .logo {
   display: block;
-  filter:
-    drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6))
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6))
     drop-shadow(0 0 10px rgba(32, 150, 255, 0.3));
   height: auto;
   position: relative;
@@ -713,7 +714,8 @@ a:focus-visible {
 }
 
 @keyframes breathingGlow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.16;
     transform: scale(0.95);
   }
@@ -2578,7 +2580,9 @@ a:focus-visible {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
   padding: 24px;
   position: relative;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .google-showcase-card:hover {
@@ -2624,7 +2628,9 @@ a:focus-visible {
   filter: contrast(1.02) brightness(0.96);
   height: 100%;
   object-fit: cover;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.35s ease;
   width: 100%;
 }
 
@@ -2833,7 +2839,9 @@ a:focus-visible {
   letter-spacing: 0.03em;
   padding: 7px 13px;
   text-transform: uppercase;
-  transition: background 0.15s ease, transform 0.15s ease;
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
 }
 
 .google-showcase-btn-primary:hover {
@@ -5776,6 +5784,69 @@ html.theme-light .utp-label {
   100% {
     opacity: 0.2;
     transform: scale(1.4) translateX(-4px);
+  }
+}
+
+/* Published application and optional engineering details. */
+.bento-actions {
+  flex-wrap: wrap;
+}
+.bento-store-link {
+  align-items: center;
+  border: 1px solid var(--signal);
+  border-radius: 6px;
+  color: var(--ink);
+  display: inline-flex;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  gap: 10px;
+  justify-content: center;
+  min-height: 44px;
+  padding: 12px 18px;
+  order: 1;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+.bento-store-link:hover {
+  background: var(--surface-2);
+  border-color: var(--signal-bright);
+}
+.bento-actions .bento-social-row {
+  order: 2;
+}
+.project-details summary {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  list-style: none;
+  min-height: 44px;
+  margin: 0;
+}
+.project-details summary::-webkit-details-marker {
+  display: none;
+}
+.project-details summary::after {
+  content: '+';
+  font-size: 20px;
+}
+.project-details[open] summary::after {
+  content: '−';
+}
+.project-details summary:focus-visible,
+.bento-store-link:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 4px;
+}
+.project-details .localization-highlights {
+  margin-top: 14px;
+}
+@media (max-width: 600px) {
+  .bento-store-link {
+    width: 100%;
   }
 }
 

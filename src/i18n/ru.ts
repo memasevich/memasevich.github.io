@@ -3,7 +3,7 @@ import type { SiteContent } from '../../components/site-page';
 export const ru: SiteContent = {
   locale: 'ru',
   nav: {
-    works: 'Работы',
+    works: 'Проекты',
     about: 'Обо мне',
     resume: 'Резюме',
     games: 'Симуляции',
@@ -13,7 +13,7 @@ export const ru: SiteContent = {
   heroTitle: 'MEMASEVICH\nСИСАДМИН / DEVOPS\nРАЗРАБОТЧИК',
   heroLead:
     'Проектирую и поддерживаю инфраструктуру, автоматизирую процессы, создаю инструменты для реверс-инжиниринга и сложной локализации игр.',
-  primaryCta: 'Смотреть работы',
+  primaryCta: 'Посмотреть проекты',
   toolsTitle: 'Прикладная разработка',
   toolsIntro:
     'Инженерные инструменты, сервисы автоматизации и прикладные утилиты, созданные для решения реальных продакшен-задач.',
@@ -24,7 +24,9 @@ export const ru: SiteContent = {
       role: 'Архитектура системы, live-сбор данных, мультимодельный ИИ-пайплайн',
       task: 'Непрерывный сбор live-статистики футбольных матчей, расчет fair odds / EV и выдача предиктивного анализа с высокой проходимостью.',
       done: 'Проект стартовал как Telegram-бот (@botstavki) и эволюционировал в комплексный аналитический сервис. Ансамбль нейросетей Claude, ChatGPT, DeepSeek, Kimi 3 и GLM 5.3 с детерминированными код-гейтами фильтрации. Выдает глубокую тактическую аналитику и обеспечивает 86–89% побед еженедельно.',
-      status: 'в продакшене / приватный доступ',
+      status: 'сервис в продакшене / Android-приложение в RuStore',
+      href: 'https://www.rustore.ru/catalog/app/ru.botstavki.dashboard',
+      linkLabel: 'Открыть приложение в RuStore',
       accent: 'lime',
       featured: true,
       highlightMetric: '86–89% ПОБЕД В НЕДЕЛЮ',
@@ -127,7 +129,7 @@ export const ru: SiteContent = {
     'Масштабные проекты реверс-инжиниринга и перевода: архитектура движков, открытый исходный код на GitHub и сборки в Steam Workshop.',
   showcase: {
     eyebrow: 'GOOGLE SEARCH // AI OVERVIEW DOSSIER',
-    badge: 'VERIFIED DEVELOPER',
+    badge: 'GOOGLE SEARCH',
     title:
       'Memasevich — независимый разработчик, автор русификатора Caves of Qud и системный инженер',
     quote:
@@ -135,7 +137,7 @@ export const ru: SiteContent = {
     image: '/projects/steam-showcase-googled.webp',
     imageAlt:
       'Google AI Overview снимок: Memasevich — разработчик русификатора Caves of Qud',
-    desc: 'Публичная верификация поисковой системы Google: результаты индексации подтверждают авторство ключевых модификаций, глубокую техническую экспертизу в C# / Unity и активное присутствие в игровом сообществе Steam и Boosty.',
+    desc: 'Снимок поисковой выдачи Google с AI Overview о моих проектах. Подробнее о разработке, исходном коде и обновлениях — в репозиториях, Steam Workshop и на Boosty.',
     points: [
       {
         title: 'Caves of Qud RU (v1.0.6)',

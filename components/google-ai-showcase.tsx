@@ -1,6 +1,11 @@
 'use client';
 
-import React, { useState, useEffect, useCallback, useSyncExternalStore } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useSyncExternalStore,
+} from 'react';
 import { createPortal } from 'react-dom';
 import { ExternalLink, Sparkles, ZoomIn, X, CheckCircle2 } from 'lucide-react';
 
@@ -40,7 +45,7 @@ export function GoogleAiShowcase({ data, locale }: GoogleAiShowcaseProps) {
   const mounted = useSyncExternalStore(
     emptySubscribe,
     () => true,
-    () => false
+    () => false,
   );
 
   const openLightbox = useCallback(() => {
@@ -79,8 +84,14 @@ export function GoogleAiShowcase({ data, locale }: GoogleAiShowcaseProps) {
             type="button"
             className="google-showcase-media-wrap"
             onClick={openLightbox}
-            title={ru ? 'Нажмите, чтобы увеличить изображение' : 'Click to enlarge image'}
-            aria-label={ru ? 'Увеличить Google AI Overview' : 'Enlarge Google AI Overview'}
+            title={
+              ru
+                ? 'Нажмите, чтобы увеличить изображение'
+                : 'Click to enlarge image'
+            }
+            aria-label={
+              ru ? 'Увеличить Google AI Overview' : 'Enlarge Google AI Overview'
+            }
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -100,7 +111,7 @@ export function GoogleAiShowcase({ data, locale }: GoogleAiShowcaseProps) {
             </div>
             <span className="google-showcase-tag">
               <Sparkles size={11} aria-hidden="true" />
-              GOOGLE AI // VERIFIED
+              GOOGLE SEARCH // AI OVERVIEW
             </span>
           </button>
           <p className="google-showcase-caption">
@@ -135,7 +146,9 @@ export function GoogleAiShowcase({ data, locale }: GoogleAiShowcaseProps) {
                   <CheckCircle2 size={14} />
                 </span>
                 <div>
-                  <strong className="showcase-point-title">{point.title}:</strong>{' '}
+                  <strong className="showcase-point-title">
+                    {point.title}:
+                  </strong>{' '}
                   <span className="showcase-point-desc">{point.desc}</span>
                 </div>
               </div>
@@ -149,7 +162,11 @@ export function GoogleAiShowcase({ data, locale }: GoogleAiShowcaseProps) {
               onClick={openLightbox}
             >
               <ZoomIn size={14} aria-hidden="true" />
-              <span>{ru ? 'Смотреть оригинал (1000x860)' : 'View full size (1000x860)'}</span>
+              <span>
+                {ru
+                  ? 'Смотреть оригинал (1000x860)'
+                  : 'View full size (1000x860)'}
+              </span>
             </button>
 
             {data.links.map((link) => (
@@ -161,7 +178,9 @@ export function GoogleAiShowcase({ data, locale }: GoogleAiShowcaseProps) {
                 className="google-showcase-btn-secondary"
               >
                 <span>{link.label}</span>
-                {link.badge && <span className="showcase-btn-badge">{link.badge}</span>}
+                {link.badge && (
+                  <span className="showcase-btn-badge">{link.badge}</span>
+                )}
                 <ExternalLink size={12} aria-hidden="true" />
               </a>
             ))}
@@ -170,7 +189,8 @@ export function GoogleAiShowcase({ data, locale }: GoogleAiShowcaseProps) {
       </div>
 
       {/* Lightbox Modal via Portal */}
-      {mounted && isOpen &&
+      {mounted &&
+        isOpen &&
         createPortal(
           <div
             className="slider-lightbox-backdrop google-dialog-backdrop"
@@ -186,7 +206,11 @@ export function GoogleAiShowcase({ data, locale }: GoogleAiShowcaseProps) {
             <div className="google-dialog-inner">
               <header className="google-dialog-header">
                 <div className="google-dialog-title">
-                  <Sparkles size={14} className="dialog-sparkle" aria-hidden="true" />
+                  <Sparkles
+                    size={14}
+                    className="dialog-sparkle"
+                    aria-hidden="true"
+                  />
                   <span>GOOGLE SEARCH // AI OVERVIEW DOSSIER: MEMASEVICH</span>
                 </div>
                 <button
@@ -211,15 +235,14 @@ export function GoogleAiShowcase({ data, locale }: GoogleAiShowcaseProps) {
                 />
                 <figcaption className="google-dialog-caption">
                   {ru
-                    ? 'Публичная карточка Google AI Overview: подтверждение роли ведущего разработчика локализации Caves of Qud, реверс-инжиниринга и присутствия в Steam / Boosty.'
-                    : 'Public Google AI Overview dossier: verified independent developer of Caves of Qud localization, reverse engineering, and Steam/Boosty presence.'}
+                    ? 'Снимок Google AI Overview о проектах Memasevich. Исходный код и релизы доступны по ссылкам на странице.'
+                    : 'A Google AI Overview snapshot about Memasevich projects. Source code and releases are linked on this page.'}
                 </figcaption>
               </figure>
             </div>
           </div>,
-          document.body
+          document.body,
         )}
     </div>
   );
 }
-
